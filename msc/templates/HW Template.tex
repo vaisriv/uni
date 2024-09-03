@@ -1,0 +1,73 @@
+ \input{/Users/vsrivastava/Library/TeXShop/Templates/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 7}
+\newcommand{\hmwkDueDate}{April 26, 2024}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{ENAE 324}
+\newcommand{\hmwkClassTime}{Section 0101}
+\newcommand{\hmwkClassInstructor}{Dr. Lee}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+
+	A cantilevered solid body is described as follows:
+	\begin{enumerate}
+		\item Dimensions
+		      \subitem Length of \qty{100}{\cm}
+		\item Material
+		      \subitem \( E = \qty{200}{\GPa} \)
+		      \subitem \( \nu = 0.3 \)
+	\end{enumerate}
+	The solid body is fixed at the \( x = 0 \) surface and a bending load of \qty{1}{\N} is applied at the tip \( \left( x = \qty{100}{\cm} \right) \)
+
+	Model the body with solid elements as follows:
+	\begin{enumerate}
+		\item Element Type
+		      \subitem 20-node 3D brick elements
+		\item Mesh Size
+		      \subitem \( 10 \times 2 \times 2 \)
+	\end{enumerate}
+
+	Compare the tip displacement with the solution obtained by the Bernoulli-Euler beam bending theory. Report displacement ratio \( R = \frac{y_{\text{max, 3D FEA}}}{y_{\text{max, B-E Theory}}} \).
+
+	\solution
+
+	\begin{table}[h]
+		\caption{Tip Displacement Results}\label{tab:FEA}
+		\begin{center}
+			\begin{tabular}[c]{l|lll}
+				\hline
+				\multicolumn{1}{c|}{\textbf{Length}}    &
+				\multicolumn{1}{c}{\textbf{FEA Body}}   &
+				\multicolumn{1}{c}{\textbf{B-E Theory}} &
+				\multicolumn{1}{c}{\textbf{R}}                                           \\
+				\hline
+				100                                     & 1.97e-03 & 2.00e-03 & 9.87e-01 \\
+				75                                      & 8.32e-04 & 8.44e-04 & 9.86e-01 \\
+				50                                      & 2.47e-04 & 2.50e-04 & 9.86e-01 \\
+				25                                      & 3.09e-05 & 3.13e-05 & 9.88e-01 \\
+				10                                      & 1.99e-06 & 2.00e-06 & 9.93e-01
+			\end{tabular}
+		\end{center}
+	\end{table}
+
+	Bernoulli-Euler bending theory is very accurate, as it gives numbers extermely close to the results from ANSYS.
+
+\end{homeworkProblem}
+\end{document}
