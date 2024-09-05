@@ -483,7 +483,7 @@ class Lab1(object):
                     elif ("what" in str(board)) | ("n" in str(board)):
                         print("Bodega drip coffee")
                     elif ("course" in str(board)) | ("y" in str(board)):
-                        smoke = input("Are you a smoker?").lower()
+                        smoke = input("Are you a smoker? ").lower()
                         if "y" in str(smoke):
                             print("Americano")
                         elif "n" in str(smoke):
