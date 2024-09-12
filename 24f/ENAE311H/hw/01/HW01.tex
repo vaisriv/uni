@@ -4,18 +4,19 @@
 % Homework Details
 %   - Title
 %   - Due date
-%   - Class
+%   - Due time
+%   - Course
 %   - Section/Time
 %   - Instructor
 %   - Author
 %
 
 \newcommand{\hmwkTitle}{Homework 01}
-\newcommand{\hmwkDueDate}{September 06, 2024}
-\newcommand{\hmwkDueTime}{01:00 PM}
-\newcommand{\hmwkClass}{ENAE 301}
-\newcommand{\hmwkClassTime}{Section 0103}
-\newcommand{\hmwkClassInstructor}{Dr. Paley}
+\newcommand{\hmwkDueDate}{September 10, 2024}
+\newcommand{\hmwkDueTime}{05:00 PM}
+\newcommand{\hmwkClass}{ENAE 311H}
+\newcommand{\hmwkClassTime}{Section 0101}
+\newcommand{\hmwkClassInstructor}{Dr. Brehm}
 \newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
 
 \begin{document}
@@ -26,206 +27,183 @@
 
 \begin{homeworkProblem}
 
-	\textbf{1.1:} What are the Cartesian coordinates of point \( P \) in frame \( I \), as shown in the following figure?
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.65\textwidth]{images/01-1.1.png}
-		\end{center}
-	\end{figure}
-
-	\solution
-
-	The cartesian coordinates of point \( P \) in frame \( I \) are \( \left(6.98, 3.64, 1.92\right) \) m.
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{1.2:} Sketch and label the vectors \( \vec{r}_{\frac{P}{O}} \), \( \vec{r}_{\frac{P}{Q}} \), \( \vec{r}_{\frac{Q}{P}} \) in the following figure:
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.45\textwidth]{images/01-1.2.png}
-		\end{center}
-	\end{figure}
-
-	\solution
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.45\textwidth]{images/solution 01-1.2.png}
-		\end{center}
-	\end{figure}
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{1.3:} Match each of the following definitions to the appropriate term below:
-	\begin{enumerate}
-		\item A perspective for observations regarding the motion of a system
-		\item A mathematical quantity with both magnitude and direction
-		\item Second-order differential equations whose solution is the trajectory of a point
-		\item A set of scalars used to locate a point relative to another point
-	\end{enumerate}
-	\begin{itemize}
-		\item Vector
-		\item Reference frame
-		\item Coordinate system
-		\item Equations of motion
-	\end{itemize}
+	Consider an infinitely thin flat plate with a \( \qty{1}{\m} \) chord at an angle of attack of \ang{15} to an oncoming flow. The pressure distributions on the upper and lower surfaces are given by \( p_u = 2\e{4} \left( x - 1 \right) + 2.7\e4 \) and \( p_l = 1\e{4} \left( x - 1 \right) + 1.1\e{5} \), where \( x \) is the distance from the leading edge along the chord; the shear stress distributions are \( \tau_u = 144x^{-0.3} \) and \( \tau_l = 360 x^{-0.3} \). Here, the units of \( p \) and \( \tau \) are \unit{\N \per \square \m}. Calculate the normal and axial forces, the lift and drag, moments about the leading edge and quarter chord, all per unit span, as well as the center of pressure.
 
 	\solution
 
 	\part
 
-	Reference Frame: A perspective for observations regarding the motion of a system.
-
-	\part
-
-	Vector: A mathematical quantity with both magnitude and direction.
-
-	\part
-
-	Equations of motion: Second-order differential equations whose solution is the trajectory of a point.
-
-	\part
-
-	Coordinate system: A set of scalars used to locate a point relative to another point.
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{2.3:} Consider the straight-line motion of a particle of mass \( m_{P} \) acted on only by air resistance, \( F_{P} = - b \dot{x}^{2} \). Find analytically an expression for the velocity of the particle as a function of time if it starts with initial velocity \( v_{0} \) at time \( t_{0} \).
-
-	\solution
-
-	\begin{align*}
-		m_{P} \frac{d\dot{x}}{dt}                             = F_{P}                                     \\
-		m_{P} \frac{d\dot{x}}{dt}                             = -b\dot{x}^{2}                             \\
-		\frac{d\dot{x}}{\dot{x}^2}                            = - \frac{b}{m_{P}} dt                      \\
-		\left[ - \frac{1}{\dot{x}} \right]^{\dot{x}}_{v_{0}}  = - \frac{b}{m_{P}}\left( t - t_{0} \right) \\
-		\dot{x}                                               = \left[ v_{0}^{-1} + \frac{b}{m_{P}} \left( t - t_{0} \right) \right] \qed
-		.\end{align*}
-
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{2.6:} Sketch a planar model of a weightlifter's barbell using two point masses and a rigid massless rod. How many degrees of freedom are there in your model?
-
-	\solution
-
-	In my model, there are 3 degrees of freedom.
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.45\textwidth]{images/solution 01-2.6.png}
-		\end{center}
-	\end{figure}
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{2.7:} In Example 2.5 we found that the three-link robot arm in Figure 2.6a has three degrees of freedom. We described them by three angles in Figure 2.6b. Suppose, instead, you desired to describe the system by the six Cartesian coordinates for the end of each link, \( \left( x_{1}, y_{1} \right)_{I} \) , \( \left( x_{2}, y_{2} \right)_{I} \), \( \left( x_{3}, y_{3} \right)_{I} \). How many constraint equations would be necessary and what are they?
-
-	\solution
-
-	For this description of the system, we would need two constraint equations:
-	\begin{align*}
-		r_{a} = \sqrt{\left( x_{1} - x_{2} \right)^2 + \left( y_{1} - y_{2} \right)^2} \\
-		r_{b} = \sqrt{\left( x_{2} - x_{3} \right)^2 + \left( y_{2} - y_{3} \right)^2}
-		.\end{align*}
-
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-
-	\textbf{2.12:} Find the equations of motion for a mass m suspended vertically from a spring as shown in the following figure, assuming that the mass is constrained to move only vertically and that it is subject to the force of gravity. Draw a free-body diagram, choose a coordinate system, and use Newton’s second law to find the equation of motion.
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.45\textwidth]{images/01-2.12.png}
-		\end{center}
-	\end{figure}
-
-	\solution
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.15\textwidth]{images/solution 01-2.12.png}
-		\end{center}
-	\end{figure}
-
+	Normal Force is calculated here by integrating the pressure difference between the upper and lower faces over the chord length.
 	\[
-		\ddot{y} = \frac{g - ky}{m}
-		.\]
+		N = \int_0^1 p_l(x)-p_u(x) \dx = \qty{88}{\kN}\qed
+	\]
+
+	\part
+
+	Axial Force is calculated here by integrating the shear stress on the upper and lower faces over the chord length.
+	\[
+		A = \int_0^1 \tau_l(x)-\tau_u(x) \dx = \qty{720}{\N}\qed
+	\]
+
+	\part
+
+	Lift is computed here using the Normal and Axial forces and the angle of attack \( \alpha \).
+	\[
+		L = N \cos{\alpha}-A\sin{\alpha} = \qty{81.81512}{\kN}\qed
+	\]
+
+	\part
+
+	Drag is computed here using the Normal and Axial forces and the angle of attack \( \alpha \).
+	\[
+		D = A \cos{\alpha}+N\sin{\alpha} = \qty{23.47154}{\kN}\qed
+	\]
+
+	\part
+
+	Moment about the leading edge is calculated here by integrating the pressure difference in the same way as we calculated the Normal Force, but also taking into account the position along the chord.
+	\[
+		M_{LE} = \int_0^1 x \left( p_l(x)-p_u(x) \right) \dx = \qty{43.16667}{\kN\m}\qed
+	\]
+
+	\part
+
+	Moment at quarter-chord is calculated here by integrating the pressure difference in the same way as we calculated the Moment about the leading edge, but now at the quarter-chord, and not the leading edge.
+	\[
+		M_{\frac{c}{4}} = \int_0^1 \left( x - 0.25 \right) \left( p_l(x)-p_u(x) \right) \dx = \qty{21.16667}{\kN\m}\qed
+	\]
+
+	\part
+
+	Center of Pressure is calculated here by dividing the Moment about the leading edge by the Normal Force.
+	\[
+		x_{COP} = \frac{M_{LE}}{N} = \qty{0.49}{\m}\qed
+	\]
 
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
 
-	\textbf{2.17:} Consider the equation of motion of a driven simple harmonic oscillator \( \ddot{x} = a - \frac{k}{m} x \), where \( a \) is a constant.
+	A series of experiments is performed on a two-dimensional airfoil in which the lift, drag, and moment coefficients (the latter about the quarter chord) are measured over a range of angles of attack from \ang{0} to \ang{10}. The lift coefficient curve is found to be well approximated by the equation:
+	\[
+		c_l = 0.2 + 6 \alpha,
+	\]
+	where \( \alpha \) is the angle of attack in radians. The drag is found to be well approximated by
+	\[
+		c_d = 0.006 + 0.3\alpha^2
+	\]
+	while \( c_{m,\frac{c}{4}} \) increases linearly from \( -0.04 \) for \( \alpha = \ang{0} \) to \( -0.03 \) for \( \alpha = \ang{10} \). Make a plot of \( \frac{x_{cp}}{c} \) as a function of \( \alpha \) for this airfoil.
+
+	\solution
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=0.75\textwidth]{images/s2.png}
+		\end{center}
+	\end{figure}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+	Given the pressure distribution \( p(x,y) = x^2+2y^2+50 \) acting on the body shown below, calculate the following:
 	\begin{enumerate}
-		\item Integrate the equation to find the solution analytically.
-		\item Solve the equation of motion using \textsc{MATLAB} \lstinline{ODE45}, and plot \( x(t) \) and \( \dot{x}(t) \). Let \( a = 1 \), \( m = 0.5 \), and \( k = 3 \). Be sure to label your axes (with units!) and add a legend to the plot.
+		\item The pressure force per unit depth on each face of the body.
+		\item The magnitude and direction of the net force per unit depth on the body.
+		\item The magnitude and direction of the net moment per unit depth on the body acting about the origin of the coordinate system.
+		\item The location of the object's center of pressure with respect to the origin.
+	\end{enumerate}
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=0.65\textwidth]{images/p3.png}
+		\end{center}
+	\end{figure}
+
+	\solution
+
+	\part
+
+	Face 1 coordinates: \( x=3, y=2:4 \).\\
+	Face 2 coordinates: \( x=3:5, y=2 \).\\
+	Face 3 coordinates: \( x=3:5, y=4 \).\\
+	Face 4 coordinates: \( x=5, y=2:4 \).
+	\begin{align*}
+		p(x,y) & = x^2+2y^2+50                        \\
+		F_{1}  & = \int^4_2 p(3,y) \dy = 155.333      \\
+		F_{2}  & = \int^5_3 p(x,2) \dx = 148.667      \\
+		F_{3}  & = \int^5_3 p(x,4) \dx = 196.667      \\
+		F_{4}  & = \int^4_2 p(5,y) \dy = 187.333 \qed
+	\end{align*}
+
+	\part
+
+	Net Force is given by the vector sum of the pressure force on each face.
+	\begin{align*}
+		\vec{F_{1}}+\vec{F_{2}}+\vec{F_{3}}+\vec{F_{4}}                                                                                                                          \\
+		\vec{F} = \begin{bmatrix} F_{x} \\ F_{y} \end{bmatrix} = \begin{bmatrix} F_{1} & F_{4} \\ F_{2} & F_{3} \end{bmatrix} = \begin{bmatrix} 342.667 \\ 345.333 \end{bmatrix} \\
+		\vec{F} = \sqrt{F_{x}^2+F_{y}^2} = 486.493, \ang{45.222} \qed
+	\end{align*}
+
+	\part
+
+	Net Moment requires is given by reintegrating the pressure force on each face, now factoring in the distance from the origin of the coordinate system.
+	\begin{align*}
+		p(x,y)  & = x^2+2y^2+50                                                  \\
+		M_{1}   & = \int^4_2 p(3,y)*3 \dy = 466                                  \\
+		M_{2}   & = \int^5_3 p(x,2)*2 \dx = 297.333                              \\
+		M_{3}   & = \int^5_3 p(x,4)*4 \dx = 786.667                              \\
+		M_{4}   & = \int^4_2 p(5,y)*5 \dy = 936.667                              \\
+		\vec{M} & = M_{1}-M_{2}+M_{3}-M_{4} = 18.667, \text{anti-clockwise} \qed
+	\end{align*}
+
+	\part
+
+	\( COP \) can be calculated via \( \sum \frac{M_i}{F_i} \)
+	\begin{align*}
+		x_{cp} & = \frac{M_{1}+M_{4}}{F_{1}+F_{4}} = 4.0934 \\
+		y_{cp} & = \frac{M_{2}+M_{3}}{F_{2}+F_{3}} = 3.1390 \\
+		COP    & = (x_{cp}, y_{cp}) = (4.0934, 3.1390) \qed
+	\end{align*}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+	Consider the steady flow of viscous incompressible fluid through a smooth, square pipe. The friction between the pipe wall and the fluid will result in a drop in pressure, \( \Delta p \), from one end of the pipe to the other that will depend on the length and width of the pipe, \( l \) and \( d \), the density and coefficient of viscosity of the fluid, \( \rho \) and \( \mu \), and the flow velocity, \( V \), i.e., \( \Delta p = f(l, d, \rho, \mu, V) \). Use the Buckingham Pi theorem to show that:
+	\[
+		\frac{\Delta p}{\rho V^2} = F(Re,\frac{l}{d}),
+	\]
+	where \( Re \) is the Reynolds number, \( Re = \frac{\rho V d}{\mu} \). If we extended the analysis to include pipe roughness (with a characteristic roughness height \( \epsilon \)), how would the above equation be modified?
+
+	\solution
+
+	Sol
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+	Consider a long cylindrical wire that suddenly has a large electrical current passed through it, such that the wire explodes, depositing an energy per unit depth, \( E \), into the surrounding air. This causes a cylindrically expanding shock wave to propagate outwards from the initial position of the wire. If \( E \) is large, the initial propagation rate of this shock is independent of the pressure and temperature of the gas (this is known as the strong-shock limit); the only gas property that is important then is the density, \( \rho \).
+
+	In fact, other thermodynamic properties of the quiescent air enter into the problem through the specific heats at constant volume and pressure, \( c_v \) and \( c_p \).
+	\begin{enumerate}
+		\item Using dimensional analysis, show that in the first case the shock velocity, \( V_s \), decays with time \( t \) as
+		      \[
+			      V_s = c \left( \frac{E}{\rho}^{\frac{1}{4}} \right) t^{-\frac{1}{2}},
+		      \]
+		      where \( c \) is a constant.
+		\item In the second case, use the Buckingham Pi theorem to show that
+		      \[
+			      \frac{V_s^4t^2\rho}{E} = F(\gamma),
+		      \]
+		      where \( \gamma = \frac{cp}{cv} \).
+
 	\end{enumerate}
 
 	\solution
 
-	\begin{align*}
-		\ddot{x} = a - \frac{k}{m}x                           \\
-		d\dot{x} + \frac{k}{m}x = a dt                        \\
-		\int \frac{k}{m}x d\dot{x} = \int a dt                \\
-		\frac{k}{2m}x^{2} \dot{x} = at + C_{1}                \\
-		\frac{k}{2m}x^{2} dx = \left( at + C_{1} \right) dt   \\
-		\int \frac{k}{2m}x^{2} dx = \int at + C_{1} dt        \\
-		\frac{k}{6m}x^{3} = \frac{a}{2}t^{2} + C_{1}t + C_{2} \\
-		x = \sqrt[3]{\left( \frac{a}{2}t^{2} + C_{1}t + C_{2} \right) \frac{6m}{k}} \qed
-		.\end{align*}
-
-	Code:
-	\begin{lstlisting}[language=MATLAB]
-		x0 = [0; 0];
-		tspan = [0 10];
-		[t, x] = ode45(@harmonic_oscillator, tspan, x0);
-
-		figure;
-		subplot(2,1,1);
-		plot(t, x(:,1), 'b', 'LineWidth', 2);
-		xlabel('Time (s)');
-		ylabel('Displacement x(t) (m)');
-		title('Displacement vs. Time');
-		legend('x(t)');
-
-		subplot(2,1,2);
-		plot(t, x(:,2), 'r', 'LineWidth', 2);
-		xlabel('Time (s)');
-		ylabel('Velocity \dot{x}(t) (m/s)');
-		title('Velocity vs. Time');
-		legend('\dot{x}(t)');
-
-		grid on;
-
-		function dxdt = harmonic_oscillator(t, x)
-		    a = 1;
-		    m = 0.5;
-		    k = 3;
-		    dxdt = zeros(2,1);
-		    dxdt(1) = x(2);
-		    dxdt(2) = a - (k/m)*x(1);
-		end
-	\end{lstlisting}
-
-	Plot:
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.85\textwidth]{images/matlab 01-2.17.png}
-		\end{center}
-	\end{figure}
+	Sol
 
 \end{homeworkProblem}
 

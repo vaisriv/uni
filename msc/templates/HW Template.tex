@@ -4,19 +4,20 @@
 % Homework Details
 %   - Title
 %   - Due date
-%   - Class
+%   - Due time
+%   - Course
 %   - Section/Time
 %   - Instructor
 %   - Author
 %
 
-\newcommand{\hmwkTitle}{Homework 7}
-\newcommand{\hmwkDueDate}{April 26, 2024}
+\newcommand{\hmwkTitle}{Title}
+\newcommand{\hmwkDueDate}{Due Date}
 \newcommand{\hmwkDueTime}{11:59 PM}
-\newcommand{\hmwkClass}{ENAE 324}
-\newcommand{\hmwkClassTime}{Section 0101}
-\newcommand{\hmwkClassInstructor}{Dr. Lee}
-\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkClass}{Course}
+\newcommand{\hmwkClassTime}{Section}
+\newcommand{\hmwkClassInstructor}{Instuctor}
+\newcommand{\hmwkAuthorName}{\textbf{Author}}
 
 \begin{document}
 
@@ -26,48 +27,84 @@
 
 \begin{homeworkProblem}
 
-	A cantilevered solid body is described as follows:
-	\begin{enumerate}
-		\item Dimensions
-		      \subitem Length of \qty{100}{\cm}
-		\item Material
-		      \subitem \( E = \qty{200}{\GPa} \)
-		      \subitem \( \nu = 0.3 \)
-	\end{enumerate}
-	The solid body is fixed at the \( x = 0 \) surface and a bending load of \qty{1}{\N} is applied at the tip \( \left( x = \qty{100}{\cm} \right) \)
-
-	Model the body with solid elements as follows:
-	\begin{enumerate}
-		\item Element Type
-		      \subitem 20-node 3D brick elements
-		\item Mesh Size
-		      \subitem \( 10 \times 2 \times 2 \)
-	\end{enumerate}
-
-	Compare the tip displacement with the solution obtained by the Bernoulli-Euler beam bending theory. Report displacement ratio \( R = \frac{y_{\text{max, 3D FEA}}}{y_{\text{max, B-E Theory}}} \).
+	Write problem statement here.
 
 	\solution
 
-	\begin{table}[h]
-		\caption{Tip Displacement Results}\label{tab:FEA}
-		\begin{center}
-			\begin{tabular}[c]{l|lll}
-				\hline
-				\multicolumn{1}{c|}{\textbf{Length}}    &
-				\multicolumn{1}{c}{\textbf{FEA Body}}   &
-				\multicolumn{1}{c}{\textbf{B-E Theory}} &
-				\multicolumn{1}{c}{\textbf{R}}                                           \\
-				\hline
-				100                                     & 1.97e-03 & 2.00e-03 & 9.87e-01 \\
-				75                                      & 8.32e-04 & 8.44e-04 & 9.86e-01 \\
-				50                                      & 2.47e-04 & 2.50e-04 & 9.86e-01 \\
-				25                                      & 3.09e-05 & 3.13e-05 & 9.88e-01 \\
-				10                                      & 1.99e-06 & 2.00e-06 & 9.93e-01
-			\end{tabular}
-		\end{center}
-	\end{table}
-
-	Bernoulli-Euler bending theory is very accurate, as it gives numbers extermely close to the results from ANSYS.
+	Write solution here.
 
 \end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+	Homework problems are placed on individual pages.
+
+	\solution
+
+	Solutions are placed below the problem statement, and can be split
+
+	\part
+
+	into
+
+	\part
+
+	different parts.
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+		
+	Problems can include \( \textbf{inline math: } F_{P} = - b \dot{x}^{2} \) and \textbf{display math:}
+
+	\[
+		\Delta E_{12} = Q_{12} + W_{12} \therefore W_{12} = Q_{12}
+	.\]
+	
+	\solution
+
+	And so can solutions.
+
+	Personally, I like to use \lstinline{align*} environments (though you can use \lstinline{gather*} environments) for multi-line math.
+
+	\begin{align*}
+		m_{P} \frac{d\dot{x}}{dt}                             = F_{P}                                     \\
+		m_{P} \frac{d\dot{x}}{dt}                             = -b\dot{x}^{2}                             \\
+		\frac{d\dot{x}}{\dot{x}^2}                            = - \frac{b}{m_{P}} dt                      \\
+		\left[ - \frac{1}{\dot{x}} \right]^{\dot{x}}_{v_{0}}  = - \frac{b}{m_{P}}\left( t - t_{0} \right) \\
+		\dot{x}                                               = \left[ v_{0}^{-1} + \frac{b}{m_{P}} \left( t - t_{0} \right) \right] \qed
+		.\end{align*}
+
+	You can also display code blocks using \lstinline{lstlisting} environments.
+
+	\begin{lstlisting}[language=python]
+		minutes_to_convert = 122
+		convert_label = " Minutes "
+		if minutes_to_convert == 1:
+		    convert_label = " Minute "
+
+		hours = int(minutes_to_convert / 60)
+		minutes = minutes_to_convert % 60
+
+		hour_label = " Hours, "
+		if hours == 1:
+		    hour_label = " Hour, "
+
+		minute_label = " Minutes"
+		if minutes == 1:
+		    minute_label = " Minute"
+
+		print(
+		    str(minutes_to_convert)
+		    + convert_label
+		    + "is the same as:\n"
+		    + str(hours)
+		    + hour_label
+		    + str(minutes)
+		    + minute_label
+		)
+	\end{lstlisting}
+
+\end{homeworkProblem}
+
 \end{document}
