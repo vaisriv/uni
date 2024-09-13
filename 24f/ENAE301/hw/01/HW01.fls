@@ -1,4 +1,4 @@
-PWD /Users/vsrivastava/files/uni/24f/ENAE301/hw
+PWD /Users/vsrivastava/files/uni/24f/ENAE301/hw/01
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -258,49 +258,49 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT ./images/01-1.1.png
-INPUT ./images/01-1.1.png
-INPUT ./images/01-1.1.png
-INPUT ./images/01-1.1.png
-INPUT ./images/01-1.1.png
-INPUT ./images/01-1.2.png
-INPUT ./images/01-1.2.png
-INPUT ./images/01-1.2.png
-INPUT ./images/01-1.2.png
-INPUT ./images/01-1.2.png
-INPUT ./images/solution 01-1.2.png
-INPUT ./images/solution 01-1.2.png
-INPUT ./images/solution 01-1.2.png
-INPUT ./images/solution 01-1.2.png
-INPUT ./images/solution 01-1.2.png
+INPUT ./images/p1.png
+INPUT ./images/p1.png
+INPUT ./images/p1.png
+INPUT ./images/p1.png
+INPUT ./images/p1.png
+INPUT ./images/p2.png
+INPUT ./images/p2.png
+INPUT ./images/p2.png
+INPUT ./images/p2.png
+INPUT ./images/p2.png
+INPUT ./images/s2.png
+INPUT ./images/s2.png
+INPUT ./images/s2.png
+INPUT ./images/s2.png
+INPUT ./images/s2.png
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT ./images/solution 01-2.6.png
-INPUT ./images/solution 01-2.6.png
-INPUT ./images/solution 01-2.6.png
-INPUT ./images/solution 01-2.6.png
-INPUT ./images/solution 01-2.6.png
-INPUT ./images/01-2.12.png
-INPUT ./images/01-2.12.png
-INPUT ./images/01-2.12.png
-INPUT ./images/01-2.12.png
-INPUT ./images/01-2.12.png
-INPUT ./images/solution 01-2.12.png
-INPUT ./images/solution 01-2.12.png
-INPUT ./images/solution 01-2.12.png
-INPUT ./images/solution 01-2.12.png
-INPUT ./images/solution 01-2.12.png
+INPUT ./images/s5.png
+INPUT ./images/s5.png
+INPUT ./images/s5.png
+INPUT ./images/s5.png
+INPUT ./images/s5.png
+INPUT ./images/p7.png
+INPUT ./images/p7.png
+INPUT ./images/p7.png
+INPUT ./images/p7.png
+INPUT ./images/p7.png
+INPUT ./images/s7.png
+INPUT ./images/s7.png
+INPUT ./images/s7.png
+INPUT ./images/s7.png
+INPUT ./images/s7.png
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
-INPUT ./images/matlab 01-2.17.png
-INPUT ./images/matlab 01-2.17.png
-INPUT ./images/matlab 01-2.17.png
-INPUT ./images/matlab 01-2.17.png
-INPUT ./images/matlab 01-2.17.png
+INPUT ./images/s8.png
+INPUT ./images/s8.png
+INPUT ./images/s8.png
+INPUT ./images/s8.png
+INPUT ./images/s8.png
 INPUT HW01.aux
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
