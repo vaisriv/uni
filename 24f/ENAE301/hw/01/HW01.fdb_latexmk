@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1726173129.13823 "HW01.tex" "HW01.pdf" "HW01" 1726173130.47933 0
+["pdflatex"] 1726594903.20844 "HW01.tex" "HW01.pdf" "HW01" 1726594904.61248 0
   "/Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex" 1726016705.13267 4556 a85a9b53999fb4b97da9b75f360a4f86 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -164,12 +164,12 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1714767608.83657 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1714767516 8221440 49d22e01fa3283358e0e81a3bbcbe8ad ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "HW01.aux" 1726173130.35375 689 f45133a07a59ef0733d58070fa6ca4b4 "pdflatex"
-  "HW01.tex" 1726173107.68215 7122 910781f5d12bc520c0f0e89cd39b5116 ""
+  "HW01.aux" 1726594904.48136 689 f45133a07a59ef0733d58070fa6ca4b4 "pdflatex"
+  "HW01.tex" 1726594901.43426 7122 910781f5d12bc520c0f0e89cd39b5116 ""
   "images/p1.png" 1725590849.63674 122182 6ff2a22b598118721c27d0140ea7941c ""
   "images/p2.png" 1725590790.24365 53614 504d18a0e79c42d5f5bdd636c4ea2e34 ""
   "images/p7.png" 1725596137.97416 37333 144b2ba5dd5feafb708a6d07d8c3e9e6 ""
-  "images/s2.png" 1725591754.72197 60073 5cd063bff19be575436011b5b44d3f3e ""
+  "images/s2.png" 1726594834.69541 57702 d1bf246667dc23948dab2b37dbaaa0e4 ""
   "images/s5.png" 1725594594.22457 24752 503c9a2e110791654a7b0a9a5f785718 ""
   "images/s7.png" 1725596988.41366 34429 c0be96bc2d2716ac5080a7c7f26f2776 ""
   "images/s8.png" 1725599669.0518 23960 b42c4efd4b92242c9e029cbb6f92b104 ""
