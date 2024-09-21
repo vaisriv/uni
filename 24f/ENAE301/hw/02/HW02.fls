@@ -1,0 +1,11 @@
+PWD /Users/vsrivastava/files/uni/24f/ENAE301/hw/02
+INPUT /usr/local/texlive/2024/texmf.cnf
+INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT HW02.tex
+OUTPUT HW02.log
+INPUT /Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex
+INPUT /Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex
+INPUT /Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex
+INPUT /Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex
+INPUT /Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex
