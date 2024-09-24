@@ -1,3 +1,4 @@
+# Vai Srivastava - 0106
 """
 This is your template for lab1. Implement all questions in the appropriate 
 function. You are encouraged to implement helper functions as needed with
@@ -539,4 +540,4 @@ test = Lab1()
 # test.money()
 # test.lyrics()
 # test.interest()
-test.coffee()
+# test.coffee()
