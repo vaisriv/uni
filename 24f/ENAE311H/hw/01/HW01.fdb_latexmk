@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1726025848.75925 "HW01.tex" "HW01.pdf" "HW01" 1726025849.86088 0
-  "/Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex" 1726016705.13267 4556 a85a9b53999fb4b97da9b75f360a4f86 ""
+["pdflatex"] 1727246709.14214 "HW01.tex" "HW01.pdf" "HW01" 1727246710.35284 0
+  "/Users/vsrivastava/Library/TeXShop/Templates/HWSetup.tex" 1726861168.27455 4578 58df1a15007b6c513a32b96c08665de5 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -39,6 +39,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
   "/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty" 1644112042 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
   "/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty" 1575499628 8356 7bbb2c2373aa810be568c29e333da8ed ""
@@ -155,8 +156,8 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1714767608.83657 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1714767516 8221440 49d22e01fa3283358e0e81a3bbcbe8ad ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "HW01.aux" 1726025849.75094 442 90bddc46bc904c9f126c4f2f85ab425f "pdflatex"
-  "HW01.tex" 1726025847.64664 8456 0d91774e7e181e62724347b8663c70b0 ""
+  "HW01.aux" 1727246710.24155 442 fc19ac2df4845140a5917a450326f242 "pdflatex"
+  "HW01.tex" 1727246709.00018 11291 d3235703a8378ea0cc1e96268b51e6bc ""
   "images/p3.png" 1726014664.44607 25858 cf6e887141089b0927b41d20be197ac9 ""
   "images/s2.png" 1726014064.31555 15373 675d0145469ab5e5fa1be766c9075457 ""
   (generated)
