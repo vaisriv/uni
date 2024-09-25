@@ -298,9 +298,73 @@ class Lab2(object):
 
     def decrypt(self):
         """
-        Insert descriptions here. Make sure to comment this code thoroughly.
+        Attempts to decrypt a Vigenère cipher using a dictionary of valid words.
+        
+        The function reads a cipher text from 'cipher.txt' and tries to decrypt it by
+        attempting each 5-letter word from 'validwords.txt' as the potential keyword.
+        After decoding with each keyword, the function checks if the first 5-letter word
+        in the decrypted message is a valid word from the dictionary. If a valid decryption
+        is found, the function prints and returns the decrypted message.
+
+        Returns
+        -------
+        str
+            The successfully decrypted message, or None if no valid decryption was found.
         """
-        return 0
+
+        def load_file(filename):
+            """
+            Helper function to load the contents of a file.
+
+            Parameters
+            ----------
+            filename : str
+                Name of the file to be loaded.
+
+            Returns
+            -------
+            str or list of str
+                Contents of the file, either as a string (for cipher) or list of words (for dictionary).
+            """
+            with open(filename, "r") as file:
+                return file.read().splitlines()
+
+        # Load the cipher text and valid words dictionary
+        cipher_text = load_file("cipher.txt")[0]  # Cipher is a single line
+        valid_words = set(load_file("validwords.txt"))  # Store valid words as a set for fast lookup
+
+        # Try each 5-letter word from the dictionary as a possible keyword
+        for keyword in valid_words:
+            decrypted_text = []
+            keyword_index = 0
+
+            # Decrypt the cipher text using the current keyword
+            for char in cipher_text:
+                if char.isalpha():
+                    # Use the current character of the keyword (loop back if necessary)
+                    key_char = keyword[keyword_index % len(keyword)].upper()
+                    # Decrypt the alphabetic character by reversing the cipher shift
+                    decoded_char = (lambda c, k: chr(((ord(c) - ord(k)) % 26) + ord('A')))(char.upper(), key_char)
+                    decrypted_text.append(decoded_char)
+                    # Increment keyword index only for alphabetic characters
+                    keyword_index += 1
+                else:
+                    # Non-alphabetic characters are added to decrypted text unchanged
+                    decrypted_text.append(char)
+
+            # Join the decrypted characters into a full string
+            decrypted_message = ''.join(decrypted_text)
+
+            # Extract the first 5-letter word from the decrypted message
+            decrypted_words = decrypted_message.split()
+            first_five_letter_word = next((word for word in decrypted_words if len(word) == 5), None)
+
+            # Check if the first 5-letter word is valid
+            if first_five_letter_word and first_five_letter_word.lower() in valid_words:
+                print(f"Valid decryption found using keyword '{keyword}': {decrypted_message}")
+                return decrypted_message
+
+        print("No valid decryption found.")
 
     def race(self):
         """
