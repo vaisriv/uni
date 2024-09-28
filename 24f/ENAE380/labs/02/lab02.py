@@ -299,7 +299,7 @@ class Lab2(object):
     def decrypt(self):
         """
         Attempts to decrypt a Vigenère cipher using a dictionary of valid words.
-        
+
         The function reads a cipher text from 'cipher.txt' and tries to decrypt it by
         attempting each 5-letter word from 'validwords.txt' as the potential keyword.
         After decoding with each keyword, the function checks if the first 5-letter word
@@ -312,26 +312,13 @@ class Lab2(object):
             The successfully decrypted message, or None if no valid decryption was found.
         """
 
-        def load_file(filename):
-            """
-            Helper function to load the contents of a file.
-
-            Parameters
-            ----------
-            filename : str
-                Name of the file to be loaded.
-
-            Returns
-            -------
-            str or list of str
-                Contents of the file, either as a string (for cipher) or list of words (for dictionary).
-            """
-            with open(filename, "r") as file:
-                return file.read().splitlines()
-
         # Load the cipher text and valid words dictionary
-        cipher_text = load_file("cipher.txt")[0]  # Cipher is a single line
-        valid_words = set(load_file("validwords.txt"))  # Store valid words as a set for fast lookup
+        with open("cipher.txt") as file:
+            cipher_text = file.read().splitlines()
+        with open("validwords.txt") as file:
+            valid_words = set(
+                file.read().splitlines()
+            )  # Store valid words as a set for fast lookup
 
         # Try each 5-letter word from the dictionary as a possible keyword
         for keyword in valid_words:
@@ -344,7 +331,14 @@ class Lab2(object):
                     # Use the current character of the keyword (loop back if necessary)
                     key_char = keyword[keyword_index % len(keyword)].upper()
                     # Decrypt the alphabetic character by reversing the cipher shift
-                    decoded_char = (lambda c, k: chr(((ord(c) - ord(k)) % 26) + ord('A')))(char.upper(), key_char)
+                    encoded_char = (
+                        lambda c, k: chr(
+                            ((ord(c) - ord("A") + ord(k) - ord("A")) % 26) + ord("A")
+                        )
+                    )(char.upper(), key_char.upper())
+                    decoded_char = (
+                        lambda c, k: chr(((ord(c) - ord(k)) % 26) + ord("A"))
+                    )(char.upper(), key_char)
                     decrypted_text.append(decoded_char)
                     # Increment keyword index only for alphabetic characters
                     keyword_index += 1
@@ -353,15 +347,19 @@ class Lab2(object):
                     decrypted_text.append(char)
 
             # Join the decrypted characters into a full string
-            decrypted_message = ''.join(decrypted_text)
+            decrypted_message = "".join(decrypted_text)
 
             # Extract the first 5-letter word from the decrypted message
             decrypted_words = decrypted_message.split()
-            first_five_letter_word = next((word for word in decrypted_words if len(word) == 5), None)
+            first_five_letter_word = next(
+                (word for word in decrypted_words if len(word) == 5), None
+            )
 
             # Check if the first 5-letter word is valid
             if first_five_letter_word and first_five_letter_word.lower() in valid_words:
-                print(f"Valid decryption found using keyword '{keyword}': {decrypted_message}")
+                print(
+                    f"Valid decryption found using keyword '{keyword}': {decrypted_message}"
+                )
                 return decrypted_message
 
         print("No valid decryption found.")
