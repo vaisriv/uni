@@ -94,16 +94,16 @@ def conversion():
         # Compute the sign-magnitude value
         signmag = sign * (int(bits[1]) * 4 + int(bits[2]) * 2 + int(bits[3]))
 
-        # Compute the one's complement value
+        # Compute the one's and two's complement values
         if sign == 1:
             onescomp = signmag
+            twoscomp = onescomp
         else:
             onescomp = sign * (
                 (not int(bits[1])) * 4 + (not int(bits[2])) * 2 + (not int(bits[3]))
             )
+            twoscomp = onescomp - 1
 
-        # Compute the two's complement value
-        twoscomp = onescomp - 1
 
     elif "int" in intorbin:
         # Handle integer input
@@ -442,7 +442,7 @@ def XNOR(a: int, b: int) -> int:
     return NOT(XOR(a, b))
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     conversion()
 #     dec2float()
-#     float2dec()
+    float2dec()
