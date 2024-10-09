@@ -104,7 +104,6 @@ def conversion():
             )
             twoscomp = onescomp - 1
 
-
     elif "int" in intorbin:
         # Handle integer input
         num = 0
@@ -145,11 +144,11 @@ def conversion():
         # Compute the two's complement representation
         if is_negative:
             twoscomp_value = (1 << 4) - magnitude
-            twoscomp_bits = ['0'] * 4
+            twoscomp_bits = ["0"] * 4
             for i in range(3, -1, -1):
                 twoscomp_bits[i] = str(twoscomp_value % 2)
                 twoscomp_value = twoscomp_value // 2
-            twoscomp = ''.join(str(i) for i in twoscomp_bits)
+            twoscomp = "".join(str(i) for i in twoscomp_bits)
         else:
             twoscomp = "0" + magnitude_bits
 
@@ -179,15 +178,17 @@ def dec2float():
     validinput = False
     dec = 0
     while not validinput:
-        dec = float(input(
-            "Input a decimal number within the range of an 8-bit float\n> "
-        ))
+        dec = float(
+            input("Input a decimal number within the range of an 8-bit float\n> ")
+        )
         validinput = abs(dec) <= 31.0 and abs(dec) >= 0.125
         if not validinput:
-            print("Input out of representable range (|number| must be between 0.125 and 31.0) or was not a number. Please try again!")
+            print(
+                "Input out of representable range (|number| must be between 0.125 and 31.0) or was not a number. Please try again!"
+            )
 
     # Determine the sign bit
-    sign_bit = '0' if dec >= 0 else '1'
+    sign_bit = "0" if dec >= 0 else "1"
 
     # Work with the absolute value
     N = abs(dec)
@@ -201,8 +202,8 @@ def dec2float():
 
     if N == 0:
         # Handle zero input separately (should not happen due to validation)
-        exponent_bits_str = '000'
-        mantissa = '0000'
+        exponent_bits_str = "000"
+        mantissa = "0000"
     else:
         # Normalize N
         while N >= 2.0:
@@ -227,21 +228,21 @@ def dec2float():
             return
 
         # Convert exponent_bits to a 3-bit binary string manually
-        exponent_bits_str = ''
+        exponent_bits_str = ""
         for i in range(2, -1, -1):
             bit = (exponent_bits >> i) & 1
             exponent_bits_str += str(bit)
 
         # Compute the mantissa bits (4 bits)
         fraction = N - 1.0  # Since N = 1.f
-        mantissa = ''
+        mantissa = ""
         for _ in range(4):
             fraction *= 2
             if fraction >= 1.0:
-                mantissa += '1'
+                mantissa += "1"
                 fraction -= 1.0
             else:
-                mantissa += '0'
+                mantissa += "0"
 
     # Assemble the final binary string
     output = sign_bit + exponent_bits_str + mantissa
@@ -270,13 +271,13 @@ def float2dec():
     validinput = False
     while not validinput:
         binary_input = input("Input an 8-bit binary floating point number:\n> ").strip()
-        validinput = len(binary_input) == 8 and all(x in '01' for x in binary_input)
+        validinput = len(binary_input) == 8 and all(x in "01" for x in binary_input)
         if not validinput:
             print("Invalid input. Please enter 8 bits consisting of 0s and 1s.")
 
     # Extract the sign bit
     sign_bit = binary_input[0]
-    sign = -1 if sign_bit == '1' else 1
+    sign = -1 if sign_bit == "1" else 1
 
     # Extract the exponent bits and compute exponent value
     exponent_bits = binary_input[1:4]
@@ -291,12 +292,12 @@ def float2dec():
     mantissa = 0.0
     fraction = 0.5
     for bit in mantissa_bits:
-        if bit == '1':
+        if bit == "1":
             mantissa += fraction
         fraction /= 2.0
 
     # Reconstruct the decimal number
-    N = sign * (1.0 + mantissa) * (2 ** e)
+    N = sign * (1.0 + mantissa) * (2**e)
 
     print(f"Decimal value: {N}")
 
@@ -443,6 +444,21 @@ def XNOR(a: int, b: int) -> int:
 
 
 if __name__ == "__main__":
-#     conversion()
-#     dec2float()
+
+    ##---Function Calls---##
+
+    ## 5.1 - 2 Bit Multiplier
+    # (needs parameters `a` and `b`, where `a` and `b` are lists)
+    a = [0, 1, 0, 0]  # CHANGE LIST 1 HERE
+    b = [1, 1, 1, 1]  # CHANGE LIST 2 HERE
+    atimesb = two_bit(a, b)
+    print(atimesb)
+
+    ## 5.2 - Integer Conversion
+    conversion()
+
+    ## 5.3.a - Floating Point: dec2float()
+    dec2float()
+
+    ## 5.3.b - Floating Point: float2dec()
     float2dec()
