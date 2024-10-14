@@ -46,7 +46,7 @@ E_F <- c(
 
 data <- data.frame(E_F = E_F, I_F = I_F)
 
-p <- ggplot(data, aes(x = E_F, y = I_F)) +
+p1 <- ggplot(data, aes(x = E_F, y = I_F)) +
   geom_point(shape = 21, fill = "white") +
   geom_line() +
   xlab(expression(E[F] ~ "[V]")) +
@@ -59,12 +59,12 @@ p <- ggplot(data, aes(x = E_F, y = I_F)) +
   )
 
 title <- textGrob(
-  expression(I[F] ~ "[mA] versus" ~ E[F] ~ "[V]"),
+  expression("Figure 1: Silicon Diode -" ~ I[F] ~ "[mA] versus" ~ E[F] ~ "[V]"),
   gp = gpar(fontsize = 14, fontfamily = "serif"),
-  hjust = 0.5
+  hjust = 0.75
 )
 
-grid.arrange(p, title, ncol = 1, heights = c(10, 1))
+p1_out <- grid.arrange(p1, title, ncol = 1, heights = c(10, 1))
 
 E_R <- -1*c(
   0,
@@ -113,9 +113,12 @@ p2 <- ggplot(data2, aes(x = E_Z, y = I_Z)) +
   scale_y_continuous(position = "right")
 
 title2 <- textGrob(
-  expression(I[Z] ~ "[mA] versus" ~ E[Z] ~ "[V]"),
+  expression("Figure 2: Zener Diode -" ~ I[Z] ~ "[mA] versus" ~ E[Z] ~ "[V]"),
   gp = gpar(fontsize = 14, fontfamily = "serif"),
-  hjust = 0.5
+  hjust = 0.75
 )
 
-grid.arrange(p2, title2, ncol = 1, heights = c(10, 1))
+p2_out <- grid.arrange(p2, title2, ncol = 1, heights = c(10, 1))
+
+ggsave(filename = "I_F vs E_F plot.png", plot = p1_out, width = 6, height = 10)
+ggsave(filename = "I_Z vs E_Z plot.png", plot = p2_out, width = 6, height = 10)
