@@ -1,0 +1,274 @@
+\documentclass[12pt]{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+% \usepackage[latte,styleAll]{catppuccinpalette}
+\usepackage[per-mode = fraction]{siunitx}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+\doublespacing
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor,\ \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+	\stepcounter{#1}
+	\nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+	\ifnum#1>0
+		\setcounter{homeworkProblemCounter}{#1}
+	\fi
+	\section{Problem \arabic{homeworkProblemCounter}}
+	\setcounter{partCounter}{1}
+	\enterProblemHeader{homeworkProblemCounter}
+}{
+	\exitProblemHeader{homeworkProblemCounter}
+	\newpage
+}
+
+
+%
+% Title Page
+%
+
+\title{
+	\vspace{2in}
+	\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+	\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at \hmwkDueTime}\\
+	\vspace{0.1in}\large{\textit{\hmwkClassInstructor,\ \hmwkClassTime}}
+	\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkCompletionDate}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\vspace{\baselineskip}\textbf{\Large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\e}[1]{\mathrm{e}#1}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+% Defining Units that are not in the SI base
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\dollar{\$}
+\DeclareSIUnit\cent{\text{\textcent}}
+\DeclareSIUnit\c{\degreeCelsius}
+
+% Code Listing config
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% \lstdefinestyle{catppuccin-latte}{
+% 	breaklines=true,
+% 	keepspaces=true,
+% 	numbers=left,
+% 	numbersep=5pt,
+% 	showspaces=false,
+% 	showstringspaces=false,
+% 	breakatwhitespace=true,
+% 	tabsize=4,
+% 	stringstyle = {\color{CtpGreen}},
+% 	commentstyle={\color{CtpOverlay1}},
+% 	basicstyle = {\small\color{CtpText}\ttfamily},
+% 	keywordstyle = {\color{CtpMauve}},
+% 	keywordstyle = [2]{\color{CtpBlue}},
+% 	keywordstyle = [3]{\color{CtpYellow}},
+% 	keywordstyle = [4]{\color{CtpLavender}},
+% 	keywordstyle = [5]{\color{CtpPeach}},
+% 	keywordstyle = [6]{\color{CtpTeal}}
+% }
+
+\lstdefinestyle{mystyle}{
+	% backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4
+}
+
+\lstset{style=mystyle}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Reflection 01}
+\newcommand{\hmwkDueDate}{October 14, 2024}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{HISP 200}
+\newcommand{\hmwkClassTime}{0101}
+\newcommand{\hmwkClassInstructor}{Dr. Stephan Woehlke}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{October 13, 2024}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\doublespacing
+
+\textbf{Senses and Spaces: Transforming Old Town, College Park into a Place}
+
+You're feeling restless. Maybe it's the monotony of daily life, or perhaps it's just one of those days when you need a change of scenery. So you decide to take a walk through Old Town, College Park—not just to pass through, but to truly experience it. After all, how often do we really engage with the environments we inhabit?
+
+As you head toward Lake Artemesia, the familiar sounds of the University and the city around it—the honking horns, the distant sirens—begin to fade. The rustle of leaves takes over, each footstep amplified by the crunch of gravel beneath your shoes. The aroma of fresh grass and damp earth fills the air, a stark contrast to the concrete and exhaust you're used to. You take a deep breath. It's amazing how different the air tastes here, isn't it?
+
+The lake comes into view, a serene expanse of water reflecting the colors of the sky. The gentle lapping of waves against the shore creates a soothing rhythm. Birds call out, their songs layering over the whisper of the wind through the trees. You reach out to touch the rough bark of a tree, feeling the grooves and ridges under your fingers. It's a tactile reminder of nature's presence, something often overlooked in our digital age.
+
+But as peaceful as it is, your stomach reminds you that it's time to eat. The enticing scent of spices and grilled meat guides you toward Tacos A La Madre. This isn't just a restaurant; it's a sensory experience. The moment you step inside, you're greeted by vibrant murals depicting scenes of Mexican culture. The sound of sizzling pans, laughter, and conversation fills the space. You order your favorite dish, and as you take that first bite, the explosion of flavors—the heat of the chili, the freshness of cilantro, the richness of the meat—captures your full attention. Food, in this moment, becomes more than sustenance; it's a bridge connecting you to a different culture and to the people around you.
+
+As the evening approaches, you find yourself drawn to the Herbert Wells Ice Rink. The idea of ice skating might seem out of place in your routine, but why not? The glow of the rink's lights against the darkening sky creates an inviting atmosphere. Inside, the sharp chill is immediately noticeable, a welcome change from the warmth of the restaurant. The sound of blades gliding over ice, punctuated by laughter and occasional shouts, fills the air. You rent a pair of skates, the firm grip around your ankles both supportive and slightly uncomfortable. Stepping onto the ice, you feel the smooth, slippery surface underfoot. There's a moment of uncertainty, but it quickly gives way to exhilaration as you find your balance.
+
+Throughout this journey, your senses have been fully engaged. But why does this matter? According to phenomenological theory, our perception of the world is deeply rooted in our sensory experiences (Merleau-Ponty, 2012). It's through these experiences that spaces become places—locations imbued with personal and communal meaning.
+
+The sensescape of Old Town contributes significantly to transforming this space into a place for those who live in and frequent the neighborhood. Each sensory interaction serves as a building block in creating a sense of belonging and identity within the community.
+
+Phenomenology emphasizes that our understanding of the world is constructed through lived experiences (Seamon, 2000). In Old Town, the sights, sounds, smells, tastes, and tactile sensations are not just background elements; they actively shape how individuals perceive and interact with the environment.
+
+For residents, the daily ritual of walking around Lake Artemesia might serve as a moment of reflection or stress relief. The consistent sensory input—the sound of water, the feel of the path underfoot—becomes a familiar and comforting aspect of their lives. This routine engagement fosters a strong emotional connection to the area, aligning with Relph's notion of "existential insideness," where individuals feel deeply at home in a place (Relph, 1976).
+
+Visitors and students might find that the vibrant atmosphere of Tacos A La Madre offers a sense of community and cultural enrichment. Sharing a meal in such a sensory-rich environment can lead to meaningful social interactions. The taste of authentic cuisine, the visual appeal of artistic murals, and the ambient sounds create memories that encourage repeated visits. These experiences contribute to the "place attachment" that Giuliani discusses, wherein emotional bonds develop between individuals and specific locations (Giuliani, 2003).
+
+At the Herbert Wells Ice Rink, the physical sensations of cold air and the challenge of balancing on ice offer a break from the ordinary. For families, it might be a tradition to visit the rink during certain times of the year. The collective experiences—watching a child take their first steps on the ice, sharing hot cocoa afterward—become stories shared within the community. This aligns with the concept of "place identity," where a place becomes part of an individual's self-concept based on emotional and symbolic meanings (Proshansky, 1978).
+
+The sensescape also plays a crucial role in fostering community cohesion. Shared sensory experiences can lead to a collective identity among the people who inhabit or frequent the area. When individuals partake in the same sensory-rich activities—walking the same paths, enjoying the same eateries, participating in local events—they develop a shared narrative that strengthens community bonds (Anderson, 1991).
+
+For example, local festivals or farmers' markets in Old Town might bring together diverse groups of people. The amalgamation of scents from various food stalls, the visual spectacle of local art displays, and the sounds of live music create a unique sensory environment that is collectively experienced. These events enhance the "sense of place" by reinforcing communal values and traditions (Stedman, 2003).
+
+Moreover, sensory experiences can bridge gaps between different cultural or social groups within the community. Tacos A La Madre, with its authentic Mexican cuisine and atmosphere, introduces patrons to a culture that they might not encounter otherwise. This sensory immersion promotes cultural understanding and appreciation, contributing to social sustainability within the neighborhood (Duffy, Waitt, Gorman-Murray, \& Gibson, 2011).
+
+For individuals with visual impairments, the auditory and tactile elements become more prominent. The sound of the wind in the trees at Lake Artemesia or the texture of the ice at the rink takes on greater significance. Designing public spaces that cater to a range of sensory experiences can enhance accessibility and inclusivity, ensuring that more people can form meaningful connections with the place (Pallasmaa, 2005).
+
+Furthermore, sensory overload can be a concern in bustling areas. For some, the vibrant atmosphere of Tacos A La Madre might be overwhelming rather than inviting. Understanding and accommodating these differences is crucial for creating environments that are welcoming to all members of the community (Berg \& Medrich, 1980).
+
+The transformation of Old Town from a mere space into a meaningful place is deeply rooted in the sensescape that envelops it. Through engaging with the environment on a sensory level, individuals form emotional and psychological connections that define their experience of the place.
+
+By recognizing the importance of sensory experiences in place-making, urban planners, community leaders, and residents can work together to cultivate environments that not only meet practical needs but also enrich the lives of those who interact with them. Whether it's the tranquility of Lake Artemesia, the cultural richness of Tacos A La Madre, or the exhilarating chill of the ice rink, these sensory elements are integral to the fabric of the community.
+
+Next time you're in Old Town, College Park, or anywhere really, take a moment. Listen to the sounds you usually ignore. Notice the textures around you. Savor the flavors of your meal. You might find that the world becomes a little richer, a little more vibrant. And maybe, just maybe, a space becomes a place.
+
+\newpage
+\section*{References}
+
+\begin{itemize}
+    \item Anderson, B. (1991). \textit{Imagined Communities: Reflections on the Origin and Spread of Nationalism}. Verso.
+    \item Berg, P. G., \& Medrich, E. (1980). Children in four neighborhoods: The physical environment and its effect on play and play patterns. \textit{Environment and Behavior}, 12(3), 320-348.
+    \item Duffy, M., Waitt, G., Gorman-Murray, A., \& Gibson, C. (2011). Bodily rhythms: Corporeal capacities to engage with festival spaces. \textit{Emotion, Space and Society}, 4(1), 17-24.
+    \item Giuliani, M. V. (2003). Theory of attachment and place attachment. In Bonnes, M., Lee, T., \& Bonaiuto, M. (Eds.), \textit{Psychological Theories for Environmental Issues} (pp. 137-170). Ashgate.
+    \item Merleau-Ponty, M. (2012). \textit{Phenomenology of Perception}. Routledge.
+    \item Pallasmaa, J. (2005). \textit{The Eyes of the Skin: Architecture and the Senses}. John Wiley \& Sons.
+    \item Proshansky, H. M. (1978). The city and self-identity. \textit{Environment and Behavior}, 10(2), 147-169.
+    \item Relph, E. (1976). \textit{Place and Placelessness}. Pion Limited.
+    \item Seamon, D. (2000). A way of seeing people and place: Phenomenology in environment-behavior research. In Wapner, S., Demick, J., Yamamoto, T., \& Minami, H. (Eds.), \textit{Theoretical Perspectives in Environment-Behavior Research} (pp. 157-178). Springer.
+    \item Stedman, R. C. (2003). Is it really just a social construction?: The contribution of the physical environment to sense of place. \textit{Society \& Natural Resources}, 16(8), 671-685.
+    \item Tuan, Y.-F. (1990). \textit{Topophilia: A Study of Environmental Perceptions, Attitudes, and Values}. Columbia University Press.
+\end{itemize}
+
+\end{document}
+
+\end{document}
