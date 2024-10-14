@@ -4,6 +4,7 @@
 [submodule "champs/docs"]
 	path = champs/docs
 	url = https://code.umd.edu/vsriv81/champs-docs
+	active = true
 [submodule "24f/ENAE380/final/project"]
 	path = 24f/ENAE380/final/project
 	url = https://github.com/vaisriv/nfl-rss-nlp
