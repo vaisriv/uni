@@ -120,5 +120,55 @@ title2 <- textGrob(
 
 p2_out <- grid.arrange(p2, title2, ncol = 1, heights = c(10, 1))
 
+E_in <- c(
+  0,
+  0.1962,
+  0.4075,
+  0.6041,
+  0.798,
+  1.0114,
+  1.2014,
+  1.3965,
+  1.6046,
+  1.8058
+)
+
+E_out <- c(
+  0,
+  0.34,
+  0.69,
+  1.02,
+  1.32,
+  1.62,
+  1.85,
+  2.03,
+  2.13,
+  2.17
+)
+
+data3 <- data.frame(E_in = E_in, E_out = E_out)
+
+p3 <- ggplot(data3, aes(x = E_in, y = E_out)) +
+  geom_point(shape = 21, fill = "white") +
+  xlab(expression(E["in"] ~ "[V]")) +
+  ylab(expression(E["out"] ~ "[V]")) +
+  theme_bw(base_family = "serif") +
+  theme(
+    text = element_text(family = "serif"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  ) +
+  scale_x_continuous(position = "bottom") +
+  scale_y_continuous(position = "left")
+
+title3 <- textGrob(
+  expression("Figure 3: JFET Amplifier -" ~ E["out"] ~ "[V] versus" ~ E["in"] ~ "[V]"),
+  gp = gpar(fontsize = 14, fontfamily = "serif"),
+  hjust = 0.75
+)
+
+p3_out <- grid.arrange(p3, title3, ncol = 1, heights = c(10, 1))
+
 ggsave(filename = "I_F vs E_F plot.png", plot = p1_out, width = 6, height = 10)
 ggsave(filename = "I_Z vs E_Z plot.png", plot = p2_out, width = 6, height = 10)
+ggsave(filename = "E_out vs E_in plot.png", plot = p3_out, width = 6, height = 10)
