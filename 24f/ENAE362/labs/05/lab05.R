@@ -48,4 +48,4 @@ title <- textGrob(
 
 p1_out <- grid.arrange(p1, title, ncol = 1, heights = c(10, 1))
 
-ggsave(filename = "E_in vs E_out plot.png", plot = p1_out, width = 6, height = 10)
+ggsave(filename = "E_in vs E_out plot.png", plot = p1_out, width = 8.5, height = 11)
