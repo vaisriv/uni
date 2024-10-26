@@ -1,10 +1,9 @@
 [submodule "notes"]
 	path = notes
-	url = https://github.com/vaisriv/uni-notes
+	url = git@github.com:vaisriv/uni-notes.git
 [submodule "champs/docs"]
 	path = champs/docs
-	url = https://code.umd.edu/vsriv81/champs-docs
-	active = true
+	url = git@code.umd.edu:vsriv81/champs-docs.git
 [submodule "24f/ENAE380/final/project"]
 	path = 24f/ENAE380/final/project
-	url = https://github.com/vaisriv/nfl-rss-nlp
+	url = git@github.com:vaisriv/nfl-rss-nlp
