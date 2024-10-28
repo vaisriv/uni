@@ -1,3 +1,5 @@
+# Vai Srivastava - 0106
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io.wavfile as wave
@@ -151,6 +153,7 @@ def pitch():
     ax.plot(fftf_seg, np.abs(fftw_seg))
     ax.set_xlabel("Frequency [Hz]")
     ax.set_ylabel("Amplitude")
+    ax.set_xlim(0)
 
     fig.set_size_inches(12, 16)
     plt.savefig("./6.2.3.png")
@@ -221,6 +224,7 @@ def mix_signals():
     ax.plot(fftf_mix, np.abs(fftw_mix))
     ax.set_xlabel("Frequency [Hz]")
     ax.set_ylabel("Amplitude")
+    ax.set_xlim(0)
 
     fig.set_size_inches(12, 16)
     plt.savefig("./6.3.png")
@@ -275,6 +279,7 @@ def sampling():
     axs[1].plot(fftf_x, np.abs(fftw_x))
     axs[1].set_xlabel("Frequency [Hz]")
     axs[1].set_ylabel("Amplitude")
+    axs[1].set_xlim(0)
 
     fig.set_size_inches(12, 16)
     plt.savefig("./6.5.1.png")
@@ -282,7 +287,7 @@ def sampling():
     plt.close()
 
     # Subsample the signal
-    F = 499  # new sample rate in Hz
+    F = 125 # new sample rate in Hz
     subsample_factor = int(sample_rate / F)
 
     w_sub = w_og[::subsample_factor]  # subsampled wave
@@ -303,6 +308,7 @@ def sampling():
     axs[1].plot(fftf_sub, np.abs(fftw_sub))
     axs[1].set_xlabel("Frequency [Hz]")
     axs[1].set_ylabel("Amplitude")
+    axs[1].set_xlim(0)
 
     fig.set_size_inches(12, 16)
     plt.savefig("./6.5.3.png")
@@ -314,4 +320,5 @@ if __name__ == "__main__":
     # pitch()
     # mix_signals()
     # stretch("./drum.wav", "./stretch_drum.wav", 0.75)
-    sampling()
+    # sampling()
+    pass
