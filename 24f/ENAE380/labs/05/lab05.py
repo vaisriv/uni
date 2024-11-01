@@ -5,9 +5,9 @@ function. You are encouraged to implement helper functions as needed with
 a short (one-line) description of their purpose.
 """
 
+# imports
 import cv2 as cv
 import time
-from cv2.gapi import threshold
 import numpy as np
 
 
@@ -27,11 +27,11 @@ class Lab5:
         result : (int, int, int)
             total intesities in each of the BGR color channels respectively
         """
-        img = cv.imread(filePath)
-        sum_blue = int(np.sum(img[:, :, 0]))
-        sum_green = int(np.sum(img[:, :, 1]))
-        sum_red = int(np.sum(img[:, :, 2]))
-        return (sum_blue, sum_green, sum_red)
+        img = cv.imread(filePath)  # read image from file
+        sum_blue = int(np.sum(img[:, :, 0]))  # sum all blue values
+        sum_green = int(np.sum(img[:, :, 1]))  # sum all green values
+        sum_red = int(np.sum(img[:, :, 2]))  # sum all red values
+        return (sum_blue, sum_green, sum_red)  # return sums as tuple
 
     def get_dominant_color(self, filePath):
         """
@@ -47,7 +47,9 @@ class Lab5:
         int
             0 for Blue, 1 for Green, 2 for Red
         """
-        return np.argmax(self.calculate_spectrum(filePath))
+        return np.argmax(
+            self.calculate_spectrum(filePath)
+        )  # get index of highest color sum
 
     def measure_runtime_numpy(self):
         """
@@ -58,24 +60,24 @@ class Lab5:
         float
             time taken to run timing_numpy
         """
-        starttime = time.time()
-        self.timing_numpy("./test_images/test_image.png")
-        endtime = time.time()
-        return endtime - starttime
+        starttime = time.time()  # start timer
+        self.timing_numpy("./test_images/test_image.png")  # run numpy timing
+        endtime = time.time()  # stop timer
+        return endtime - starttime  # return elapsed time
 
     def measure_runtime_python(self):
         """
-        Calculates the time it takes to run timing_python() on on 'test_image.png'
+        Calculates the time it takes to run timing_python() on 'test_image.png'
 
         Returns
         -------
         float
             time taken to run timing_python
         """
-        starttime = time.time()
-        self.timing_python("./test_images/test_image.png")
-        endtime = time.time()
-        return endtime - starttime
+        starttime = time.time()  # start timer
+        self.timing_python("./test_images/test_image.png")  # run python timing
+        endtime = time.time()  # stop timer
+        return endtime - starttime  # return elapsed time
 
     def timing_numpy(self, filePath):
         """Accesses each pixel of an image via numpy. Do not modify this function."""
@@ -99,7 +101,7 @@ class Lab5:
 
     def blur_image(self, infilePath, outfilePath):
         """
-        Blurs the input image using a Guassian filter.
+        Blurs the input image using a Gaussian filter.
         Note that the function takes a file path, not a loaded image, as input,
         per the Piazza discussion.
 
@@ -113,10 +115,10 @@ class Lab5:
         numpy.ndarray
             the newly generated image
         """
-        inimg = cv.imread(infilePath)
-        outimg = cv.GaussianBlur(inimg, (5, 5), 0)
-        cv.imwrite(outfilePath, outimg)
-        return outimg
+        inimg = cv.imread(infilePath)  # read input image
+        outimg = cv.GaussianBlur(inimg, (5, 5), 0)  # apply gaussian blur
+        cv.imwrite(outfilePath, outimg)  # save blurred image
+        return outimg  # return blurred image
 
     def findoutlines(self, infilePath, outfilePath):
         """
@@ -132,29 +134,44 @@ class Lab5:
         numpy.ndarray
             the newly generated image
         """
-        inimg = cv.imread(infilePath)
+        inimg = cv.imread(infilePath)  # read input image
 
-        gray = cv.cvtColor(inimg, cv.COLOR_BGR2GRAY)
-        _, thresh = cv.threshold(gray, 1, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
-        contours, _ = cv.findContours(thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+        gray = cv.cvtColor(inimg, cv.COLOR_BGR2GRAY)  # convert to grayscale
+        _, thresh = cv.threshold(
+            gray, 1, 255, cv.THRESH_BINARY + cv.THRESH_OTSU
+        )  # binarize
+        contours, _ = cv.findContours(
+            thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
+        )  # find contours
 
-        outimg = inimg
-        cv.drawContours(outimg, contours, -1, (255, 255, 255), 2)
-        cv.imwrite(outfilePath, outimg)
-        return outimg
+        outimg = inimg  # copy original for drawing
+        cv.drawContours(outimg, contours, -1, (255, 255, 255), 2)  # draw white contours
+        cv.imwrite(outfilePath, outimg)  # save outlined image
+        return outimg  # return outlined image
 
 
 if __name__ == "__main__":
-    lab = Lab5()
+    lab = Lab5()  # create Lab5 instance
+    # print color intensities for test image
     print("test_img spectrum:", lab.calculate_spectrum("./test_images/test_image.png"))
+    # print dominant color index for test image
     print("test_img max: index", lab.get_dominant_color("./test_images/test_image.png"))
+    # measure and print numpy runtime
     print("numpy:", lab.measure_runtime_numpy(), "seconds")
+    # measure and print python runtime
     print("python:", lab.measure_runtime_numpy(), "seconds")
-    print(
+    # display blurred image result
+    cv.imshow(
         "blur test:",
         lab.blur_image("./test_images/BlurMe.png", "./test_images/Srivastava_2a.png"),
     )
-    print(
+    cv.waitKey(0)
+    # display outlined image result
+    cv.imshow(
         "outline test:",
-        lab.findoutlines("./test_images/BlueSquare.png", "./test_images/Srivastava_2b.png"),
+        lab.findoutlines(
+            "./test_images/BlueSquare.png", "./test_images/Srivastava_2b.png"
+        ),
     )
+    cv.waitKey(0)
+    cv.destroyAllWindows()  # close all windows
