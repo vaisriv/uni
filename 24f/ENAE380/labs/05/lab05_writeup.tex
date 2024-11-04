@@ -1,0 +1,113 @@
+ \input{/Users/vsrivastava/Library/TeXShop/Templates/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Lab 05}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{ENAE 380}
+\newcommand{\hmwkClassTime}{0106}
+\newcommand{\hmwkClassInstructor}{Dr. Mumu Xu}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{3.1.3}{Color Filtering}
+
+	It took my computer 0.05410289764404297 seconds to run the numpy variant, and 0.053965091705322266 seconds to run the python variant.
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{3.4}{Image Segmentation}
+		
+	Instead of finding a color combination that works for all of the images, I simply created an array with individual highlight and shadow HSV tuples to be used with each image:
+
+	\begin{lstlisting}[language=python]
+		# define highlight and shadow ranges for each tiger image
+		highlights_hsv = [
+		(20, 255, 255),
+		(17.5, 255, 255),
+		(20, 255, 255),
+		(20, 255, 255),
+		(45, 255, 255),
+		]
+		shadows_hsv = [
+		(0, 0, 0),
+		(10, 0, 0),
+		(0, 0, 0),
+		(0, 0, 0),
+		(0, 0, 0),
+		]
+	\end{lstlisting}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./tigers/3.4.1.png}
+	  \caption{Tiger Segmented 1}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./tigers/3.4.2.png}
+	  \caption{Tiger Segmented 2}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./tigers/3.4.3.png}
+	  \caption{Tiger Segmented 3}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./tigers/3.4.4.png}
+	  \caption{Tiger Segmented 4}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./tigers/3.4.5.png}
+	  \caption{Tiger Segmented 5}
+	\end{figure}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{3.5}{Astronomy Image Processing}
+
+	To create these images, I used \lstinline{MAST} to download the \lstinline{FITS} files, then used \lstinline{Siril} to convert the files into a linear colorspace that is viewable for humans, and to register the images such that the stars are all aligned. Then I used \lstinline{Photoshop} to modify the Hue for each image layer and composite them all together.
+		
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./pillars/original.png}
+	  \caption{Pillars of Creation Original}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./pillars/pillars.png}
+	  \caption{Pillars of Creation Recreation}
+	\end{figure}
+
+	\begin{figure}[ht!]
+	  \centering
+	  \includegraphics[width=0.75\textwidth]{./pillars/fun.png}
+	  \caption{Pillars of Creation Fun Version}
+	\end{figure}
+
+\end{hwkProblem}
+
+\end{document}
