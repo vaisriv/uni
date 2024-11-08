@@ -13,9 +13,9 @@
 \usepackage{algpseudocode}
 \usepackage{listings}
 % \usepackage[latte,styleAll]{catppuccinpalette}
-\usepackage[per-mode = fraction]{siunitx}
-
+\usepackage{url}
 \usetikzlibrary{automata,positioning}
+\usepackage{hyperref}
 
 %
 % Basic Document Settings
@@ -38,52 +38,11 @@
 \lfoot{\lastxmark}
 \cfoot{\thepage}
 
+\setlength{\headheight}{14.5pt}
 \renewcommand\headrulewidth{0.4pt}
 \renewcommand\footrulewidth{0.4pt}
 
 \setlength\parindent{0pt}
-
-%
-% Create Problem Sections
-%
-
-\newcommand{\enterProblemHeader}[1]{
-	\nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-}
-
-\newcommand{\exitProblemHeader}[1]{
-	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
-	\stepcounter{#1}
-	\nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
-}
-
-\setcounter{secnumdepth}{0}
-\newcounter{partCounter}
-\newcounter{homeworkProblemCounter}
-\setcounter{homeworkProblemCounter}{1}
-\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
-
-%
-% Homework Problem Environment
-%
-% This environment takes an optional argument. When given, it will adjust the
-% problem counter. This is useful for when the problems given for your
-% assignment aren't sequential. See the last 3 problems of this template for an
-% example.
-%
-\newenvironment{homeworkProblem}[1][-1]{
-	\ifnum#1>0
-		\setcounter{homeworkProblemCounter}{#1}
-	\fi
-	\section{Problem \arabic{homeworkProblemCounter}}
-	\setcounter{partCounter}{1}
-	\enterProblemHeader{homeworkProblemCounter}
-}{
-	\exitProblemHeader{homeworkProblemCounter}
-	\newpage
-}
-
 
 %
 % Title Page
@@ -99,90 +58,6 @@
 
 \author{\textbf{\hmwkAuthorName}}
 \date{\hmwkCompletionDate}
-
-\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
-
-%
-% Various Helper Commands
-%
-
-% Useful for algorithms
-\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
-
-% For derivatives
-\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
-
-% For partial derivatives
-\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
-
-% Integral dx
-\newcommand{\dx}{\mathrm{d}x}
-\newcommand{\dy}{\mathrm{d}y}
-
-% Alias for the Solution section header
-\newcommand{\solution}{\vspace{\baselineskip}\textbf{\Large Solution}}
-
-% Probability commands: Expectation, Variance, Covariance, Bias
-\newcommand{\e}[1]{\mathrm{e}#1}
-\newcommand{\E}{\mathrm{E}}
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Cov}{\mathrm{Cov}}
-\newcommand{\Bias}{\mathrm{Bias}}
-
-% Defining Units that are not in the SI base
-\DeclareSIUnit\bar{bar}
-\DeclareSIUnit\dollar{\$}
-\DeclareSIUnit\cent{\text{\textcent}}
-\DeclareSIUnit\c{\degreeCelsius}
-
-% Code Listing config
-\usepackage{xcolor}
-
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-% \lstdefinestyle{catppuccin-latte}{
-% 	breaklines=true,
-% 	keepspaces=true,
-% 	numbers=left,
-% 	numbersep=5pt,
-% 	showspaces=false,
-% 	showstringspaces=false,
-% 	breakatwhitespace=true,
-% 	tabsize=4,
-% 	stringstyle = {\color{CtpGreen}},
-% 	commentstyle={\color{CtpOverlay1}},
-% 	basicstyle = {\small\color{CtpText}\ttfamily},
-% 	keywordstyle = {\color{CtpMauve}},
-% 	keywordstyle = [2]{\color{CtpBlue}},
-% 	keywordstyle = [3]{\color{CtpYellow}},
-% 	keywordstyle = [4]{\color{CtpLavender}},
-% 	keywordstyle = [5]{\color{CtpPeach}},
-% 	keywordstyle = [6]{\color{CtpTeal}}
-% }
-
-\lstdefinestyle{mystyle}{
-	% backgroundcolor=\color{backcolour},
-	commentstyle=\color{codegreen},
-	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{codegray},
-	stringstyle=\color{codepurple},
-	basicstyle=\ttfamily\footnotesize,
-	breakatwhitespace=false,
-	breaklines=true,
-	captionpos=b,
-	keepspaces=true,
-	numbers=left,
-	numbersep=5pt,
-	showspaces=false,
-	showstringspaces=false,
-	showtabs=false,
-	tabsize=4
-}
-
-\lstset{style=mystyle}
 
 %
 % Homework Details
@@ -212,15 +87,50 @@
 
 \doublespacing
 
-\textbf{title here}
+\textbf{\Large The Historical Context of the Evergreen Neighborhood in San Jose, California}
 
-paper here
 
-\newpage
-\section*{References}
+\section*{Introduction}
 
-\begin{itemize}
-	sources here
-\end{itemize}
+Nestled in the eastern foothills of San Jose, the Evergreen neighborhood is a vibrant community rich in history and cultural diversity. From its early beginnings as fertile land inhabited by the Ohlone people to its development into a modern suburban area, Evergreen has retained traces of its storied past amidst rapid urbanization. Having attended Chaboya Middle School and Evergreen Valley High School, and spent countless hours at the Evergreen Branch Library in the Village Square, I have witnessed firsthand the blending of history and modernity that defines this area. This essay explores the historical context of Evergreen, the types of historic sites located there, and the reasons behind their presence.
+
+\section*{Historic Background and Context}
+
+Evergreen's history is deeply rooted in the legacy of the Ohlone people, who originally inhabited the Santa Clara Valley for thousands of years before European contact. The Ohlone were skilled hunter-gatherers and stewards of the land, practicing sustainable methods that maintained the ecological balance of the region \cite{anderson2013tending}. They lived in small villages, relying on the abundant natural resources such as acorns, seeds, and game.
+
+The arrival of Spanish explorers in the late 18th century marked a significant turning point. In 1777, the founding of El Pueblo de San José de Guadalupe, the first civil settlement in California, brought profound changes to the indigenous way of life \cite{milliken1995time}. Spanish missionaries established missions, including Mission Santa Clara de Asís and Mission San José, aiming to convert the native population to Christianity and integrate them into Spanish colonial society.
+
+The mission system disrupted the traditional Ohlone social structures and practices. Many Ohlone were relocated to missions, where they faced harsh conditions, disease, and forced labor \cite{hurtado1988indian}. The Spanish introduced agriculture, livestock, and new technologies, transforming the landscape. The interactions between the Ohlone and the Spanish were complex, involving resistance, adaptation, and cultural exchange.
+
+Following Mexican independence in 1821, the mission lands were secularized, and large tracts were granted to private owners as ranchos. Evergreen was part of Rancho Yerba Buena, granted to Antonio Chaboya in 1833 \cite{cityofsj}. The Chaboya family, whose name is now borne by Chaboya Middle School, played a significant role in shaping the area's agricultural heritage. They cultivated vast expanses of land, focusing on cattle ranching and later diversifying into vineyards and orchards.
+
+The names of roads and locations in Evergreen reflect this rich history. Yerba Buena Road, for instance, is named after the Rancho Yerba Buena and the wild mint that grew abundantly in the area \cite{gudde1998california}. San Felipe Road traces its name back to the early Spanish explorations and possibly honors Saint Philip or a Spanish settler \cite{hohenthal1952california}. These place names serve as living reminders of the region's Spanish and native American heritage.
+
+The California Gold Rush of 1848 and subsequent American annexation accelerated changes in the region. An influx of settlers brought new cultural influences and demands for land. Agriculture remained the backbone of Evergreen's economy, with a focus on fruit orchards, vineyards, and dairy farms \cite{mckay2007santa}. The development of transportation networks, including the establishment of roads like Quimby Road and Aborn Road, facilitated trade and growth, connecting Evergreen with broader markets.
+
+Throughout the 20th century, Evergreen transitioned from a rural agricultural community to a suburban neighborhood as part of the expanding Silicon Valley. Despite urbanization, the area has strived to preserve its historical roots, honoring the legacy of the Ohlone people, Spanish settlers, and early American pioneers.
+
+\section*{Historic Sites in Evergreen}
+
+Several historic sites in Evergreen reflect its rich and diverse heritage. One notable site is the Mirassou Winery, established in 1854 and recognized as one of the oldest winemaking families in America \cite{mirassou}. The winery's historic buildings and vineyards represent Evergreen's viticultural legacy and the importance of agriculture in the area's development. Although the original winery operations have moved, the Mirassou family's influence remains significant in the local history.
+
+Another significant historic site is the José Higuera Adobe, located near Evergreen. Built in the early 19th century, the adobe is one of the few remaining structures from the Mexican Rancho period \cite{leccese2003lost}. It serves as a tangible connection to the area's past, showcasing the architectural style and living conditions of that era.
+
+Evergreen Valley College, founded in 1975, stands on land that was once sprawling orchards \cite{evc}. The college's Heritage Room houses artifacts and exhibits related to local history, symbolizing the transformation from agriculture to education and the community's commitment to preserving its past. The institution provides educational opportunities while honoring the land's historical significance.
+
+The Sikh Gurdwara Sahib of San Jose, one of the largest Sikh temples outside of India, is another significant landmark. Opened in 2004, it reflects the cultural diversity of Evergreen and the waves of immigration that have enriched the community \cite{sfgurdwara}. The temple serves not only as a place of worship but also as a cultural center promoting understanding and unity among different ethnic groups.
+
+The influence of the Ohlone and Spanish heritage is also evident in local landmarks. The Ohlone Trail, part of the area's network of parks and open spaces, offers residents a chance to engage with the natural environment much like the indigenous people did centuries ago \cite{parks}. The use of Spanish names for roads and schools, such as Quimby Road (named after early settler John Quimby) and Silver Creek High School (referring to the local Silver Creek), reflects the lasting impact of the Spanish and early American periods.
+
+Additionally, the Evergreen Branch Library in the Village Square serves as a modern community hub while embodying the spirit of learning and cultural preservation. It stands as a testament to the community's dedication to education and social engagement, bridging the past and present through its resources and programs \cite{sjpl}. The library often hosts events and exhibitions that highlight local history, including displays on the Ohlone people and the agricultural heritage of Evergreen.
+
+\section*{Conclusion}
+
+Evergreen's historical context is a tapestry woven from indigenous heritage, Spanish colonization, agricultural development, and cultural diversity. The historic sites within the neighborhood, from ancient Ohlone trails and Spanish-era adobes to wineries and educational institutions, offer glimpses into its multifaceted past. The naming of roads and locations serves as everyday reminders of the area's rich history, honoring those who shaped the land.
+
+Understanding these sites enriches our appreciation of Evergreen's evolution and underscores the importance of preserving its historical assets amidst ongoing growth. As someone who has lived and learned in this community, I recognize how the blend of history and modernity in Evergreen continues to inspire and shape the lives of its residents. The acknowledgment of our shared history fosters a sense of identity and continuity, ensuring that future generations remain connected to the roots of their community.
+
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
