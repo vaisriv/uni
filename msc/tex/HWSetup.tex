@@ -51,7 +51,7 @@
 \renewcommand\footrulewidth{0.4pt}
 
 \setlength\parindent{0pt}
-
+\allowdisplaybreaks
 %
 % Title Page
 %
@@ -109,6 +109,9 @@
 % Various Helper Commands
 %
 
+% Such That
+\newcommand{\st}{\text{s.t.}}
+
 % Useful for algorithms
 \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
 
@@ -131,6 +134,7 @@
 
 % Defining Units that are not in the SI base
 \DeclareSIUnit\bar{bar}
+\DeclareSIUnit\ft{ft}
 \DeclareSIUnit\dollar{\$}
 \DeclareSIUnit\cent{\text{\textcent}}
 \DeclareSIUnit\c{\degreeCelsius}

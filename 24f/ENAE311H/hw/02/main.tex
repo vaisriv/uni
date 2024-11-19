@@ -1,0 +1,124 @@
+ \input{/Users/vsrivastava/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 02}
+\newcommand{\hmwkDueDate}{September 27, 2024}
+\newcommand{\hmwkDueTime}{05:00 PM}
+\newcommand{\hmwkClass}{ENAE 311H}
+\newcommand{\hmwkClassTime}{Section 0101}
+\newcommand{\hmwkClassInstructor}{Dr. Brehm}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{September 27, 2024}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{}
+	Given:
+	\begin{align*}
+		h = \qty{8e4}{\ft} \\
+		M_{\infty, \text{SR-71}} = \qty{3.6}{} \\
+		T_{\text{alt} = h} = \qty{221}{\K} \\
+		\rho_{\text{alt} = h} = \qty{0.044}{\kg \per \cubic \m} \\
+		V_{\infty, \text{model}} = \qty{790.5}{\m \per \s} \\
+		T_{\infty, \text{model}} = \qty{120}{\K} \\
+		\rho_{\infty, \text{model}} = \qty{0.2}{\kg \per \cubic \m} \\
+	\end{align*}
+
+	Assume:
+	\begin{align*}
+		a = \sqrt{\gamma R T} \\
+		\gamma = 1.4 \\ 
+		R = \qty{287}{\J \per \kg \per \K} \\
+		\mu \propto T^{\frac{2}{3}}
+	\end{align*}
+
+	Find:
+	\begin{align*}
+		\text{Are the two flows dynamically similar?}
+	\end{align*}
+
+	\hwkSol
+	\begin{align*}
+		V = M \times a \\
+		M_{\infty} = \frac{V_{\infty}}{a_{\infty}} \\
+		Re = \frac{\rho V L}{\mu} \\
+		\\
+		a_{\infty, \text{SR-71}} = a_{\text{alt} = h} \\
+		a_{\text{alt} = h} = \sqrt{1.4 \times 287 \times 221} \\
+		a_{\infty, \text{model}} = \sqrt{1.4 \times 287 \times 120} \\
+		\\
+		a_{\infty, \text{SR-71}} = \qty{297.99}{\m \per \s} \\
+		a_{\infty, \text{model}} = \qty{219.58}{\m \per \s} \\
+		\\
+		V_{\infty, \text{SR-71}} = \qty{1072.76}{\m \per \s} \\
+		V_{\infty, \text{model}} = \qty{790.5}{\m \per \s} \\
+		\\
+		M_{\infty, \text{SR-71}} = \qty{3.6}{} \\
+		M_{\infty, \text{model}} = \qty{3.60}{} \\
+		M_{\infty, \text{SR-71}} = M_{\infty, \text{model}} \qed \\
+		\\
+		Re_{\text{SR-71}} = \qty{0.86}{} \\
+		Re_{\text{model}} = \qty{0.65}{} \\
+		\mu = \qty{1.50}{} \neq 1 \\
+		Re_{\text{SR-71}} \neq Re_{\text{model}} \qed
+	\end{align*}
+
+	Since the Mach numbers in the SR-71 and the wind tunnel are equal, \textbf{the flows are Mach-similar}.
+	Since the Reynolds numbers in the SR-71 and the wind tunnel are not equal, \textbf{the flows are not dynamically similar}.
+\end{hwkProblem}
+
+\begin{hwkProblem}{2}{}
+	Given:
+	\begin{align*}
+		V_{\infty, \text{Terrier}} = \qty{400}{\m \per \s} \\
+		h = \qty{40000}{\ft} \\ 
+		T_{\text{alt} = h} = \qty{217}{\K} \\
+		\rho_{\text{alt} = h} = \qty{0.30}{\kg \per \cubic \m} \\
+		\text{scale factor: } s = 5 \\
+		p_{0, \text{model}} = \qty{75}{\kilo \Pa} \\
+	\end{align*}
+
+	Assume:
+	\begin{align*}
+		a \propto \sqrt{T} \\
+		\mu \propto T^{\frac{2}{3}}
+	\end{align*}
+
+	Find:
+	\begin{align*}
+		V_{\infty, \text{model}}, T_{\infty, \text{model}}, \rho_{\infty, \text{model}}, \\
+		\text{Such that the flows are dynamically similar}
+	\end{align*}
+	
+	\hwkSol
+
+	\begin{align*}
+		Re = \frac{s \rho_{T} V_{\infty, T}}{\mu_{T}} = \frac{\rho_{m} V_{\infty, m}}{\mu_{m}} \\
+		M = \frac{V_{\infty, T}}{a_{T}} = \frac{V_{\infty, m}}{a_{m}} \\
+		\implies \frac{V_{\infty, T}}{V_{\infty, m}} = \frac{a_{T}}{a_{m}} = \frac{T_{T}^{\frac{1}{2}}}{T_{m}^{\frac{1}{2}}} \\
+		\frac{\mu_{T}}{\mu_{m}} = \frac{T_{T}^{\frac{2}{3}}}{T_{m}^{\frac{2}{3}}} \\
+		5 \frac{\rho_{T}}{\rho_{m}} = \frac{T_{T}^{\frac{2}{3} + \frac{1}{2}}}{T_{m}^{\frac{2}{3} + \frac{1}{2}}} \\
+		125 \frac{\rho_{T}^{3}}{\rho_{m}^{3}} = \sqrt{\frac{T_{T}}{T_{m}}} \\
+		\rho = \frac{p}{RT} \\
+		T_{m}^{\frac{7}{2}} = T_{T}^{\frac{1}{2}} {\left( \frac{p_{m}}{5 R \rho_{T}} \right)}^{3} \\
+		T_{m} = \qty{179.7}{\K} \qed \\
+		\rho_{m} = \qty{1.45}{\kg \per \cubic \m} \qed \\
+		V_{\infty, m} = V_{\infty, T} {\left( \frac{T_{m}}{T_{T}} \right)}^{\frac{1}{2}} \\
+		V_{\infty, m} = \qty{364.1}{\m \per \s} \qed
+	\end{align*}
+\end{hwkProblem}
+\end{document}
