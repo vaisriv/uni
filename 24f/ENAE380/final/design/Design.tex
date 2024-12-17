@@ -1,0 +1,361 @@
+\input{/Users/vsrivastava/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Final Project Design}
+\newcommand{\hmwkDueDate}{December 16, 2024}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{ENAE 380}
+\newcommand{\hmwkClassTime}{0106}
+\newcommand{\hmwkClassInstructor}{Dr. Mumu Xu}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\section{Overview}
+This document provides a detailed examination of the design and structure of the NFL Super Bowl prediction tool, which uses Rust, RSS feeds, and NLP-based question answering. The approach prioritizes a clean modular architecture, separating concerns such as data retrieval, context construction, and prediction into their own source files.
+
+At a high level, the system fetches a series of RSS feeds related to professional football, extracts the textual context from these feeds, and then uses a natural language processing (NLP) model to answer user questions about the upcoming Super Bowl. The tool is invoked via a command-line interface (CLI), allowing users to specify a custom query and optionally enable verbose output for diagnostic insights.
+
+\section{Architecture}
+The project is structured into the following modules:
+
+\begin{itemize}
+    \item \textbf{\lstinline{main.rs}}: Entry point for the CLI, handling argument parsing and initiating the prediction flow.
+    \item \textbf{\lstinline{context.rs}}: Responsible for fetching RSS feed data, extracting the relevant text-based context, and returning a consolidated string that can be passed to the prediction step.
+    \item \textbf{\lstinline{predict.rs}}: Manages the question answering logic using the \lstinline{rust-bert} library. It takes a question and context as input, returning a predicted answer.
+    \item \textbf{\lstinline{rss\_read.rs}}: Focuses on fetching and parsing RSS feeds, returning a Polars \lstinline{DataFrame} that encapsulates the relevant articles and metadata.
+\end{itemize}
+
+\noindent
+This modular breakdown promotes clarity and testability. Each file focuses on a distinct piece of the pipeline, making the codebase easier to reason about.
+
+\section{Data Flow and Control}
+When a user invokes the tool, the CLI parameters (including the question and verbosity) are parsed in \lstinline{main.rs}. Following that:
+
+\begin{enumerate}
+    \item \textbf{Context Retrieval:} Control is handed to the \lstinline{context.rs} module, which orchestrates RSS retrieval via \lstinline{rss_read.rs}. The result is a text-based context string derived from RSS feed descriptions.
+    \item \textbf{Prediction:} Once the context is acquired, \lstinline{main.rs} calls into \lstinline{predict.rs}, passing both the user’s question and the constructed context. The \lstinline{predict} function then uses a QA model to produce an answer.
+    \item \textbf{Output:} Finally, the answer is printed to the console.
+\end{enumerate}
+
+By separating concerns, we can easily add new RSS sources, replace the NLP model, or modify the question answering pipeline without entangling unrelated components.
+
+\section{Module Overview}
+
+\subsection{\lstinline{main.rs}}
+The \lstinline{main.rs} file serves as the CLI entry point. It leverages the \lstinline{clap} crate to parse command-line arguments, providing a question prompt and a verbosity toggle.
+
+\subsubsection{Implementation}
+\begin{lstlisting}[language=rust]
+mod context;
+mod predict;
+mod rss_read;
+
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+/// Welcome to the NFL Super Bowl Predictor. You can ask a question of your choosing, 
+/// or simply use the default.
+struct Args {
+    /// Question to ask NFL Predictor
+    #[arg(short, long, default_value_t = ("What team is most likely to win the upcoming Super Bowl?").to_string())]
+    question: String,
+
+    /// Verbose Mode
+    #[arg(short, long, default_value_t = false)]
+    verbose: bool,
+}
+
+#[tokio::main]
+async fn main() {
+    let args = Args::parse();
+
+    let context_str = context::get_context_str(args.verbose).await;
+    let question_str = args.question;
+
+    predict::predict(question_str, context_str.unwrap()).await;
+}
+\end{lstlisting}
+
+\subsubsection{Code Explanation}
+\begin{itemize}
+    \item \lstinline{mod context; mod predict; mod rss_read;}: Declares that these modules (located in similarly named files) are part of the crate. This makes their functions accessible.
+    \item \lstinline{use clap::Parser;}: Imports the \lstinline{Parser} trait from the \lstinline{clap} crate, enabling automatic command-line argument parsing from a struct definition.
+    \item \lstinline{#[derive(Parser, Debug)] ... struct Args ...}: Defines a struct \lstinline{Args} that \lstinline{clap} will use to parse command-line arguments. The \lstinline{Debug} derive is for logging/debugging, and \lstinline{Parser} is for command-line parsing.
+    \item \lstinline{#[arg(short, long, default_value_t = ...)] question: String}: Declares that \lstinline{-q/--question} is an argument that defaults to the provided string if not supplied.
+    \item \lstinline{#[arg(short, long, default_value_t = false)] verbose: bool}: Declares a boolean flag \lstinline{-v/-verbose} that defaults to false.
+    \item \lstinline{#[tokio::main]}: Marks \lstinline{main()} as the asynchronous entry point, using the Tokio runtime.
+    \item \lstinline{let args = Args::parse();}: Invokes \lstinline{clap} to parse command-line arguments and populate the \lstinline{args} struct.
+    \item \lstinline{let context_str = context::get_context_str(args.verbose).await;}: Calls into \lstinline{context::get_context_str}, passing the verbosity flag. This returns a \lstinline{Result<String, ...>} which will provide the textual context after fetching and processing RSS feeds.
+    \item \lstinline{let question_str = args.question;}: Extracts the user’s question from parsed arguments.
+    \item \lstinline{predict::predict(question_str, context_str.unwrap()).await;}: Invokes the \lstinline{predict} function from the \lstinline{predict.rs} module, unwrapping the \lstinline{Result} to get the actual context string. It then runs the prediction and prints the answer.
+\end{itemize}
+
+\subsection{\lstinline{context.rs}}
+This module bridges RSS data retrieval and context construction. It fetches multiple RSS feeds in parallel, aggregates them using Polars, and extracts a column (e.g., descriptions) into a single textual context.
+
+Key responsibilities:
+\begin{itemize}
+    \item Interfacing with \lstinline{rss_read.rs} to get an up-to-date \lstinline{DataFrame} of posts.
+    \item Converting RSS descriptions into a consolidated context string.
+    \item Handling verbosity by printing debugging output when requested.
+\end{itemize}
+
+\subsubsection{Implementation}
+\begin{lstlisting}[language=rust]
+use crate::rss_read::*;
+use polars::prelude::*;
+
+async fn get_rss(verbose: bool) -> Result<Series, Box<dyn std::error::Error>> {
+    let urls = vec![
+        "https://rss.nytimes.com/services/xml/rss/nyt/ProFootball.xml",
+        "https://api.foxsports.com/v2/content/optimized-rss?...",
+        "https://www.espn.com/espn/rss/nfl/news",
+        "https://www.cbssports.com/rss/headlines/nfl/",
+        "https://profootballmania.com/feed/",
+        "https://feeds.washingtonpost.com/rss/rss_football-insider",
+        "https://sportspyder.com/nfl/philadelphia-eagles/news.xml",
+    ];
+
+    let rss_feeds = update_feeds(urls).await;
+
+    if verbose {
+        match &rss_feeds {
+            Ok(rss_feeds) => println!("{:?}", rss_feeds),
+            Err(e) => eprintln!("Error: {:?}", e),
+        };
+    }
+
+    let rss_df = rss_feeds.unwrap();
+    let rss_col = extract_col(&rss_df, "description").await;
+
+    if verbose {
+        match &rss_col {
+            Ok(rss_col) => println!("{:?}", rss_col),
+            Err(e) => eprintln!("Error: {:?}", e),
+        };
+    }
+
+    rss_col
+}
+
+pub async fn get_context_str(verbose: bool) -> Result<String, Box<dyn std::error::Error>> {
+    let context_series = get_rss(verbose).await?;
+    let context_str = context_series.to_string();
+    Ok(context_str)
+}
+\end{lstlisting}
+
+\subsubsection{Code Explanation}
+\subsubsection*{\lstinline{get_rss(verbose: bool)}}
+This function fetches multiple RSS feeds and extracts their descriptions as a Polars \lstinline{Series}.
+
+\begin{itemize}
+    \item \lstinline{let urls = vec![...];}: A hard-coded vector of RSS feed URLs from various NFL-related sources. These will be fetched and concatenated.
+    \item \lstinline{let rss_feeds = update_feeds(urls).await;}: Calls \lstinline{update_feeds} (from \lstinline{rss_read.rs}) to retrieve and parse the RSS data into a \lstinline{DataFrame}. This returns a \lstinline{Result<DataFrame, ...>}.
+    \item \lstinline{if verbose ...}: If verbosity is enabled, we print the retrieved data or any errors that occurred.
+    \item \lstinline{let rss_df = rss_feeds.unwrap();}: Unwrap the \lstinline{Result} to get the \lstinline{DataFrame}. If an error occurred, the program will panic here. In a production environment, more robust error handling might be desired.
+    \item \lstinline{let rss_col = extract_col(\&rss_df, "description").await;}: Extracts the \lstinline{"description"} column from the \lstinline{DataFrame}. This returns a \lstinline{Result<Series, ...>}.
+    \item Another verbosity check prints details of the resulting \lstinline{Series}.
+    \item Finally, returns \lstinline{rss_col}, which should contain a \lstinline{Series} of all RSS descriptions combined.
+\end{itemize}
+
+\subsubsection*{\lstinline{get_context_str(verbose: bool)}}
+This public function ties it all together and returns a \lstinline{String} of RSS descriptions.
+
+\begin{itemize}
+    \item \lstinline{let context_series = get_rss(verbose).await?;}: Awaits the \lstinline{get_rss} function and uses the \lstinline{?} operator for error propagation.
+    \item \lstinline{let context_str = context_series.to_string();}: Converts the \lstinline{Series} to a \lstinline{String}, effectively concatenating all the fetched descriptions.
+    \item \lstinline{Ok(context_str)}: Returns the combined context string.
+\end{itemize}
+
+\subsection{\lstinline{predict.rs}}
+The \lstinline{predict.rs} file is where the NLP logic resides. It employs the \lstinline{rust-bert} library’s \lstinline{QuestionAnsweringModel} to generate an answer to a user-supplied question given the aggregated context.
+
+Main operations:
+\begin{itemize}
+    \item Spawns a blocking task to initialize the QA model.
+    \item Runs a prediction using the user’s question and the RSS-derived context.
+    \item Prints out the final predicted answer.
+\end{itemize}
+
+\subsubsection{Implementation}
+\begin{lstlisting}[language=rust]
+use rust_bert::pipelines::question_answering::*;
+use tokio::task;
+
+pub async fn predict(question: String, context: String) {
+    let qa_model = task::spawn_blocking(|| {
+        QuestionAnsweringModel::new(Default::default()).expect("Failed to create QA model")
+    })
+    .await
+    .expect("Blocking task failed");
+
+    let answer = qa_model.predict(
+        &[QaInput {
+            question: question.clone(),
+            context: context.clone(),
+        }],
+        1,
+        2048,
+    );
+
+    println!("{:?}", question);
+    println!("{:?}", answer[0][0].answer);
+}
+\end{lstlisting}
+
+\subsubsection{Code Explanation}
+
+\begin{itemize}
+    \item \lstinline{use rust_bert::pipelines::question_answering::*;}: Imports the question answering pipeline components.
+    \item \lstinline{use tokio::task;}: For running blocking model initialization in a separate thread.
+    \item \lstinline{pub async fn predict(question: String, context: String)}: The entry point that receives a user’s question and the prepared context.
+    \item \lstinline{let qa_model = task::spawn_blocking(|| ...).await.expect("...");}:
+        \begin{itemize}
+            \item \lstinline{spawn_blocking}: Runs the provided closure on a thread pool for blocking tasks, ensuring the main async runtime isn't blocked by heavy CPU operations.
+            \item Inside the closure: \lstinline{QuestionAnsweringModel::new(Default::default())} initializes the QA model with default settings (it will load weights and configuration files).
+        \end{itemize}
+    \item \lstinline{let answer = qa_model.predict(...)}: Calls the \lstinline{predict} method, passing a slice of \lstinline{QaInput} containing the user’s question and context. We limit answers to 1 and use a maximum context length of 2048 tokens.
+    \item \lstinline{println!(..., question); println!(..., answer[0][0].answer);}: Prints the user’s question and the predicted answer from the model, typically the best guess at which team might win the Super Bowl.
+\end{itemize}
+
+\subsection{\lstinline{rss_read.rs}}
+Finally, \lstinline{rss_read.rs} deals with fetching and parsing RSS feeds into a Polars \lstinline{DataFrame}. Here, we:
+\begin{itemize}
+    \item Retrieve multiple RSS feeds concurrently using \lstinline{reqwest}.
+    \item Parse them into \lstinline{DataFrame} columns such as \lstinline{title}, \lstinline{link}, \lstinline{description}, and \lstinline{pub_date}.
+    \item Provide a helper function \lstinline{extract_col} to retrieve a particular column from the \lstinline{DataFrame}.
+\end{itemize}
+
+\subsubsection{Implementation}
+\begin{lstlisting}[language=rust]
+use polars::prelude::*;
+use reqwest::Client;
+use rss::Channel;
+use tokio::task;
+
+pub async fn update_feeds(urls: Vec<&str>) -> Result<DataFrame, Box<dyn std::error::Error>> {
+    let client = Client::new();
+    let mut lazy_frames = Vec::new();
+
+    for url in urls {
+        let rss_feed = fetch_rss_feed(url, &client).await?;
+        lazy_frames.push(rss_feed.lazy());
+    }
+
+    let concatenated_lazyframe = concat(lazy_frames, UnionArgs::default())?;
+    let all_feeds_df = task::spawn_blocking(move || concatenated_lazyframe.collect()).await??;
+
+    Ok(all_feeds_df)
+}
+
+async fn fetch_rss_feed(
+    url: &str,
+    client: &Client,
+) -> Result<DataFrame, Box<dyn std::error::Error>> {
+    let response = client.get(url).send().await?.bytes().await?;
+    let channel = Channel::read_from(&response[..])?;
+
+    let titles: Vec<String> = channel.items().iter()
+        .map(|item| item.title().unwrap_or_default().to_string())
+        .collect();
+
+    let links: Vec<String> = channel.items().iter()
+        .map(|item| item.link().unwrap_or_default().to_string())
+        .collect();
+
+    let descriptions: Vec<String> = channel.items().iter()
+        .map(|item| item.description().unwrap_or_default().to_string())
+        .collect();
+
+    let pub_dates: Vec<String> = channel.items().iter()
+        .map(|item| item.pub_date().unwrap_or_default().to_string())
+        .collect();
+
+    let rss_posts = df![
+        "title" => titles,
+        "link" => links,
+        "description" => descriptions.clone(),
+        "pub_date" => pub_dates.clone(),
+        "date_description" => pub_dates.iter()
+            .zip(descriptions.iter())
+            .map(|(p, d)| p.to_owned() + ": " + d.to_owned())
+            .collect::<Vec<String>>(),
+    ]?;
+
+    Ok(rss_posts)
+}
+
+pub async fn extract_col(
+    rss_posts: &DataFrame,
+    column: &str
+) -> Result<Series, Box<dyn std::error::Error>> {
+    let descs_df: Series = rss_posts[column].clone();
+    Ok(descs_df)
+}
+\end{lstlisting}
+
+\subsubsection{Code Explanation}
+\subsubsection*{\lstinline{update_feeds(urls: Vec<\&str>)}}
+\begin{itemize}
+    \item \lstinline{let client = Client::new();}: Creates a new \lstinline{reqwest} HTTP client to fetch RSS data.
+    \item \lstinline{let mut lazy_frames = Vec::new();}: Will store Polars \lstinline{LazyFrame} objects for each feed.
+    \item \lstinline{for url in urls ...}: Iterates over each RSS feed URL.
+        \begin{itemize}
+            \item \lstinline{let rss_feed = fetch_rss_feed(url, \&client).await?;}: Asynchronously fetches and parses the RSS feed for the current \lstinline{url}, returning a \lstinline{DataFrame}.
+            \item \lstinline{lazy_frames.push(rss_feed.lazy());}: Converts the \lstinline{DataFrame} into a \lstinline{LazyFrame} and accumulates it. LazyFrames are not immediately computed, allowing for potential optimizations.
+        \end{itemize}
+    \item \lstinline{let concatenated_lazyframe = concat(lazy_frames, UnionArgs::default())?;}: Concatenates all LazyFrames into one large LazyFrame. The \lstinline{concat} function merges multiple data sets into a single structure.
+    \item \lstinline{let all_feeds_df = task::spawn_blocking(move || concatenated_lazyframe.collect()).await??;}: 
+        \begin{itemize}
+            \item Uses \lstinline{spawn_blocking} again because \lstinline{collect()} from Polars can be CPU-intensive.
+            \item The double \lstinline{?} handles both the \lstinline{spawn_blocking} result and the inner \lstinline{Result} from \lstinline{collect()}.
+        \end{itemize}
+    \item \lstinline{Ok(all_feeds_df)}: Returns the fully realized \lstinline{DataFrame} with all combined feed data.
+\end{itemize}
+
+\subsubsection*{\lstinline{fetch_rss_feed(url: \&str, client: \&Client)}}
+\begin{itemize}
+    \item \lstinline{let response = client.get(url).send().await?.bytes().await?;}: Sends a GET request to \lstinline{url}, awaits the response, and collects the entire response body as bytes.
+    \item \lstinline{let channel = Channel::read_from(\&response[..])?;}: Parses the RSS channel from the raw bytes using the \lstinline{rss} crate.
+    \item Constructs vectors (\lstinline{titles}, \lstinline{links}, \lstinline{descriptions}, \lstinline{pub_dates}) by iterating over \lstinline{channel.items()}.
+    \item \lstinline{let rss_posts = df![ ... ]?;}: Constructs a Polars \lstinline{DataFrame} from the collected vectors. The \lstinline{date_description} field merges publication date and description into a single string.
+    \item \lstinline{Ok(rss_posts)}: Returns the assembled \lstinline{DataFrame}.
+\end{itemize}
+
+\subsubsection*{\lstinline{extract_col(rss_posts: \&DataFrame, column: \&str)}}
+\begin{itemize}
+    \item \lstinline{let descs_df: Series = rss_posts[column].clone();}: Selects the specified column from the DataFrame and clones it into a \lstinline{Series}.
+    \item \lstinline{Ok(descs_df)}: Returns the column as a \lstinline{Series}.
+\end{itemize}
+
+\section{Conclusion}
+During the development and experimentation phase of this project, an interesting and somewhat concerning phenomenon was observed. Specifically, when the final assembled context is handed over to the question-answering model, the latter part of the provided data appears to exert a disproportionately strong influence on the outcome. This was noted to the extent that even a team with no realistic chance of winning the upcoming Super Bowl—perhaps one that was definitively eliminated from playoff contention—could be predicted as the winner if it happened to be mentioned frequently in the last few articles appended to the context. In other words, the temporal ordering of the articles (and their final appearance in the provided context) can overly bias the model’s answer.
+
+This behavior highlights a fundamental volatility in large language models (LLMs). Despite the \emph{pre-trained knowledge} these models carry (information encoded in their internal weights from vast swathes of text encountered during their initial training phase), the final result is still heavily shaped by the \emph{contextual prompt knowledge}, i.e., the text provided to the model at inference time. While it is often assumed that LLMs will faithfully combine their extensive background knowledge (pre-trained into them) with the immediate prompt to produce a balanced, context-aware response, what this project shows is that the most recently seen context can overshadow earlier parts of the prompt and even run counter to the model’s internal understanding.
+
+Why does this happen? LLMs operate probabilistically, selecting the next likely token based on both their training-induced priors and the currently visible prompt. Although the model’s pre-trained weights contain general knowledge (for example, about which teams remain in contention late in the NFL season and a baseline understanding of sports outcomes), the model does not have any sense of “fact-checking” or temporal reasoning that would override a more recent textual suggestion. If the final documents in the prompt repeatedly mention a particular team and associate it with success, the model—due to the recency bias in how it processes context—will often “go along” with this suggestion and produce that team as the predicted winner, regardless of the broader factual situation.
+
+This reliance on prompt context over pre-trained knowledge becomes problematic when the provided context is misleading, incomplete, or heavily skewed towards a particular narrative. The model’s architecture and decoding algorithm do not allow it to easily reject contradictory information if it is strongly emphasized near the end of the prompt. The result is a fragile and volatile set of predictions, where slight changes to the ordering or selection of articles in the prompt can drastically alter the model’s answer.
+
+For use cases like sports predictions, such volatility can undermine trust in the model’s outputs. Users may expect that a model “knows” which teams are still in contention or has an inherently stable understanding of the NFL landscape. However, what this example shows is that an LLM’s final output is a product of a delicate interplay between its deeply embedded, pre-trained statistical patterns and the immediate, ephemeral textual context it is given. Unless carefully managed—by pruning irrelevant context, weighting or filtering articles, or employing more advanced reasoning layers—LLMs can easily be swayed by the last few lines of text they are fed.
+
+In short, the observed phenomenon underscores the importance of understanding the delicate and sometimes counterintuitive relationship between a model’s internalized knowledge and the prompt-provided context. Such insights are crucial for building more robust, reliable, and factually grounded systems that can perform consistently across a variety of scenarios.  
+
+\end{document}
