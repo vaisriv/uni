@@ -4,7 +4,7 @@ set -f script_location $DOTFILES_DIR/home/user-dots/scripts/uni
 
 function set_sem_env
 	cd $UNI_NOTES_DIR
-	set -x UNI_CURRENT_SEM (fzf --walker=dir -f "!_ !/" | fzf)
+	set -U UNI_CURRENT_SEM (fzf --walker=dir -f "!_ !/" | fzf)
 end
 
 function set_course_env
@@ -13,9 +13,9 @@ function set_course_env
 	end
 
 	cd $UNI_NOTES_DIR/$UNI_CURRENT_SEM
-	set -x UNI_CURRENT_COURSE (fzf --walker=dir -f "!/" | fzf)
+	set -U UNI_CURRENT_COURSE (fzf --walker=dir -f "!/" | fzf)
 
-	set -x UNI_CURRENT_COURSE_NOTES_DIR $UNI_NOTES_DIR/$UNI_CURRENT_SEM/$UNI_CURRENT_COURSE
+	set -U UNI_CURRENT_COURSE_NOTES_DIR $UNI_NOTES_DIR/$UNI_CURRENT_SEM/$UNI_CURRENT_COURSE
 end
 
 if test -z "$EDITOR"
