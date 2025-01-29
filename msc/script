@@ -1,0 +1,79 @@
+#!/usr/bin/env fish
+
+set -f script_location $DOTFILES_DIR/home/user-dots/scripts/uni
+
+function set_sem_env
+	cd $UNI_NOTES_DIR
+	set -U UNI_CURRENT_SEM (fzf --walker=dir -f "!_ !/" | fzf)
+end
+
+function set_course_env
+	if test -z "$UNI_CURRENT_SEM"
+		set_sem_env
+	end
+
+	cd $UNI_NOTES_DIR/$UNI_CURRENT_SEM
+	set -U UNI_CURRENT_COURSE (fzf --walker=dir -f "!/" | fzf)
+
+	set -U UNI_CURRENT_COURSE_NOTES_DIR $UNI_NOTES_DIR/$UNI_CURRENT_SEM/$UNI_CURRENT_COURSE
+end
+
+if test -z "$EDITOR"
+	echo "please make sure \$EDITOR is set"
+	exit 1
+end
+
+if test -z "$UNI_DIR"
+	read -f -P "where is the uni repository?\n> " UNI_DIR
+end
+
+if test -z "$UNI_NOTES_DIR"
+	read -f -P "where is the uni-notes repository?\n> " UNI_NOTES_DIR
+end
+
+if test (count $argv) -eq 0
+	cd $UNI_DIR
+else
+	switch $argv[1]
+		case switch
+			set current_dir $(pwd)
+			if test (count $argv[2..]) -eq 0
+				set_course_env
+			else
+				switch $argv[2]
+					case sem semester
+						set_sem_env
+					
+					case class course
+						set_course_env
+
+					case both
+						set_sem_env
+						set_course_env
+				end
+			end
+			cd $current_dir
+
+		case notes
+			if test (count $argv[2..]) -eq 0
+				cd $UNI_NOTES_DIR
+			else
+				switch $argv[2]
+					case lg git
+						lazygit -p $UNI_NOTES_DIR
+
+					case '*'
+						echo "Unrecognized input."
+				end
+			end
+
+		case lg git
+			lazygit -p $UNI_DIR
+
+		case self-edit
+			$EDITOR $script_location
+
+		case '*'
+			echo "Unrecognized input."
+	end
+end
