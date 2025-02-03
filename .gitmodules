@@ -7,3 +7,6 @@
 [submodule "24f/ENAE380/final/project"]
 	path = 24f/ENAE380/final/project
 	url = github:vaisriv/nfl-rss-nlp
+[submodule "24f/ENAE311H/final/code"]
+	path = 24f/ENAE311H/final/code
+	url = github:vaisriv/wave-rider-dynamics
