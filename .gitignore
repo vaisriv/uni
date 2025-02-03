@@ -6,9 +6,15 @@
 # *~
 
 msc/zotero
-**/.venv
-**/.texaux
 
+# ignore python venvs
+**/.venv
+
+# ignore latex aux/sync files
+**/.texaux
+**/*.synctex.gz
+
+# ignore rproject dirs/files
 .Rproj.user
 .Rhistory
 .RData
