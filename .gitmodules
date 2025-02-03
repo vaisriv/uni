@@ -4,8 +4,8 @@
 [submodule "champs/docs"]
 	path = champs/docs
 	url = gitumd:vsriv81/champs-docs.git
-[submodule "24f/ENAE380/final/project"]
-	path = 24f/ENAE380/final/project
+[submodule "24f/ENAE380/final/code"]
+	path = 24f/ENAE380/final/code
 	url = github:vaisriv/nfl-rss-nlp
 [submodule "24f/ENAE311H/final/code"]
 	path = 24f/ENAE311H/final/code
