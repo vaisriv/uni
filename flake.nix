@@ -1,5 +1,5 @@
 {
-	description = "dev-shell flake";
+	description = "uni dev-shell flake";
 
 	inputs = {
 		# Nix Packages
@@ -35,10 +35,12 @@
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
+							# latex
+							# texliveFull
+							texlab
+
 							# julia
-							julia-bin # lang
-							# formatter
-							# lsp
+							julia-bin
 
 							# python
 							(python3.withPackages (ps:
