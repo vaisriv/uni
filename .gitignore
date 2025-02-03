@@ -10,6 +10,12 @@ msc/zotero
 # ignore python venvs
 **/.venv
 
+# nix devenv files/dirs
+.devenv*
+devenv.local.nix
+.direnv
+.pre-commit-config.yaml
+
 # ignore latex aux/sync files
 **/.texaux
 **/*.synctex.gz
