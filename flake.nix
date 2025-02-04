@@ -6,8 +6,7 @@
 		nixpkgs.url = "nixpkgs/nixos-24.11";
 
 		# Better Nix Implementation
-		lix-module = {
-			url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+		lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
@@ -35,11 +34,14 @@
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
+							# julia
+							julia-bin
+
 							# python
-							(python3.withPackages (ps:
-										with ps; [
-											matplotlib
-										]))
+							(python3.withPackages (ps: with ps; [
+								matplotlib
+								numpy
+							]))
 							basedpyright
 							ruff
 						];
