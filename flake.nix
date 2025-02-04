@@ -32,7 +32,6 @@
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
-				formatter = pkgs.alejandra;
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
@@ -40,7 +39,6 @@
 							(python3.withPackages (ps:
 										with ps; [
 											matplotlib
-											numpy
 										]))
 							basedpyright
 							ruff
