@@ -1,7 +1,0 @@
-{
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
-	"features": {
-		"ghcr.io/julialang/devcontainer-features/julia:1": {},
-		"ghcr.io/prulloac/devcontainer-features/latex:1": {}
-	}
-}
