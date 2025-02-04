@@ -41,6 +41,8 @@
 
 							# julia
 							julia-bin
+							# formatter
+							# lsp
 
 							# python
 							(python3.withPackages (ps:
