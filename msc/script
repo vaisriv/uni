@@ -125,6 +125,9 @@ switch $argv[1]
 	case self-edit
 		$EDITOR $script_location
 
+	case flake
+		$EDITOR $UNI_DIR/flake.nix
+
 	case '*'
 		echo "Unrecognized input."
 end
