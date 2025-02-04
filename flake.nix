@@ -31,23 +31,29 @@
 		flake-utils.lib.eachDefaultSystem (
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
-				fhs = pkgs.buildFHSUserEnv {
-					name = "fhs-shell";
-					targetPkgs = pkgs: with pkgs; [
-						julia-bin
-						texlab
-						ruff
-						basedpyright
-						(python3.withPackages (ps:
-							with ps; [
-								matplotlib
-								numpy
-							]))
-					];
-					runScript = "";
-				};
 			in {
-				devShells.default = fhs.env;
+				devShells.default =
+					pkgs.mkShell {
+						packages = with pkgs; [
+							# latex
+							# texliveFull
+							texlab
+
+							# julia
+							julia-bin
+							# formatter
+							# lsp
+
+							# python
+							(python3.withPackages (ps:
+										with ps; [
+											matplotlib
+											numpy
+										]))
+							basedpyright
+							ruff
+						];
+					};
 			}
 		);
 }
