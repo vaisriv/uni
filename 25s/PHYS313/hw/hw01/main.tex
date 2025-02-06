@@ -39,15 +39,769 @@
 
 	\hwkSol
 
-	Solutions are placed below the problem statement, and can be split
+	\hwkPart
+
+	\begin{align}
+		\mathbf{A} \times \left( \mathbf{B} \times \mathbf{C} \right) = \mathbf{B} \left( \mathbf{A} \cdot \mathbf{C} \right) - \mathbf{C} \left( \mathbf{A} \cdot \mathbf{B} \right) \label{1.6.eqn1} \\
+		\mathbf{B} \times \left( \mathbf{C} \times \mathbf{A} \right) = \mathbf{C} \left( \mathbf{B} \cdot \mathbf{A} \right) - \mathbf{A} \left( \mathbf{A} \cdot \mathbf{C} \right) \label{1.6.eqn2} \\
+		\mathbf{C} \times \left( \mathbf{A} \times \mathbf{B} \right) = \mathbf{A} \left( \mathbf{C} \cdot \mathbf{B} \right) - \mathbf{B} \left( \mathbf{C} \cdot \mathbf{A} \right) \label{1.6.eqn3}
+	\end{align}
+	\begin{align*}
+		\ref{1.6.eqn1} + \ref{1.6.eqn2} + \ref{1.6.eqn3} & = \mathbf{B} \left( \mathbf{A} \cdot \mathbf{C} \right) - \mathbf{C} \left( \mathbf{A} \cdot \mathbf{B} \right) \\
+								 & + \mathbf{C} \left( \mathbf{B} \cdot \mathbf{A} \right) - \mathbf{A} \left( \mathbf{A} \cdot \mathbf{C} \right) \\
+								 & + \mathbf{A} \left( \mathbf{C} \cdot \mathbf{B} \right) - \mathbf{B} \left( \mathbf{C} \cdot \mathbf{A} \right) 
+	\end{align*}
+
+	The dot product is commuttative, so \( \mathbf{A} \left( \mathbf{B} \cdot \mathbf{C} \right) = \mathbf{A} \left( \mathbf{C} \cdot \mathbf{B} \right) \).
+
+	\[
+		\therefore \ref{1.6.eqn1} + \ref{1.6.eqn2} + \ref{1.6.eqn3} = \mathbf{0}
+	\qed\]
 
 	\hwkPart
 
-	into
+	\begin{align*}
+		\mathbf{A} \times \left( \mathbf{B} \times \mathbf{C} \right) = \mathbf{B} \left( \mathbf{A} \cdot \mathbf{C} \right) - \mathbf{C} \left( \mathbf{A} \cdot \mathbf{B} \right) \\
+		\left( \mathbf{A} \times \mathbf{B} \right) \times \mathbf{C} = \mathbf{B} \left( \mathbf{A} \cdot \mathbf{C} \right) - \mathbf{A} \left( \mathbf{B} \cdot \mathbf{C} \right) \\
+		\therefore \mathbf{A} \left( \mathbf{B} \cdot \mathbf{C} \right) = \mathbf{C} \left( \mathbf{A} \cdot \mathbf{B} \right) \implies \mathbf{A} \times \left( \mathbf{B} \times \mathbf{C} \right) = \left( \mathbf{A} \times \mathbf{B} \right) \times \mathbf{C}
+		\qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{1.13}{}
+
+	Let \(\boldsymbol{r}\) be the separation vector from a fixed point \(\left(x^{\prime}, y^{\prime}, z^{\prime}\right)\) to the point \((x, y, z)\), and let \(r\) be its length. Show that
+	\begin{enumerate}
+		\item \(\nabla\left(r^2\right)=2 r\).
+		\item \(\nabla(1 / r)=-\hat{r} / r^2\).
+		\item What is the general formula for \(\nabla\left(\tau^n\right)\) ?
+	\end{enumerate}
+
+	\hwkSol
 
 	\hwkPart
 
-	different parts.
+	To show that
+	\[
+		\nabla\left(r^2\right)=2\boldsymbol{r},
+	\]
+	first note that
+	\[
+		r^2 = (x-x')^2 + (y-y')^2 + (z-z')^2.
+	\]
+	Taking the gradient with respect to \( \left(x, y, z\right)\) gives:
+	\[
+		\frac{\partial (r^2)}{\partial x} = 2(x-x'),\quad \frac{\partial (r^2)}{\partial y} = 2(y-y'),\quad \frac{\partial (r^2)}{\partial z} = 2(z-z').
+	\]
+	Thus, the gradient is
+	\[
+		\nabla(r^2) = \left(2(x-x'),\, 2(y-y'),\, 2(z-z')\right) = 2\boldsymbol{r} \qed
+	\]
+
+	\hwkPart
+
+	To show that
+	\[
+		\nabla\left(\frac{1}{r}\right)=-\frac{\hat{r}}{r^2},
+	\]
+	we first apply the chain rule:
+	\[
+		\nabla\left(\frac{1}{r}\right) = \frac{d}{dr}\left(\frac{1}{r}\right) \nabla r = -\frac{1}{r^2}\nabla r.
+	\]
+	Since
+	\[
+		r = \sqrt{r^2} \quad \Longrightarrow \quad \nabla r = \frac{1}{2r}\nabla (r^2) = \frac{1}{2r}(2\boldsymbol{r}) = \frac{\boldsymbol{r}}{r} = \hat{r},
+	\]
+	it follows that
+	\[
+		\nabla\left(\frac{1}{r}\right) = -\frac{1}{r^2}\hat{r} \qed
+	\]
+
+	\hwkPart
+
+	That is, we wish to find the gradient of \(\tau^n\) for a general exponent \( n \). Again, by the chain rule,
+	\[
+		\nabla(\tau^n)= \frac{d}{d\tau}(\tau^n) \nabla \tau = n\,\tau^{n-1}\nabla \tau.
+	\]
+	Since \(\nabla \tau = \hat{\tau} = \frac{\boldsymbol{\tau}}{\tau}\), we have
+	\[
+		\nabla(\tau^n)= n\,\tau^{n-1}\left(\frac{\boldsymbol{\tau}}{\tau}\right)= n\,\tau^{n-2}\boldsymbol{\tau} \qed
+	\]
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{1.15}{}
+
+	Calculate the divergence of the following vector functions:
+	\begin{enumerate}
+		\item \( \mathbf{v}_a = x^2 \hat{\mathbf{x}} + 3 x z^2 \hat{\mathbf{y}} - 2 x z \hat{\mathbf{z}} \).
+		\item \( \mathbf{v}_b = x y \hat{\mathbf{x}} + 2 y z \hat{\mathbf{y}} + 3 z x \hat{\mathbf{z}} \).
+		\item \( \mathbf{v}_c = y^2 \hat{\mathbf{x}} + \left(2 x y + z^2\right) \hat{\mathbf{y}} + 2 y z \hat{\mathbf{z}} \).
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+
+	For \( \mathbf{v}_a \), we have 
+	\[
+		\mathbf{v}_a = \left( x^2,\; 3xz^2,\; -2xz \right).
+	\]
+	The divergence is given by
+	\[
+		\nabla \cdot \mathbf{v}_a = \frac{\partial}{\partial x}(x^2) + \frac{\partial}{\partial y}(3xz^2) + \frac{\partial}{\partial z}(-2xz).
+	\]
+	Evaluating each term:
+	\[
+		\frac{\partial}{\partial x}(x^2) = 2x,\quad \frac{\partial}{\partial y}(3xz^2) = 0,\quad \frac{\partial}{\partial z}(-2xz) = -2x.
+	\]
+	Thus,
+	\[
+		\nabla \cdot \mathbf{v}_a = 2x + 0 - 2x = 0.
+	\]
+
+	\hwkPart
+
+	For \( \mathbf{v}_b \), we have 
+	\[
+		\mathbf{v}_b = \left( xy,\; 2yz,\; 3zx \right).
+	\]
+	The divergence is
+	\[
+		\nabla \cdot \mathbf{v}_b = \frac{\partial}{\partial x}(xy) + \frac{\partial}{\partial y}(2yz) + \frac{\partial}{\partial z}(3zx).
+	\]
+	Computing the derivatives:
+	\[
+		\frac{\partial}{\partial x}(xy) = y,\quad \frac{\partial}{\partial y}(2yz) = 2z,\quad \frac{\partial}{\partial z}(3zx) = 3x.
+	\]
+	Hence,
+	\[
+		\nabla \cdot \mathbf{v}_b = y + 2z + 3x.
+	\]
+
+	\hwkPart
+
+	For \( \mathbf{v}_c \), we have 
+	\[
+		\mathbf{v}_c = \left( y^2,\; 2xy+z^2,\; 2yz \right).
+	\]
+	The divergence is
+	\[
+		\nabla \cdot \mathbf{v}_c = \frac{\partial}{\partial x}(y^2) + \frac{\partial}{\partial y}(2xy+z^2) + \frac{\partial}{\partial z}(2yz).
+	\]
+	Calculating each derivative:
+	\[
+		\frac{\partial}{\partial x}(y^2) = 0,\quad \frac{\partial}{\partial y}(2xy+z^2) = 2x,\quad \frac{\partial}{\partial z}(2yz) = 2y.
+	\]
+	Thus,
+	\[
+		\nabla \cdot \mathbf{v}_c = 0 + 2x + 2y = 2x + 2y.
+	\]
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{1.25}{}
+	\begin{enumerate}
+		\item Check product rule (iv) (by calculating each term separately) for the functions \( \mathbf{A}=x \hat{\mathbf{x}}+2 y \hat{\mathbf{y}}+3 z \hat{\mathbf{z}} ; \quad \mathbf{B}=3 y \hat{\mathbf{x}}-2 x \hat{\mathbf{y}} \)
+		\item Do the same for product rule (ii): \(\nabla(\mathbf{A} \cdot \mathbf{B})=\mathbf{A} \times(\boldsymbol{\nabla} \times \mathbf{B})+\mathbf{B} \times(\boldsymbol{\nabla} \times \mathbf{A})+(\mathbf{A} \cdot \boldsymbol{\nabla}) \mathbf{B}+(\mathbf{B} \cdot \boldsymbol{\nabla}) \mathbf{A}\)
+		\item Do the same for rule (vi): \(\boldsymbol{\nabla} \times(\mathbf{A} \times \mathbf{B})=(\mathbf{B} \cdot \boldsymbol{\nabla}) \mathbf{A}-(\mathbf{A} \cdot \boldsymbol{\nabla}) \mathbf{B}+\mathbf{A}(\boldsymbol{\nabla} \cdot \mathbf{B})-\mathbf{B}(\nabla \cdot \mathbf{A})\)
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart[Product Rule (iv): Divergence of a Cross Product]
+
+	We wish to check that
+	\[
+		\nabla\cdot(\mathbf{A}\times\mathbf{B}) = \mathbf{B}\cdot(\nabla\times\mathbf{A}) - \mathbf{A}\cdot(\nabla\times\mathbf{B}).
+	\]
+
+	\textbf{Step 1.} Compute \(\mathbf{A}\times\mathbf{B}\).
+
+	Using the determinant formula,
+	\[
+		\mathbf{A}\times\mathbf{B} = 
+		\begin{vmatrix}
+			\hat{\mathbf{x}} & \hat{\mathbf{y}} & \hat{\mathbf{z}} \\[4mm]
+			x & 2y & 3z \\[2mm]
+			3y & -2x & 0
+		\end{vmatrix}
+		=
+		\left( 2y\cdot0 - 3z\cdot(-2x),\; -\Bigl(x\cdot0 - 3z\cdot3y\Bigr),\; x\cdot(-2x) - 2y\cdot(3y) \right).
+	\]
+	Thus,
+	\[
+		\mathbf{A}\times\mathbf{B} = \bigl(6xz,\; 9yz,\; -2x^2 - 6y^2\bigr).
+	\]
+
+	\textbf{Step 2.} Compute the left-hand side (LHS):
+	\[
+		\nabla\cdot(\mathbf{A}\times\mathbf{B}) = \frac{\partial}{\partial x}(6xz) + \frac{\partial}{\partial y}(9yz) + \frac{\partial}{\partial z}(-2x^2-6y^2).
+	\]
+	We have:
+	\[
+		\frac{\partial}{\partial x}(6xz)=6z,\quad \frac{\partial}{\partial y}(9yz)=9z,\quad \frac{\partial}{\partial z}(-2x^2-6y^2)=0.
+	\]
+	Therefore,
+	\[
+		\nabla\cdot(\mathbf{A}\times\mathbf{B}) = 6z + 9z = 15z.
+	\]
+
+	\textbf{Step 3.} Compute the right-hand side (RHS).
+
+	First, compute \(\nabla\times\mathbf{A}\). Since
+	\[
+		\mathbf{A} = (x,\,2y,\,3z),
+	\]
+	its curl is
+	\[
+		\nabla\times\mathbf{A} = \Bigl( \frac{\partial (3z)}{\partial y} - \frac{\partial (2y)}{\partial z},\; \frac{\partial (x)}{\partial z} - \frac{\partial (3z)}{\partial x},\; \frac{\partial (2y)}{\partial x} - \frac{\partial (x)}{\partial y} \Bigr)
+		= (0-0,\; 0-0,\; 0-0) = (0,0,0).
+	\]
+
+	Next, compute \(\nabla\times\mathbf{B}\) for
+	\[
+		\mathbf{B} = (3y,\,-2x,\,0).
+	\]
+	We find
+	\[
+		\nabla\times\mathbf{B} = \Bigl( \frac{\partial 0}{\partial y} - \frac{\partial (-2x)}{\partial z},\; \frac{\partial (3y)}{\partial z} - \frac{\partial 0}{\partial x},\; \frac{\partial (-2x)}{\partial x} - \frac{\partial (3y)}{\partial y} \Bigr)
+		= (0-0,\; 0-0,\; -2-3) = (0,0,-5).
+	\]
+
+	Thus,
+	\[
+		\mathbf{B}\cdot(\nabla\times\mathbf{A}) = \mathbf{B}\cdot(0,0,0)=0,
+	\]
+	and
+	\[
+		\mathbf{A}\cdot(\nabla\times\mathbf{B}) = (x,\,2y,\,3z)\cdot(0,0,-5) = -15z.
+	\]
+
+	Therefore, the RHS is
+	\[
+		\mathbf{B}\cdot(\nabla\times\mathbf{A}) - \mathbf{A}\cdot(\nabla\times\mathbf{B}) = 0 - (-15z) = 15z.
+	\]
+
+	Since LHS \(=15z\) equals RHS \(=15z\), the product rule (iv) is verified.
+
+
+	\hwkPart[Product Rule (ii): Gradient of a Dot Product]
+
+	The identity to verify is
+	\[
+		\nabla(\mathbf{A}\cdot\mathbf{B}) = \mathbf{A}\times(\nabla\times\mathbf{B}) + \mathbf{B}\times(\nabla\times\mathbf{A}) + (\mathbf{A}\cdot\nabla)\mathbf{B} + (\mathbf{B}\cdot\nabla)\mathbf{A}.
+	\]
+
+	\textbf{Step 1.} Compute the scalar product \(\mathbf{A}\cdot\mathbf{B}\).
+	\[
+		\mathbf{A}\cdot\mathbf{B} = x\,(3y) + 2y\,(-2x) + 3z\,(0) = 3xy - 4xy = -xy.
+	\]
+	Then,
+	\[
+		\nabla(\mathbf{A}\cdot\mathbf{B}) = \nabla(-xy) 
+		= \left( \frac{\partial(-xy)}{\partial x},\; \frac{\partial(-xy)}{\partial y},\; \frac{\partial(-xy)}{\partial z} \right)
+		= (-y,\,-x,\,0).
+	\]
+
+	\textbf{Step 2.} Evaluate the four terms on the RHS.
+
+	\textbf{(a) Term 1:} \(\mathbf{A}\times(\nabla\times\mathbf{B})\).
+
+	We already found \(\nabla\times\mathbf{B} = (0,0,-5)\). Thus,
+	\[
+		\mathbf{A}\times(\nabla\times\mathbf{B}) = (x,\,2y,\,3z) \times (0,0,-5).
+	\]
+	Using the determinant formula,
+	\[
+		\mathbf{A}\times(\nabla\times\mathbf{B}) =
+		\begin{vmatrix}
+			\hat{\mathbf{x}} & \hat{\mathbf{y}} & \hat{\mathbf{z}} \\
+			x & 2y & 3z \\
+			0 & 0 & -5
+		\end{vmatrix}
+		= \Bigl( 2y(-5) - 3z(0),\; -\bigl(x(-5) - 3z(0)\bigr),\; x(0) - 2y(0) \Bigr)
+		= (-10y,\; 5x,\; 0).
+	\]
+
+	\textbf{(b) Term 2:} \(\mathbf{B}\times(\nabla\times\mathbf{A})\).
+
+	We have \(\nabla\times\mathbf{A} = (0,0,0)\), so
+	\[
+		\mathbf{B}\times(\nabla\times\mathbf{A}) = \mathbf{B}\times(0,0,0) = (0,0,0).
+	\]
+
+	\textbf{(c) Term 3:} \((\mathbf{A}\cdot\nabla)\mathbf{B}\).
+
+	This denotes the directional derivative of \(\mathbf{B}\) along \(\mathbf{A}\). With \(\mathbf{B} = (3y,\,-2x,\,0)\),
+	\[
+		(\mathbf{A}\cdot\nabla)(3y) = x\,\partial_x(3y) + 2y\,\partial_y(3y) + 3z\,\partial_z(3y)
+		= x\cdot 0 + 2y\cdot 3 + 3z\cdot 0 = 6y,
+	\]
+	\[
+		(\mathbf{A}\cdot\nabla)(-2x) = x\,\partial_x(-2x) + 2y\,\partial_y(-2x) + 3z\,\partial_z(-2x)
+		= x\,(-2) + 0 + 0 = -2x,
+	\]
+	\[
+		(\mathbf{A}\cdot\nabla)(0) = 0.
+	\]
+	Thus,
+	\[
+		(\mathbf{A}\cdot\nabla)\mathbf{B} = (6y,\,-2x,\,0).
+	\]
+
+	\textbf{(d) Term 4:} \((\mathbf{B}\cdot\nabla)\mathbf{A}\).
+
+	For \(\mathbf{A} = (x,\,2y,\,3z)\),
+	\[
+		(\mathbf{B}\cdot\nabla)(x) = 3y\,\partial_x(x) + (-2x)\,\partial_y(x) + 0\,\partial_z(x)
+		= 3y\cdot 1 + (-2x)\cdot 0 = 3y,
+	\]
+	\[
+		(\mathbf{B}\cdot\nabla)(2y) = 3y\,\partial_x(2y) + (-2x)\,\partial_y(2y) + 0\,\partial_z(2y)
+		= 3y\cdot 0 + (-2x)\cdot 2 = -4x,
+	\]
+	\[
+		(\mathbf{B}\cdot\nabla)(3z) = 3y\,\partial_x(3z) + (-2x)\,\partial_y(3z) + 0\,\partial_z(3z)
+		= 0.
+	\]
+	Thus,
+	\[
+		(\mathbf{B}\cdot\nabla)\mathbf{A} = (3y,\,-4x,\,0).
+	\]
+
+	\textbf{Step 3.} Sum the four terms:
+	\[
+		\begin{aligned}
+			\mathbf{A}\times(\nabla\times\mathbf{B}) &+ \mathbf{B}\times(\nabla\times\mathbf{A})
+			+ (\mathbf{A}\cdot\nabla)\mathbf{B} + (\mathbf{B}\cdot\nabla)\mathbf{A} \\
+								 &= (-10y,\;5x,\,0) + (0,0,0) + (6y,\,-2x,\,0) + (3y,\,-4x,\,0) \\
+								 &= \bigl((-10y+6y+3y),\;(5x-2x-4x),\;0\bigr) \\
+								 &= (-y,\,-x,\,0).
+		\end{aligned}
+	\]
+
+	This agrees with the left-hand side,
+	\[
+		\nabla(\mathbf{A}\cdot\mathbf{B}) = (-y,\,-x,\,0).
+	\]
+	Thus, product rule (ii) is verified.
+
+
+	\hwkPart[Product Rule (vi): Curl of a Cross Product]
+
+	The identity to verify is
+	\[
+		\nabla\times(\mathbf{A}\times\mathbf{B}) = (\mathbf{B}\cdot\nabla)\mathbf{A} - (\mathbf{A}\cdot\nabla)\mathbf{B} + \mathbf{A}\,(\nabla\cdot\mathbf{B}) - \mathbf{B}\,(\nabla\cdot\mathbf{A}).
+	\]
+
+	\textbf{Step 1.} Compute \(\nabla\times(\mathbf{A}\times\mathbf{B})\).
+
+	We already obtained
+	\[
+		\mathbf{A}\times\mathbf{B} = (6xz,\;9yz,\;-2x^2-6y^2).
+	\]
+	Now, taking the curl,
+	\[
+		\nabla\times(\mathbf{A}\times\mathbf{B}) = \left( \frac{\partial}{\partial y}(-2x^2-6y^2) - \frac{\partial}{\partial z}(9yz),\; \frac{\partial}{\partial z}(6xz) - \frac{\partial}{\partial x}(-2x^2-6y^2),\; \frac{\partial}{\partial x}(9yz) - \frac{\partial}{\partial y}(6xz) \right).
+	\]
+	Calculating each component:
+	\[
+		\begin{aligned}
+			\text{(i) }& \frac{\partial}{\partial y}(-2x^2-6y^2) = -12y, \quad \frac{\partial}{\partial z}(9yz)=9y,\\[1mm]
+				   &\Rightarrow (\nabla\times(\mathbf{A}\times\mathbf{B}))_x = -12y - 9y = -21y;\\[1mm]
+			\text{(ii) }& \frac{\partial}{\partial z}(6xz)=6x, \quad \frac{\partial}{\partial x}(-2x^2-6y^2)= -4x,\\[1mm]
+				    &\Rightarrow (\nabla\times(\mathbf{A}\times\mathbf{B}))_y = 6x - (-4x) = 10x;\\[1mm]
+			\text{(iii) }& \frac{\partial}{\partial x}(9yz)=0, \quad \frac{\partial}{\partial y}(6xz)=0,\\[1mm]
+				     &\Rightarrow (\nabla\times(\mathbf{A}\times\mathbf{B}))_z = 0 - 0 = 0.
+		\end{aligned}
+	\]
+	Thus,
+	\[
+		\nabla\times(\mathbf{A}\times\mathbf{B}) = (-21y,\;10x,\;0).
+	\]
+
+	\textbf{Step 2.} Evaluate the right-hand side (RHS).
+
+	\textbf{(a)} We already computed in part (ii):
+	\[
+		(\mathbf{B}\cdot\nabla)\mathbf{A} = (3y,\,-4x,\,0),\quad (\mathbf{A}\cdot\nabla)\mathbf{B} = (6y,\,-2x,\,0).
+	\]
+
+	\textbf{(b)} Next, compute the divergences.
+
+	For \(\mathbf{B} = (3y,\,-2x,\,0)\),
+	\[
+		\nabla\cdot\mathbf{B} = \frac{\partial}{\partial x}(3y) + \frac{\partial}{\partial y}(-2x) + \frac{\partial}{\partial z}(0)= 0 + 0 + 0 = 0.
+	\]
+	For \(\mathbf{A} = (x,\,2y,\,3z)\),
+	\[
+		\nabla\cdot\mathbf{A} = \frac{\partial}{\partial x}(x) + \frac{\partial}{\partial y}(2y) + \frac{\partial}{\partial z}(3z)= 1 + 2 + 3 = 6.
+	\]
+	Hence,
+	\[
+		\mathbf{A}\,(\nabla\cdot\mathbf{B}) = (0,0,0),\quad \mathbf{B}\,(\nabla\cdot\mathbf{A}) = 6\,(3y,\,-2x,\,0) = (18y,\,-12x,\,0).
+	\]
+
+	\textbf{Step 3.} Combine the terms:
+	\[
+		\begin{aligned}
+			\text{RHS} &= (\mathbf{B}\cdot\nabla)\mathbf{A} - (\mathbf{A}\cdot\nabla)\mathbf{B} + \mathbf{A}\,(\nabla\cdot\mathbf{B}) - \mathbf{B}\,(\nabla\cdot\mathbf{A})\\[1mm]
+				   &= (3y,\,-4x,\,0) - (6y,\,-2x,\,0) + (0,0,0) - (18y,\,-12x,\,0)\\[1mm]
+				   &= \bigl[(3y-6y-18y),\,(-4x+2x+12x),\,0\bigr] \\[1mm]
+				   &= (-21y,\;10x,\;0).
+		\end{aligned}
+	\]
+	This matches the left-hand side computed earlier.
+
+	Thus, product rule (vi) is verified.
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{1.33}{}
+	Test the divergence theorem for the function 
+	\[
+		\mathbf{v} = (xy)\hat{\mathbf{x}} + (2yz)\hat{\mathbf{y}} + (3zx)\hat{\mathbf{z}},
+	\]
+	taking the volume to be a cube with side length \(2\).
+
+	\hwkSol
+
+	We first compute the divergence of \(\mathbf{v}\). Since
+	\[
+		\nabla\cdot\mathbf{v} = \frac{\partial}{\partial x}(xy) + \frac{\partial}{\partial y}(2yz) + \frac{\partial}{\partial z}(3zx),
+	\]
+	we have
+	\[
+		\frac{\partial}{\partial x}(xy) = y,\quad \frac{\partial}{\partial y}(2yz)=2z,\quad \frac{\partial}{\partial z}(3zx)=3x.
+	\]
+	Thus,
+	\[
+		\nabla\cdot\mathbf{v} = y+2z+3x.
+	\]
+
+	\textbf{Volume Integral:}  
+	We now evaluate the volume integral
+	\[
+		\int_V (\nabla\cdot\mathbf{v})\,dV = \int_{0}^{2}\int_{0}^{2}\int_{0}^{2} (y+2z+3x)\,dx\,dy\,dz.
+	\]
+	This integral splits into three parts:
+	\[
+		I_1 = \int_{0}^{2}\int_{0}^{2}\int_{0}^{2} y\,dx\,dy\,dz,\quad I_2 = \int_{0}^{2}\int_{0}^{2}\int_{0}^{2} 2z\,dx\,dy\,dz,\quad I_3 = \int_{0}^{2}\int_{0}^{2}\int_{0}^{2} 3x\,dx\,dy\,dz.
+	\]
+	Since the integrals are separable, we compute:
+	\[
+		I_1 = \left(\int_{0}^{2} y\,dy\right)\left(\int_{0}^{2} dx\right)\left(\int_{0}^{2} dz\right)
+		= \left[\frac{y^2}{2}\right]_{0}^{2}\cdot (2)(2)
+		= \left(\frac{4}{2}\right)(4)=2\cdot 4 = 8,
+	\]
+	\[
+		I_2 = 2\left(\int_{0}^{2} z\,dz\right)\left(\int_{0}^{2} dx\right)\left(\int_{0}^{2} dy\right)
+		= 2\left[\frac{z^2}{2}\right]_{0}^{2}\cdot (2)(2)
+		= 2\cdot \left(\frac{4}{2}\right)\cdot 4
+		= 2\cdot 2\cdot 4 = 16,
+	\]
+	\[
+		I_3 = 3\left(\int_{0}^{2} x\,dx\right)\left(\int_{0}^{2} dy\right)\left(\int_{0}^{2} dz\right)
+		= 3\left[\frac{x^2}{2}\right]_{0}^{2}\cdot (2)(2)
+		= 3\cdot \left(\frac{4}{2}\right)\cdot 4
+		= 3\cdot 2\cdot 4 = 24.
+	\]
+	Thus, the total volume integral is
+	\[
+		\int_V (\nabla\cdot\mathbf{v})\,dV = I_1+I_2+I_3 = 8+16+24 = 48.
+	\]
+
+	\textbf{Surface Flux:}  
+	Next, we compute the flux of \(\mathbf{v}\) through the surface of the cube. The divergence theorem states that
+	\[
+		\int_V (\nabla\cdot\mathbf{v})\,dV = \oint_{\partial V} \mathbf{v}\cdot\hat{n}\,dS.
+	\]
+	The cube has six faces. We calculate the flux for each face.
+
+	\textbf{Face 1 (\(x=0\)):}  
+	The outward normal is \(\hat{n} = (-1,0,0)\). On this face, \(x=0\) so
+	\[
+		\mathbf{v} = (0\cdot y,\,2yz,\,3z\cdot 0) = (0,\,2yz,\,0).
+	\]
+	Thus,
+	\[
+		\mathbf{v}\cdot\hat{n} = 0,
+	\]
+	and the flux is zero.
+
+	\textbf{Face 2 (\(x=2\)):}  
+	The outward normal is \(\hat{n} = (1,0,0)\). On this face, \(x=2\) so
+	\[
+		\mathbf{v} = (2y,\,2yz,\,3z\cdot2) = (2y,\,2yz,\,6z).
+	\]
+	Thus,
+	\[
+		\mathbf{v}\cdot\hat{n} = 2y.
+	\]
+	The flux through this face is
+	\[
+		\int_{z=0}^{2}\int_{y=0}^{2} 2y\,dy\,dz.
+	\]
+	Since
+	\[
+		\int_{y=0}^{2} 2y\,dy = \left. y^2\right|_0^2 = 4,\quad \int_{z=0}^{2}dz = 2,
+	\]
+	the flux is \(4\times 2 = 8\).
+
+	\textbf{Face 3 (\(y=0\)):}  
+	The outward normal is \(\hat{n} = (0,-1,0)\). Here, \(y=0\) so
+	\[
+		\mathbf{v} = (x\cdot0,\,2\cdot0\cdot z,\,3zx) = (0,\,0,\,3zx),
+	\]
+	and hence \(\mathbf{v}\cdot\hat{n} = 0\). The flux is zero.
+
+	\textbf{Face 4 (\(y=2\)):}  
+	The outward normal is \(\hat{n} = (0,1,0)\). On this face, \(y=2\) so
+	\[
+		\mathbf{v} = (x\cdot2,\,2\cdot2\cdot z,\,3zx) = (2x,\,4z,\,3zx).
+	\]
+	Thus,
+	\[
+		\mathbf{v}\cdot\hat{n} = 4z.
+	\]
+	The flux through this face is
+	\[
+		\int_{z=0}^{2}\int_{x=0}^{2} 4z\,dx\,dz.
+	\]
+	Since
+	\[
+		\int_{x=0}^{2}dx = 2,\quad \int_{z=0}^{2} 4z\,dz = 4\left[\frac{z^2}{2}\right]_0^2 = 4\cdot 2 = 8,
+	\]
+	the flux is \(2\times 8 = 16\).
+
+	\textbf{Face 5 (\(z=0\)):}  
+	The outward normal is \(\hat{n} = (0,0,-1)\). On this face, \(z=0\) so
+	\[
+		\mathbf{v} = (xy,\,2yz,\,3zx) = (xy,\,0,\,0),
+	\]
+	and therefore \(\mathbf{v}\cdot\hat{n} = 0\). The flux is zero.
+
+	\textbf{Face 6 (\(z=2\)):}  
+	The outward normal is \(\hat{n} = (0,0,1)\). On this face, \(z=2\) so
+	\[
+		\mathbf{v} = (xy,\,2y\cdot2,\,3x\cdot2) = (xy,\,4y,\,6x).
+	\]
+	Thus,
+	\[
+		\mathbf{v}\cdot\hat{n} = 6x.
+	\]
+	The flux through this face is
+	\[
+		\int_{y=0}^{2}\int_{x=0}^{2} 6x\,dx\,dy.
+	\]
+	Here,
+	\[
+		\int_{x=0}^{2} 6x\,dx = 6\left[\frac{x^2}{2}\right]_0^2 = 6\cdot 2 = 12,\quad \int_{y=0}^{2} dy = 2,
+	\]
+	so the flux is \(12\times 2 = 24\).
+
+	\textbf{Total Flux:}  
+	Summing the fluxes from all six faces yields
+	\[
+		0 + 8 + 0 + 16 + 0 + 24 = 48.
+	\]
+
+	Since the volume integral of the divergence is \(48\) and the net flux through the surface is also \(48\), the divergence theorem is verified.
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{1.34}{}
+
+	Test Stokes' theorem for the function 
+	\[
+		\mathbf{v} = (xy)\,\hat{\mathbf{x}} + (2yz)\,\hat{\mathbf{y}} + (3zx)\,\hat{\mathbf{z}},
+	\]
+	using an isosceles right triangle, lying in the \(yz\) plane, with side length \(2\).
+
+	\hwkSol
+
+	We wish to verify Stokes' theorem,
+	\[
+		\oint_C \mathbf{v}\cdot d\mathbf{r} = \iint_S (\nabla\times \mathbf{v})\cdot \hat{n}\, dS,
+	\]
+	where \(S\) is the surface (our triangle) with boundary \(C\) and \(\hat{n}\) is a unit normal to \(S\). Since the triangle lies in the \(yz\) plane (\(x=0\)), we choose 
+	\[
+		\hat{n} = \hat{\mathbf{x}},
+	\]
+	which is consistent with a counterclockwise orientation of \(C\) when viewed from the positive \(x\) direction.
+
+	\medskip
+	\textbf{Step 1. Compute \(\nabla\times\mathbf{v}\).}
+
+	Given
+	\[
+		\mathbf{v} = (xy,\; 2yz,\; 3zx),
+	\]
+	its curl is computed by
+	\[
+		\nabla\times \mathbf{v} = \Bigl( \frac{\partial}{\partial y}(3zx) - \frac{\partial}{\partial z}(2yz),\; \frac{\partial}{\partial z}(xy) - \frac{\partial}{\partial x}(3zx),\; \frac{\partial}{\partial x}(2yz) - \frac{\partial}{\partial y}(xy) \Bigr).
+	\]
+	Evaluating each component:
+	\[
+		\begin{aligned}
+			(\nabla\times \mathbf{v})_x &= \frac{\partial (3zx)}{\partial y} - \frac{\partial (2yz)}{\partial z} = 0 - 2y = -2y,\\[1mm]
+			(\nabla\times \mathbf{v})_y &= \frac{\partial (xy)}{\partial z} - \frac{\partial (3zx)}{\partial x} = 0 - 3z = -3z,\\[1mm]
+			(\nabla\times \mathbf{v})_z &= \frac{\partial (2yz)}{\partial x} - \frac{\partial (xy)}{\partial y} = 0 - x = -x.
+		\end{aligned}
+	\]
+	Thus,
+	\[
+		\nabla\times \mathbf{v} = (-2y,\; -3z,\; -x).
+	\]
+	On the surface \(S\) we have \(x=0\), so the curl reduces to
+	\[
+		\nabla\times \mathbf{v} = (-2y,\; -3z,\; 0).
+	\]
+
+	\medskip
+	\textbf{Step 2. Evaluate the Surface Integral.}
+
+	The surface integral is
+	\[
+		\iint_S (\nabla\times \mathbf{v})\cdot \hat{n}\, dS.
+	\]
+	Since \(\hat{n} = (1,0,0)\), we have
+	\[
+		(\nabla\times \mathbf{v})\cdot \hat{n} = (-2y,\; -3z,\; 0)\cdot (1,0,0) = -2y.
+	\]
+	Parameterize the triangle in the \(yz\) plane using \(y\) and \(z\). The region is given by
+	\[
+		0\le y\le 2,\quad 0\le z\le 2-y.
+	\]
+	Thus, the surface integral becomes
+	\[
+		\iint_S (-2y)\, dS = \int_{y=0}^{2} \int_{z=0}^{2-y} (-2y)\,dz\,dy.
+	\]
+	Integrate with respect to \(z\):
+	\[
+		\int_{z=0}^{2-y} (-2y)\,dz = -2y\,(2-y).
+	\]
+	Then,
+	\[
+		\iint_S (-2y)\, dS = -2\int_{0}^{2} y(2-y)\,dy.
+	\]
+	Compute the integral:
+	\[
+		\begin{aligned}
+			\int_{0}^{2} y(2-y)\,dy &= \int_{0}^{2} (2y-y^2)\,dy 
+			=\left[ y^2 - \frac{y^3}{3}\right]_{0}^{2} 
+			= \left(4 - \frac{8}{3}\right)
+			=\frac{4}{3}.
+		\end{aligned}
+	\]
+	Thus,
+	\[
+		\iint_S (\nabla\times \mathbf{v})\cdot \hat{n}\, dS = -2\cdot\frac{4}{3} = -\frac{8}{3}.
+	\]
+
+	\medskip
+	\textbf{Step 3. Evaluate the Line Integral.}
+
+	Next, we compute the line integral
+	\[
+		\oint_C \mathbf{v}\cdot d\mathbf{r},
+	\]
+	where \(C\) is the boundary of the triangle. Note that every point on \(C\) lies in the \(yz\) plane (\(x=0\)), so on \(C\) the vector field becomes
+	\[
+		\mathbf{v} = (xy,\; 2yz,\; 3zx) = (0,\; 2yz,\; 0).
+	\]
+
+	We break the boundary \(C\) into three segments:
+
+	\medskip
+	\underline{\textbf{Segment AB:}} From \(A=(0,0,0)\) to \(B=(0,2,0)\).  
+	Parameterize by
+	\[
+		\mathbf{r}_{AB}(t)=(0,\,2t,\,0),\quad 0\le t\le 1.
+	\]
+	Then,
+	\[
+		d\mathbf{r}_{AB} = (0,\,2\,dt,\,0).
+	\]
+	On this segment, \(y=2t\) and \(z=0\) so
+	\[
+		\mathbf{v} = (0,\; 2\cdot (2t)\cdot 0,\; 0) = (0,0,0).
+	\]
+	Thus,
+	\[
+		\int_{AB} \mathbf{v}\cdot d\mathbf{r} = 0.
+	\]
+
+	\medskip
+	\underline{\textbf{Segment BC:}} From \(B=(0,2,0)\) to \(C=(0,0,2)\).  
+	A suitable parameterization is
+	\[
+		\mathbf{r}_{BC}(t)=(0,\,2(1-t),\,2t),\quad 0\le t\le 1.
+	\]
+	Then,
+	\[
+		d\mathbf{r}_{BC} = \left(0,\,-2\,dt,\,2\,dt\right).
+	\]
+	On this segment, \(y=2(1-t)\) and \(z=2t\), so
+	\[
+		\mathbf{v} = \Bigl(0,\;2\cdot[2(1-t)]\cdot(2t),\;0\Bigr) = \bigl(0,\,8t(1-t),\,0\bigr).
+	\]
+	Thus, the dot product is
+	\[
+		\mathbf{v}\cdot d\mathbf{r}_{BC} = (0,\,8t(1-t),\,0)\cdot (0,-2,2)\,dt = -16t(1-t)\,dt.
+	\]
+	Hence,
+	\[
+		\int_{BC} \mathbf{v}\cdot d\mathbf{r} = \int_{0}^{1} -16t(1-t)\,dt.
+	\]
+	Compute the integral:
+	\[
+		\begin{aligned}
+			\int_{0}^{1} t(1-t)\,dt &= \int_{0}^{1} (t-t^2)\,dt 
+			= \left[\frac{t^2}{2} - \frac{t^3}{3}\right]_0^1 
+			= \frac{1}{2} - \frac{1}{3} 
+			= \frac{1}{6},
+		\end{aligned}
+	\]
+	so that
+	\[
+		\int_{BC} \mathbf{v}\cdot d\mathbf{r} = -16\cdot\frac{1}{6} = -\frac{16}{6} = -\frac{8}{3}.
+	\]
+
+	\medskip
+	\underline{\textbf{Segment CA:}} From \(C=(0,0,2)\) to \(A=(0,0,0)\).  
+	Parameterize by
+	\[
+		\mathbf{r}_{CA}(t)=(0,\,0,\,2(1-t)),\quad 0\le t\le 1.
+	\]
+	Then,
+	\[
+		d\mathbf{r}_{CA} = (0,\,0,\,-2\,dt).
+	\]
+	Here, \(y=0\) so that
+	\[
+		\mathbf{v} = (0,\;0,\;0).
+	\]
+	Thus,
+	\[
+		\int_{CA} \mathbf{v}\cdot d\mathbf{r} = 0.
+	\]
+
+	\medskip
+	Summing the contributions from all three segments, we obtain
+	\[
+		\oint_C \mathbf{v}\cdot d\mathbf{r} = 0 + \left(-\frac{8}{3}\right) + 0 = -\frac{8}{3}.
+	\]
+
+	\medskip
+	\textbf{Conclusion:}  
+	Both the surface integral and the line integral yield
+	\[
+		-\frac{8}{3}.
+	\]
+	Thus, Stokes' theorem is verified for the given vector field and surface.
 
 \end{hwkProblem}
 
