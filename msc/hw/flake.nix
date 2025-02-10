@@ -44,7 +44,6 @@
 					pkgs.mkShell {
 						packages = with pkgs; [
 							# latex
-							latexindent
 							texlab
 
 							# python
