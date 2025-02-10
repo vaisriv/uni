@@ -11,13 +11,13 @@
 %   - Author
 %
 
-\newcommand{\hmwkTitle}{Homework 00}
-\newcommand{\hmwkSubTitle}{Numerical 2BP}
-\newcommand{\hmwkDueDate}{February 4th, 2025}
-\newcommand{\hmwkDueTime}{11:59 PM}
-\newcommand{\hmwkClass}{ENAE 404 - 0101}
-\newcommand{\hmwkClassTime}{09:30}
-\newcommand{\hmwkClassInstructor}{Dr. Barbee}
+\newcommand{\hmwkTitle}{Homework 01}
+\newcommand{\hmwkSubTitle}{}
+\newcommand{\hmwkDueDate}{February 10th, 2025}
+\newcommand{\hmwkDueTime}{03:30 PM}
+\newcommand{\hmwkClass}{ENRE 447 - 0101}
+\newcommand{\hmwkClassTime}{03:30 PM}
+\newcommand{\hmwkClassInstructor}{Dr. Groth}
 \newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
 \newcommand{\hmwkCompletionDate}{\today}
 
@@ -29,85 +29,321 @@
 
 \begin{hwkProblem}{1}{}
 
-	Plot the Earth, Didymos, and DART orbits in 3D on the same plot.
+	Select a system and application that you are familiar with. In 2-3 paragraphs, please:
+	\begin{enumerate}
+		\item Briefly describe the system and define its mission.
+		\item List 3 potential benefits/value of formally analyzing reliability.
+	\end{enumerate}
 
 	\hwkSol
 
 	\hwkPart
 
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.95\textwidth]{./images/s01.png}
-		\end{center}
-		\caption{Earth, Didymos, and DART Orbits about the Sun}\label{fig:s01}
-	\end{figure}
+	The system under consideration is my Undergraduate Honors Research Project under Dr. JAY: a magnetic nozzle integrated with a railgun designed to focus the plume of an ionized beam of helium-3 (He-3) at 2 kV. In this configuration, the railgun uses electromagnetic forces to both ionize the He-3 and accelerate it, while the magnetic nozzle is tasked with focusing and directing the high-energy plume. This precise beam control is critical in applications where the directed ion flow is used for propulsion or energy transfer.
 
 	\hwkPart
-	
-	\lstinputlisting[language=mathematica]{./code/s01.wl}
+
+	\begin{enumerate}
+		\item A formal reliability analysis will enable us to quantitatively predict the system’s behavior under a range of operational scenarios. This means we can estimate the likelihood that the magnetic nozzle will perform its function correctly over time, providing data to guide design decisions early in the development phase.
+		\item By systematically analyzing reliability, potential failure points (such as loss of magnetic field strength, misalignment of the beam, or material degradation under high-energy conditions) can be identified and addressed. This proactive approach leads to improvements in system design and helps avoid costly or time-intensive redesigns later.
+		\item Formally understanding the reliability of the magnetic nozzle contributes to reducing overall risk by anticipating and planning for maintenance needs and potential downtime. This not only enhances safety for any integrated systems (like spacecraft that may be affected by plume impingement) but also helps control costs through better lifecycle management and fewer unexpected repairs.
+	\end{enumerate}
 
 \end{hwkProblem}
 
 \begin{hwkProblem}{2}{}
 
-	Plot the position, velocity and acceleration of the Didymos Orbit magnitudes as a function of time.
+	Discuss the relationship between reliability and failure, both in words and mathematically.
 
 	\hwkSol
 
-	\hwkPart
+	Reliability describes the ability of a system to operate without failure for a desired period or amount of cycles under the desired conditions. Failure goes hand-in-hand with reliability, being the condition we want to avoid: the system no longer being able to operate.
 
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=0.95\textwidth]{./images/s02.png}
-		\end{center}
-		\caption{Didymos Orbit magnitudes vs. time}\label{fig:s02}
-	\end{figure}
-
-	\hwkPart
-	
-	\lstinputlisting[language=mathematica]{./code/s02.wl}
+	Mathematically, reliability and failure are related by the following equation:
+	\[
+		R(t)=1-F(t)
+	.\]
 
 \end{hwkProblem}
 
 \begin{hwkProblem}{3}{}
 
-	Explain why the magnitude plots of Problem 2 make sense given the equation of motion.
+	Let \(A=\{-2,0,1\},\; B=\{0,\pi,\sqrt{2},3\}\), and \(C=\{\pi,\sqrt{2},3\}\). Find
+	\begin{enumerate}
+		\item \(A \cap C\)
+		\item \(\bar{A} \cup B\)
+		\item \(\overline{A \cap B}\)
+	\end{enumerate}
 
 	\hwkSol
 
-	The position, velocity, and acceleration magnitude plots vary in a way that is consistent with the equations of motion.
-	\begin{itemize}
-		\item \( \left| \vec{r} \right| \) oscillates between the perihelion and aphelion.
-		\item \( \left| \vec{v} \right| \) is at its maximum when \( \left| \vec{r} \right| \) is at its minimum (and vice-versa).
-		\item \( \left| \vec{a} \right| = \frac{\mu}{{\left| \vec{r} \right|}^{2}} \) is at its maximum at the perihelion and its minimum at the aphelion.
-	\end{itemize}
+	\hwkPart
+
+	Since none of the elements of \(A\) appear in \(C\),
+	\begin{align*}
+		A \cap C &= \varnothing \qed
+	\end{align*}
+
+	\hwkPart
+
+	With \(U=A\cup B\cup C\), we have 
+	\[
+		\bar{A} = U\setminus A = \{\pi,\sqrt{2},3\} = C.
+	\]
+	Thus,
+	\begin{align*}
+		\bar{A} \cup B &= C \cup B = \{0,\pi,\sqrt{2},3\} \quad (\text{since } C\subset B) \qed
+	\end{align*}
+
+	\hwkPart
+
+	First, note that
+	\[
+		A \cap B = \{0\}.
+	\]
+	Then,
+	\begin{align*}
+		\overline{A \cap B} &= U\setminus \{0\} \\
+				    &= \{-2,1,\pi,\sqrt{2},3\} \qed
+	\end{align*}
 
 \end{hwkProblem}
 
 \begin{hwkProblem}{4}{}
 
-	Give the final state (position and velocity vectors) of the Didymos Orbit after 70,000,000 seconds.
+	Simplify the following Boolean expressions.
+	\begin{enumerate}
+		\item \(\overline{\overline{(A \cap B) \cup C} \cap \bar{B}}\)
+		\item \(((A \cup B) \cap \bar{A}) \cup \overline{B \cap A}\)
+	\end{enumerate}
 
 	\hwkSol
 
 	\hwkPart
 
+	We start with
 	\[
-		\vec{r} = \begin{bmatrix}
-				\num{-1.95268e8} \\
-				\num{-2.6247e8} \\
-				\num{6.56472e6}
-			\end{bmatrix},
-		\vec{v} = \begin{bmatrix}
-				\num{15.0139} \\
-				\num{-6.82768} \\
-				\num{-0.970622}
-			\end{bmatrix}
+		\overline{\overline{(A \cap B) \cup C} \cap \bar{B}}.
+	\]
+	Apply De Morgan's law:
+	\begin{align*}
+		\overline{\overline{(A \cap B) \cup C} \cap \bar{B}} 
+		&\simeq \overline{\overline{(A \cap B) \cup C}} \cup \overline{\bar{B}}\\[1mm]
+		&\simeq \Bigl((A \cap B) \cup C\Bigr) \cup B\\[1mm]
+		&\simeq B \cup C, \qed
+	\end{align*}
+	since \(B\cup (A\cap B)=B\).
+
+	\hwkPart
+
+	First, simplify the first term:
+	\begin{align*}
+		(A \cup B) \cap \bar{A} 
+		&\simeq (A \cap \bar{A}) \cup (B \cap \bar{A})\\[1mm]
+		&\simeq \varnothing \cup (B \cap \bar{A})\\[1mm]
+		&\simeq B \cap \bar{A}.
+	\end{align*}
+	Also, by De Morgan's law,
+	\[
+		\overline{B \cap A} \simeq \bar{B} \cup \bar{A}.
+	\]
+	Thus, the overall expression becomes:
+	\begin{align*}
+		(B \cap \bar{A}) \cup (\bar{B} \cup \bar{A}) 
+		&\simeq \bar{A} \cup \bar{B}, \qed
+	\end{align*}
+	since \(B \cap \bar{A}\subset \bar{A}\)
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{5}{}
+
+	Determine the probability \(p\) for each of the following events:
+	\begin{enumerate}
+		\item A king, ace, jack of clubs, or queen of diamonds appears in drawing a single card from a well-shuffled ordinary deck.
+		\item The sum 8 appears in a single toss of a pair of fair dice.
+		\item A non-defective bolt is found, given that out of 600 bolts examined, 12 were defective.
+		\item A 7 or 11 comes up in a single toss of a pair of fair dice.
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+
+	In a 52-card deck:
+	\begin{align*}
+		\text{Kings: }4,\quad \text{Aces: }4,\quad \text{Jack of Clubs: }1,\quad \text{Queen of Diamonds: }1.
+	\end{align*}
+	Total favorable outcomes: 
+	\[
+		4+4+1+1=10 \qed
+	\]
+	Thus,
+	\begin{align*}
+		p &= \frac{10}{52} = \frac{5}{26} \qed
+	\end{align*}
+
+	\hwkPart
+
+	The outcomes for sum 8 are:
+	\[
+		(2,6),\,(3,5),\,(4,4),\,(5,3),\,(6,2) \quad (5\,\text{outcomes}).
+	\]
+	Therefore,
+	\begin{align*}
+		p &= \frac{5}{36} \qed
+	\end{align*}
+
+	\hwkPart
+
+	With 600 bolts and 12 defective, the non-defective bolts number:
+	\[
+		600-12=588.
+	\]
+	Thus,
+	\begin{align*}
+		p &= \frac{588}{600} = 0.98 \qed
+	\end{align*}
+
+	\hwkPart
+
+	For a pair of dice, outcomes for 7 are 6 and for 11 are 2. Hence,
+	\begin{align*}
+		p &= \frac{6+2}{36} = \frac{8}{36} = \frac{2}{9} \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{6}{}
+	If \(A\) and \(B\) are independent, prove that:
+	\begin{enumerate}
+		\item \(A\) and \(\bar{B}\) are independent.
+		\item \(\bar{A}\) and \(B\) are independent.
+		\item \(\bar{A}\) and \(\bar{B}\) are independent.
+	\end{enumerate}
+
+	\hwkSol
+
+	By definition, independence means 
+	\[
+		\Pr(A\cap B)=\Pr(A)\Pr(B).
 	\]
 
 	\hwkPart
-	
-	\lstinputlisting[language=mathematica]{./code/s04.wl}
+
+	\begin{align*}
+		\Pr(A) &= \Pr(A\cap B)+\Pr(A\cap \bar{B}) \\
+		\Pr(A\cap \bar{B}) &= \Pr(A)-\Pr(A\cap B) \\
+				   &\simeq \Pr(A) - \Pr(A)\Pr(B) \quad (\text{substituting } \Pr(A\cap B)=\Pr(A)\Pr(B))\\[1mm]
+				   &= \Pr(A)(1-\Pr(B)) \\
+				   &= \Pr(A)\Pr(\bar{B}). \qed
+	\end{align*}
+
+	\hwkPart
+
+	\begin{align*}
+		\Pr(B) &= \Pr(A\cap B)+\Pr(\bar{A}\cap B), \\
+		\Pr(\bar{A}\cap B) &= \Pr(B) - \Pr(A\cap B) \\
+				   &\simeq \Pr(B) - \Pr(A)\Pr(B) \quad (\text{substituting independence})\\[1mm]
+				   &= \Pr(B)(1-\Pr(A)) \\
+				   &= \Pr(B)\Pr(\bar{A}). \qed
+	\end{align*}
+
+	\hwkPart
+
+	\begin{align*}
+		\Pr(\bar{A}\cap \bar{B}) 
+		&= 1-\Pr(A\cup B) \\
+		&= 1-\Bigl[\Pr(A)+\Pr(B)-\Pr(A\cap B)\Bigr] \\
+		&\simeq 1-\Bigl[\Pr(A)+\Pr(B)-\Pr(A)\Pr(B)\Bigr] \quad (\text{substituting independence})\\[1mm]
+		&= \bigl(1-\Pr(A)\bigr)\bigl(1-\Pr(B)\bigr) \\
+		&= \Pr(\bar{A})\Pr(\bar{B}). \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{7}{}
+
+	Use both Equations (2.26: Addition Law of Probability for \(n\) Events) and (2.29: Addition Law of Probability for \(n\) Independent Events) to find 
+	\[
+		\operatorname{Pr}(s)=\operatorname{Pr}\left(E_1 \cup E_2 \cup E_3\right),
+	\]
+	for
+	\[
+		\operatorname{Pr}(E_1)=0.8,\quad \operatorname{Pr}(E_2)=0.9,\quad \operatorname{Pr}(E_3)=0.95.
+	\]
+	Which equation is preferred for numerical solution?
+
+	\hwkSol
+
+	\hwkPart
+
+	Using Equation (2.26): \emph{(Inclusion-Exclusion)}
+	\begin{align*}
+		\Pr(E_1\cup E_2\cup E_3) &= \Pr(E_1)+\Pr(E_2)+\Pr(E_3)\\[1mm]
+					 &\quad -\Pr(E_1\cap E_2)-\Pr(E_1\cap E_3)-\Pr(E_2\cap E_3)\\[1mm]
+					 &\quad +\Pr(E_1\cap E_2\cap E_3)\\[1mm]
+					 &\simeq 0.8+0.9+0.95 \\
+					 &\quad -\Bigl(0.8\cdot 0.9 \;+\; 0.8\cdot 0.95 \;+\; 0.9\cdot 0.95\Bigr)\\[1mm]
+					 &\quad +\Bigl(0.8\cdot 0.9\cdot 0.95\Bigr)\\[1mm]
+					 &= 2.65 - \Bigl(0.72\;+\; 0.76\;+\; 0.855\Bigr) + 0.684\\[1mm]
+					 &= 2.65 - 2.335 + 0.684\\[1mm]
+					 &= 0.999. \qed
+	\end{align*}
+
+	\hwkPart
+
+	Using Equation (2.29): \emph{(For Independent Events)}
+	\begin{align*}
+		\Pr(E_1\cup E_2\cup E_3) &= 1 - (1-\Pr(E_1))(1-\Pr(E_2))(1-\Pr(E_3))\\[1mm]
+					 &\simeq 1 - \Bigl[(1-0.8)(1-0.9)(1-0.95)\Bigr]\\[1mm]
+					 &\simeq 1 - \Bigl[\cancel{1-0.8}\;0.2\cdot \cancel{1-0.9}\;0.1\cdot \cancel{1-0.95}\;0.05\Bigr]\\[1mm]
+					 &= 1 - (0.2\cdot 0.1\cdot 0.05)\\[1mm]
+					 &= 1 - 0.001\\[1mm]
+					 &= 0.999.
+	\end{align*}
+
+	\hwkPart
+
+	Both methods yield \(\operatorname{Pr}(s)=0.999\). However, Equation (2.29) is preferred for numerical solution because it is more direct for independent events and avoids multiple subtractions, which can lead to numerical cancellation errors. \qed
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{8}{}
+
+	An electronic assembly consists of two subsystems, \(A\) and \(B\). Out of 100 preliminary checkout tests:
+	\begin{enumerate}
+		\item Subsystem \(A\) failed 17 times.
+		\item Subsystem \(B\) failed 13 times.
+		\item Both \(A\) and \(B\) failed together 7 times.
+	\end{enumerate}
+	Determine:
+	\begin{enumerate}
+		\item The probability of \(A\) failing, given that \(B\) has failed.
+		\item The probability that \(A\) alone fails.
+	\end{enumerate}
+
+	\hwkSol
+
+	Let the probabilities be estimated from frequencies.
+
+	\hwkPart
+
+	The conditional probability is
+	\begin{align*}
+		\Pr(A\mid B) &= \frac{\Pr(A\cap B)}{\Pr(B)}\\[1mm]
+			     &\simeq \frac{7/100}{13/100}\\[1mm]
+			     &= \frac{7}{13}\approx 0.5385. \qed
+	\end{align*}
+
+	\hwkPart
+
+	The probability of \(A\) failing alone is
+	\begin{align*}
+		\Pr(A\setminus B) &= \Pr(A)-\Pr(A\cap B)\\[1mm]
+				  &= \frac{17}{100} - \frac{7}{100}\\[1mm]
+				  &= \frac{10}{100} = 0.1. \qed
+	\end{align*}
 
 \end{hwkProblem}
 
