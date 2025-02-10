@@ -49,6 +49,7 @@
 										with ps; [
 											# python packages here
 											matplotlib
+											numpy
 											scipy
 										]))
 							basedpyright
