@@ -9,15 +9,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1739213949,
-        "narHash": "sha256-p8pNd4S7ySzwMx2Q69gx4cOd5iGm+Ddj3sPt69DSONw=",
-        "owner": "vaisriv",
+        "lastModified": 1739043869,
+        "narHash": "sha256-cx9QYEm5WyNcAbmmiHNLKD/8paz0yaQCNXdRfnDddrM=",
+        "owner": "kamadorueda",
         "repo": "alejandra",
-        "rev": "8c15caffe7c368c917b8230ed73b18b29a61b04c",
+        "rev": "7da44e09433c337e651ee7caa5f91f958b20d342",
         "type": "github"
       },
       "original": {
-        "owner": "vaisriv",
+        "owner": "kamadorueda",
         "repo": "alejandra",
         "type": "github"
       }
