@@ -13,7 +13,7 @@
 
 		# Nix Formatter - Alejandra
 		alejandra = {
-			url = "github:kamadorueda/alejandra";
+			url = "github:vaisriv/alejandra";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
