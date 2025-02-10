@@ -38,6 +38,8 @@
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
+				# formatter = inputs.alejandra.defaultPackage.${system}; # TODO: incorrect rn, fix it (maybe move to tree-fmt, with alejandra embedded?)
+
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
