@@ -1,5 +1,5 @@
 {
-	description = "dev-shell flake";
+	description = "uni homework shell flake";
 
 	inputs = {
 		# Nix Packages
@@ -38,11 +38,13 @@
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
-				# formatter = inputs.alejandra.defaultPackage.${system}; # TODO: incorrect rn, fix it (maybe move to tree-fmt, with alejandra embedded?)
-
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
+							# latex
+							latexindent
+							texlab
+
 							# python
 							(python3.withPackages (ps:
 										with ps; [
@@ -53,8 +55,6 @@
 										]))
 							basedpyright
 							ruff
-
-							# julia # TODO: convert this to FHS/FreeDesktop env
 						];
 					};
 			}
