@@ -5,8 +5,15 @@
 		# Nix Packages
 		nixpkgs.url = "nixpkgs/nixos-24.11";
 
-		# Better Nix Implementation
-		lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+		# Better Nix Implementation - Lix
+		lix-module = {
+			url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		# Nix Formatter - Alejandra
+		alejandra = {
+			url = "github:kamadorueda/alejandra";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
@@ -31,20 +38,27 @@
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
+				# formatter = inputs.alejandra.defaultPackage.${system};
+
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
-							# julia
-							julia-bin
+							fish
+							lazygit
+							neovim
+							# inputs.alejandra.defaultPackage.${system};
 
 							# python
-							(python3.withPackages (ps: with ps; [
-								matplotlib
-								numpy
-							]))
+							(python3.withPackages (ps:
+										with ps; [
+											dbus
+										]))
 							basedpyright
 							ruff
 						];
+						shellHook = ''
+						  exec fish
+						'';
 					};
 			}
 		);
