@@ -1,0 +1,114 @@
+\input{/home/vai/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 00}
+\newcommand{\hmwkSubTitle}{Numerical 2BP}
+\newcommand{\hmwkDueDate}{February 4th, 2025}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{ENAE 404 - 0101}
+\newcommand{\hmwkClassTime}{09:30}
+\newcommand{\hmwkClassInstructor}{Dr. Barbee}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{}
+
+	Plot the Earth, Didymos, and DART orbits in 3D on the same plot.
+
+	\hwkSol
+
+	\hwkPart
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=0.95\textwidth]{./images/s01.png}
+		\end{center}
+		\caption{Earth, Didymos, and DART Orbits about the Sun}\label{fig:s01}
+	\end{figure}
+
+	\hwkPart
+	
+	\lstinputlisting[language=mathematica]{./code/s01.wl}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{2}{}
+
+	Plot the position, velocity and acceleration of the Didymos Orbit magnitudes as a function of time.
+
+	\hwkSol
+
+	\hwkPart
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=0.95\textwidth]{./images/s02.png}
+		\end{center}
+		\caption{Didymos Orbit magnitudes vs. time}\label{fig:s02}
+	\end{figure}
+
+	\hwkPart
+	
+	\lstinputlisting[language=mathematica]{./code/s02.wl}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{3}{}
+
+	Explain why the magnitude plots of Problem 2 make sense given the equation of motion.
+
+	\hwkSol
+
+	The position, velocity, and acceleration magnitude plots vary in a way that is consistent with the equations of motion.
+	\begin{itemize}
+		\item \( \left| \vec{r} \right| \) oscillates between the perihelion and aphelion.
+		\item \( \left| \vec{v} \right| \) is at its maximum when \( \left| \vec{r} \right| \) is at its minimum (and vice-versa).
+		\item \( \left| \vec{a} \right| = \frac{\mu}{{\left| \vec{r} \right|}^{2}} \) is at its maximum at the perihelion and its minimum at the aphelion.
+	\end{itemize}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{4}{}
+
+	Give the final state (position and velocity vectors) of the Didymos Orbit after 70,000,000 seconds.
+
+	\hwkSol
+
+	\hwkPart
+
+	\[
+		\vec{r} = \begin{bmatrix}
+				\num{-1.95268e8} \\
+				\num{-2.6247e8} \\
+				\num{6.56472e6}
+			\end{bmatrix},
+		\vec{v} = \begin{bmatrix}
+				\num{15.0139} \\
+				\num{-6.82768} \\
+				\num{-0.970622}
+			\end{bmatrix}
+	\]
+
+	\hwkPart
+	
+	\lstinputlisting[language=mathematica]{./code/s04.wl}
+
+\end{hwkProblem}
+
+\end{document}
