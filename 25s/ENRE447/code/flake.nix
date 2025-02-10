@@ -48,7 +48,6 @@
 							(python3.withPackages (ps:
 										with ps; [
 											# python packages here
-											numpy
 											matplotlib
 											scipy
 										]))
