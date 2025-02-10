@@ -38,27 +38,24 @@
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
-				# formatter = inputs.alejandra.defaultPackage.${system};
+				# formatter = inputs.alejandra.defaultPackage.${system}; # TODO: incorrect rn, fix it
 
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
-							fish
-							lazygit
-							neovim
-							# inputs.alejandra.defaultPackage.${system};
-
 							# python
 							(python3.withPackages (ps:
 										with ps; [
-											dbus
+											# python packages here
+											numpy
+											matplotlib
+											scipy
 										]))
 							basedpyright
 							ruff
+
+							# julia # TODO: convert this to FHS/FreeDesktop env
 						];
-						shellHook = ''
-						  exec fish
-						'';
 					};
 			}
 		);
