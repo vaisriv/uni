@@ -50,6 +50,7 @@
 											# python packages here
 											matplotlib
 											numpy
+											sympy
 											scipy
 										]))
 							basedpyright
