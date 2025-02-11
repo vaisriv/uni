@@ -18,7 +18,7 @@ hMagPlot = Plot[
 hXPlot = Plot[
 	hX[t], {t, 0, tmaxDidymos},
 	PlotRange -> All,
-	AxesLabel -> {"Time (s)", "hₓ (km\.b2/s)"},
+	AxesLabel -> {"Time (s)", "h_x (km\.b2/s)"},
 	AxesOrigin -> {0,0},
 	PlotLabel -> "Angular Momentum x Component",
 	ImageSize -> Large
