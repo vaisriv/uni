@@ -1,45 +1,38 @@
 import numpy as np
-import sympy as sp
+import scipy as sc
 import pprint as pp
 
 pp.pprint("ex05")
 pp.pprint("question 2")
 
-# Define the symbol and parameter
-s = sp.symbols('s')
-b_val = 8.61
+b = 8.61
 
-# Define the Laplace transform Y(s)
-Y = 6 * b_val * (s + 3) / (s * (s**2 + 4*s + b_val))
+# Define the numerator and denominator of Y(s)
+# Numerator: 6b(s + 3)
+numerator = 6 * b * np.array([1, 3])
+# Denominator: s(s^2 + 4s + b)
+denom1 = np.array([1, 0])       # represents s
+denom2 = np.array([1, 4, b])      # represents s^2 + 4s + b
+denominator = np.convolve(denom1, denom2)  # Polynomial convolution
+
+# Find the poles of the system (roots of the denominator)
+poles = np.roots(denominator)
 
 # Perform partial fraction expansion
-Y_pf = sp.apart(Y)
-print("Partial Fraction Expansion:")
-sp.pprint(Y_pf)
-# Expected output:
-# 18/s + (-18*s - 20.34)/(s**2 + 4*s + 8.61)
+# The function returns (residues, poles, direct_terms)
+residues, poles_res, direct_terms = sc.signal.residue(numerator, denominator)
 
-# From the partial fractions, we write:
-# (-18*s - 20.34) = -18*(s+2) + 15.66
-# so that the oscillatory term is:
-#   -18*(s+2)/( (s+2)**2 + 4.61 ) + 15.66/( (s+2)**2 + 4.61 )
-#
-# Its inverse Laplace transform is:
-#   -18 * e^(-2t) * cos(omega*t) + (15.66/omega) * e^(-2t) * sin(omega*t)
-#
-# with omega = sqrt(b_val - 4) = sqrt(4.61)
-omega = np.sqrt(b_val - 4)  # sqrt(4.61) ≈ 2.146
+# Calculate the phase angle of the residue corresponding to the complex pole
+complex_residue = residues[1]
+phase_angle_residue = np.angle(complex_residue)  # phase angle in radians
 
-# The coefficients in the oscillatory part are:
-amp_cos = -18
-amp_sin_term = 15.66 / omega  # coefficient in front of sin(t*omega)
+phase_angle_oscillations = phase_angle_residue
 
-# When writing the oscillatory part as A*e^(-2t)*cos(omega*t + phi),
-# we require that:
-#   A*cos(phi) = amp_cos = -18
-#   -A*sin(phi) = amp_sin_term   -->  A*sin(phi) = -amp_sin_term
-#
-# Thus, the phase phi is given by:
-phi = np.arctan2(-amp_sin_term, amp_cos)
-print("\nPhase angle (in radians):")
-print(phi)
+# Ensure the phase angle is within the range [-pi, pi]
+if phase_angle_oscillations < -np.pi:
+    phase_angle_oscillations += 2 * np.pi
+elif phase_angle_oscillations > np.pi:
+    phase_angle_oscillations -= 2 * np.pi
+
+pp.pprint("Final phase angle (in radians, within [-pi, pi]):")
+pp.pprint(phase_angle_oscillations)
