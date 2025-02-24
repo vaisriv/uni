@@ -60,6 +60,12 @@ switch $argv[1]
 					end
 					set_course_env
 
+				case hw homework
+					if test -z "$UNI_COURSE"; and test -z "$UNI_COURSE_DIR"
+						set_course_env
+					end
+					set_hw_env
+
 				case both
 					set_sem_env
 					set_course_env
@@ -81,6 +87,9 @@ switch $argv[1]
 				case sem semester
 					cd $UNI_SEM_DIR
 
+				case hw homework
+					cd $UNI_HW_DIR
+
 				case notes
 					if test (count $argv[3..]) -eq 0
 						cd $UNI_NOTES_DIR
@@ -96,10 +105,6 @@ switch $argv[1]
 								echo "Unrecognized input."
 						end
 					end
-
-				case hw
-					cd $UNI_COURSE_DIR
-					
 
 				case uni
 					cd $UNI_DIR
@@ -118,12 +123,6 @@ switch $argv[1]
 				echo "Unrecognized input."
 		end
 
-	case hw homework
-		if test -z "$UNI_COURSE"; and test -z "$UNI_COURSE_DIR"
-			set_course_env
-		end
-		set_hw_env
-		cd $UNI_HW_DIR
 
 	case lg git
 		if test (count $argv[2..]) -eq 0
