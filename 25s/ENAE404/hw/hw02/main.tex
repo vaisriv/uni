@@ -1,0 +1,119 @@
+\input{/home/vai/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Subtitle
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 02}
+\newcommand{\hmwkSubTitle}{2BP}
+\newcommand{\hmwkDueDate}{February 11th, 2025}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{ENAE 404 - 0101}
+\newcommand{\hmwkClassTime}{09:30}
+\newcommand{\hmwkClassInstructor}{Dr. Barbee}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{}
+
+	Given the following position and velocity vectors, calculate the Keplerian orbital elements, assuming Earth is the central body. Do not use a computer code to do this. Vectors are in units of \unit{\km} and \unit{\km\per\s}.
+	\begin{align*}
+		\vec{r} = 3634.1 \bm{\hat{x}} + 5926 \bm{\hat{y}} + 1206.6 \bm{\hat{z}} \\
+		\vec{v} = -6.9049 \bm{\hat{x}} + 4.3136 \bm{\hat{y}} + 2.6163 \bm{\hat{z}}
+	\end{align*}
+
+	\hwkSol
+
+\end{hwkProblem}
+\begin{hwkProblem}{2}{}
+
+	\begin{enumerate}
+		\item Write code to convert form Cartesian coordinates to orbital elements.
+		\item Using subplot, plot the osculating orbital elements for the orbit of Didymos from HW00.
+		\item Describe why your plots make sense (in reference to both the time variation of the orbital elements as well as the plot of the orbit in 3D space).
+	\end{enumerate}
+
+	\hwkSol
+
+\end{hwkProblem}
+\begin{hwkProblem}{3}{}
+	
+	Given the following orbit: \( a=\qty{2e4}{\km}, e=0.4, i=\qty{100}{\degree}, \Omega=\qty{30}{\degree}, \omega=\qty{15}{\degree}, \nu=\qty{15}{\degree} \)
+	\begin{enumerate}
+		\item Write code to convert from orbital elements to Cartesian coordinates.
+		\item Propogate the orbit (around Earth) for one period.
+		\item State the period of the orbit.
+		\item Plot the orbit in 3D (use equal-length axes).
+		\item Plot the deviation of the energy as compared to the inital energy \( \left( E_i - E_0 \right) \).
+		\item Plot the osculating orbital elements.
+	\end{enumerate}
+	
+	\hwkSol
+	
+\end{hwkProblem}
+\begin{hwkProblem}{4}{}
+	Sketch the following orbits in 2D and 3D. Assume that none of the spacecraft impact Earth.
+	\begin{itemize}
+		\item In the 2D orbit, label:
+		\begin{itemize}
+			\item periapsis
+			\item angular momentum vector
+			\item ascending node
+			\item descending node
+			\item spacecraft location
+			\item portion of the orbit in the southern hemisphere
+		\end{itemize}
+		\item In the 3D orbit, label:
+		\begin{itemize}
+			\item angular momentum vector
+			\item ascending node
+			\item periapsis
+		\end{itemize}
+	\end{itemize}
+	\begin{center}
+		\begin{tabular}{cccccc}
+			\hline
+			Spacecraft ID & e & \(\mathrm{i} \left( \unit{\degree} \right) \) & \(\Omega \left( \unit{\degree} \right)\) & \(\omega \left( \unit{\degree} \right)\) & \(\nu \left( \unit{\degree} \right)\) \\
+			\hline
+			\hline
+			A & 0.3 & 60 & 30 & 160 & 30 \\
+			\hline
+			B & 0.3 & 60 & 330 & 90 & 10 \\
+			\hline
+			C & 0.5 & 120 & 30 & 30 & 180 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\hwkSol
+
+\end{hwkProblem}
+\begin{hwkProblem}{5}{}
+	
+	Consider a spacecraft on a hyperbolic trajectory that will fly by Mars. The trajectory's semi-major axis is \qty{-11e3}{\km} and its eccentricity is \( 1.8 \). Calculate:
+	\begin{enumerate}
+		\item Turn angle
+		\item Miss distance
+		\item Hyperbolic excess speed
+		\item Radius of periapsis of the flyby
+	\end{enumerate}
+	
+	\hwkSol
+
+	
+\end{hwkProblem}
+\end{document}
