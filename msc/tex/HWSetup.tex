@@ -117,23 +117,20 @@
 
 % Useful for algorithms
 \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+\newcommand{\fn}[2]{\mathrm{#1}\left( #2 \right) }
 
 % For derivatives
-\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1} \left( #2 \right)}
 
 % For partial derivatives
-\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
-
-% Integral dx
-\newcommand{\dx}{\mathrm{d}x}
-\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1} \left( #2 \right)}
 
 % Probability commands: Expectation, Variance, Covariance, Bias
 \newcommand{\e}[1]{\mathrm{e}#1}
-\newcommand{\E}{\mathrm{E}}
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Cov}{\mathrm{Cov}}
-\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\E}[1]{\mathrm{E}\left( #1 \right) }
+\newcommand{\Var}[1]{\mathrm{Var}\left( #1 \right) }
+\newcommand{\Cov}[1]{\mathrm{Cov}\left( #1 \right) }
+\newcommand{\Bias}[1]{\mathrm{Bias}\left( #1 \right) }
 
 % Col and Row Vectors
 \newcommand{\crvector}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
