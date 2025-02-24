@@ -117,7 +117,7 @@
 
 % Useful for algorithms
 \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
-\newcommand{\fn}[2]{\mathrm{#1}\left( #2 \right) }
+\NewDocumentCommand{\func}{m o}{\mathrm{#1}\IfValueT{#2}{\left( #2 \right)}}
 
 % For derivatives
 \newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1} \left( #2 \right)}
@@ -126,11 +126,11 @@
 \newcommand{\pderiv}[2]{\frac{\partial}{\partial#1} \left( #2 \right)}
 
 % Probability commands: Expectation, Variance, Covariance, Bias
-\newcommand{\e}[1]{\mathrm{e}#1}
-\newcommand{\E}[1]{\mathrm{E}\left( #1 \right) }
-\newcommand{\Var}[1]{\mathrm{Var}\left( #1 \right) }
-\newcommand{\Cov}[1]{\mathrm{Cov}\left( #1 \right) }
-\newcommand{\Bias}[1]{\mathrm{Bias}\left( #1 \right) }
+\NewDocumentCommand{\E}{o}{\mathrm{E}\IfValueT{#1}{\left( #1 \right)}}
+\NewDocumentCommand{\Var}{o}{\mathrm{Var}\IfValueT{#1}{\left( #1 \right)}}
+\NewDocumentCommand{\Cov}{o}{\mathrm{Cov}\IfValueT{#1}{\left( #1 \right)}}
+\NewDocumentCommand{\Bias}{o}{\mathrm{Bias}\IfValueT{#1}{\left( #1 \right)}}
+\NewDocumentCommand{\Prob}{o}{\mathrm{Pr}\IfValueT{#1}{\left( #1 \right)}}
 
 % Col and Row Vectors
 \newcommand{\crvector}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
