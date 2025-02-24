@@ -1,0 +1,375 @@
+\input{/home/vai/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 02}
+\newcommand{\hmwkSubTitle}{}
+\newcommand{\hmwkDueDate}{February 24th, 2025}
+\newcommand{\hmwkDueTime}{03:30 PM}
+\newcommand{\hmwkClass}{ENRE 447 - 0101}
+\newcommand{\hmwkClassTime}{03:30 PM}
+\newcommand{\hmwkClassInstructor}{Dr. Groth}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{}
+
+	Find the constant \( c \) so that
+	\[
+		\func{f}[x, y] = \begin{cases}
+		cxy &  0 \leq x, y \leq 1 \\
+		0 & \text{otherwise}
+		\end{cases}
+	\]
+	is a joint pdf of \( X \) and \( Y \). Find the following:
+	\begin{enumerate}
+		\item Are \( X \) and \( Y \) independent?
+		\item \( \E[X] \)
+		\item \( \E[Y] \)
+		\item \( \E[XY] \)
+		\item \( \Var[X] \)
+		\item \( \Var[Y] \)
+		\item \( \Cov[X, Y] \)
+	\end{enumerate}
+
+	\hwkSol
+	\begin{align*}
+		\int_0^1\int_0^1 cxy\,dx\,dy 
+		&= c\Bigl(\int_0^1 x\,dx\Bigr)\Bigl(\int_0^1 y\,dy\Bigr)
+		= c\left(\frac{1}{2}\right)\left(\frac{1}{2}\right)
+		= \frac{c}{4} = 1,\\[1mm]
+		\Longrightarrow\quad c &= 4. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		f_X(x) &= \int_0^1 4xy\,dy = 4x\left(\frac{1}{2}\right)=2x,\quad 0\le x\le 1,\\[1mm]
+		f_Y(y) &= \int_0^1 4xy\,dx = 2y,\quad 0\le y\le 1.
+		f(x,y)=4xy=(2x)(2y)=f_X(x)f_Y(y)
+	\end{align*}
+	\( \therefore X \) and \( Y \) are independent. \qed
+
+	\hwkPart
+	\begin{align*}
+		\E[X] &= \int_0^1 x\, f_X(x)\,dx 
+		= \int_0^1 x\,(2x)\,dx 
+		= 2\int_0^1 x^2\,dx 
+		= 2\left(\frac{1}{3}\right)=\frac{2}{3}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\E[Y] &= \frac{2}{3}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\E[XY] &= \int_0^1\int_0^1 xy\,(4xy)\,dx\,dy 
+		= 4\left(\int_0^1 x^2\,dx\right)\left(\int_0^1 y^2\,dy\right)\\[1mm]
+		       &= 4\left(\frac{1}{3}\right)^2
+		       = \frac{4}{9}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\Var[X] &= \E[X^2] - (\E[X])^2,\\[1mm]
+		\E[X^2] &= \int_0^1 x^2 (2x)\,dx = 2\int_0^1 x^3\,dx = 2\left(\frac{1}{4}\right)=\frac{1}{2},\\[1mm]
+		\Var[X] &= \frac{1}{2} - \Bigl(\frac{2}{3}\Bigr)^2
+		= \frac{1}{2} - \frac{4}{9}
+		= \frac{9-8}{18}=\frac{1}{18}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\Var[Y] &= \frac{1}{18}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\Cov[X,Y] &= \E[XY]-\E[X]\E[Y]
+		= \frac{4}{9}-\Bigl(\frac{2}{3}\Bigr)^2=0. \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{2}{}
+
+	Given that \( \Prob = 0.006 \)
+	\begin{enumerate}
+		\item No engine failure in \( 1000 \) flights.
+		\item At least one failure in \( 1000 \) flights.
+		\item At least two failures in \( 1000 \) flights.
+	\end{enumerate}
+
+	\hwkSol
+	We model the number of failures by a Binomial distribution \( X \sim \text{Bin}(1000,\,0.006) \).
+
+	\hwkPart
+	\begin{align*}
+		P(X=0) &= (1-p)^n = (0.994)^{1000}=0.002434. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(\text{at least one failure}) &= 1-P(X=0)=1-(0.994)^{1000}=0.9976. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(\text{at least 2 failures}) &= 1-P(X=0)-P(X=1)\\[1mm]
+					      &= 1-(0.994)^{1000} - \binom{1000}{1}(0.006)(0.994)^{999}=0.9829. \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{3}{}
+
+	The manufacturer of a type pump states that, on average, this type of pump experiences \( 3.0 \) failures per \( 100,000 \) operational hours. At a factory with many of these pumps, they will accumulate \( 200,000 \) operational hours this year. Find the probability that there will be each of the following amounts of pump failures at the factory this year.
+	\begin{enumerate}
+		\item 0
+		\item 2
+		\item 6
+		\item 8
+		\item Between 4 and 8
+		\item Fewer than 3
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+	\begin{align*}
+		P(X=0)&= e^{-6}\frac{6^0}{0!}= e^{-6} = 0.002479. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(X=2)&= e^{-6}\frac{6^2}{2!}= 18e^{-6}=0.04462. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(X=6)&= e^{-6}\frac{6^6}{6!}=0.1606. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(X=8)&= e^{-6}\frac{6^8}{8!}=0.1033. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(4\le X\le 8)&= \sum_{k=4}^{8} e^{-6}\frac{6^k}{k!}=0.4589. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(X<3)&= \sum_{k=0}^{2} e^{-6}\frac{6^k}{k!}
+		= e^{-6}\Bigl(1+6+\frac{6^2}{2}\Bigr)
+		= 25e^{-6}=0.06197. \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{4}{}
+
+	If the diameter of a given kind of ball bearings are normally distributed with the mean \qty{0.6140}{\inch} and standard deviation \qty{0.0025}{\inch}, determine the percentage of ball bearings with diameters:
+	\begin{enumerate}
+		\item Between \( 0.610 \) and \qty{0.618}{\inch}, inclusive
+		\item Greater than \qty{0.617}{\inch}
+		\item Less than \qty{0.608}{\inch}
+		\item Equal to \qty{0.615}{\inch}
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+	\begin{align*}
+		z_1 &= \frac{0.610-0.6140}{0.0025}=-1.6,\quad
+		z_2 = \frac{0.618-0.6140}{0.0025}=1.6,\\[1mm]
+		P(0.610\le X\le 0.618)&= \Phi(1.6)-\Phi(-1.6)
+		\approx 0.9452-0.0548=0.8904. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		z &= \frac{0.617-0.6140}{0.0025}=1.2,\\[1mm]
+		P(X>0.617)&= 1-\Phi(1.2)\approx 1-0.8849=0.1151. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		z &= \frac{0.608-0.6140}{0.0025}=-2.4,\\[1mm]
+		P(X<0.608)&= \Phi(-2.4)\approx 0.0082. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(X=0.615)&= 0 \quad \text{(since the distribution is continuous)}. \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{5}{}
+
+	Assume that \( T \), the random variable that denotes life in hours of specified component, has a cumulative density function (cdf) of
+	\[
+		\func{F}[t] = \begin{cases}
+			1 - \frac{100}{t} & t \geq 100 \\
+			0 & t < 100
+		\end{cases}
+	\]
+	Determine the following:
+	\begin{enumerate}
+		\item PDF \( \func{f}[t] \)
+		\item Reliability function \( \func{R}[t] \)
+		\item MTTF (Using a practical upper limit of 1 million hrs to avoid trivial solution)
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+	\begin{align*}
+		f(t)&=\frac{d}{dt}F(t)=\frac{d}{dt}\Bigl(1-\frac{100}{t}\Bigr)
+		=\frac{100}{t^2},\quad t\ge100. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		R(t)&=1-F(t)=\frac{100}{t},\quad t\ge100. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\text{MTTF}&=\int_{100}^{10^6}R(t)\,dt
+		= 100\int_{100}^{10^6}\frac{1}{t}\,dt\\[1mm]
+			   &= 100\Bigl[\ln t\Bigr]_{100}^{10^6}
+			   = 100\ln\Bigl(\frac{10^6}{100}\Bigr)
+			   = 100\ln(10^4)
+			   = 400\ln(10) \\
+			   &=921.034 \text{ hours} \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{6}{}
+
+	A manufacturer uses the exponential distribution to model the number of cycles to failure for a product. The product has \( \lambda = 0.003 \) failures/cycle.
+	\begin{enumerate}
+		\item What is the mean cycle to failure for this product?
+		\item If the product survives for \( 300 \) cycles, what is the probability that it will fail sometimes after \( 500 \) cycles? If operational data show that \( 1000 \) components have survived \( 300 \) cycles, how many of these would be expected to fail after \( 500 \) cycles?
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+	\begin{align*}
+		\E[T]&=\frac{1}{\lambda}=\frac{1}{0.003}\approx 333.33\ \text{cycles}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(T>500 \mid T>300)&= e^{-\lambda(500-300)}
+		= e^{-0.003\cdot 200}
+		= e^{-0.6}.
+	\end{align*}
+	Thus, for \( 1000 \) components:
+	\begin{align*}
+		\text{Expected amount} &= 1000\,e^{-0.6} = 548.8 \implies 549 \text{ components}. \quad \qed
+	\end{align*}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{7}{}
+
+	Time to failure of a relay follows a Weibull distribution with \( \alpha = 10 \) years, \( \beta = 0.5 \). Find the following:
+	\begin{enumerate}
+		\item \( \Prob[\text{failure after 1 year}] \)
+		\item \( \Prob[\text{failure after 10 years}] \)
+		\item MTTF
+	\end{enumerate}
+
+	\hwkSol
+
+	\[
+		P(t)= e^{-(t/10)^{0.5}}.
+	\]
+	\hwkPart
+	\begin{align*}
+		P(\text{failure by 1 year})
+		&= P(1)= e^{-(1/10)^{0.5}}
+		= e^{-1/\sqrt{10}}=0.7289. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		P(\text{failure by 10 years})
+		&= P(10)= e^{-(10/10)^{0.5}}
+		= e^{-1}=0.3679. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		\text{MTTF}&= \alpha\,\Gamma\Bigl(1+\frac{1}{\beta}\Bigr)
+		= 10\,\Gamma\Bigl(1+2\Bigr)
+		= 10\,\Gamma(3)
+		= 10\cdot 2=20\ \text{years}. \quad \qed
+	\end{align*}
+\end{hwkProblem}
+
+\begin{hwkProblem}{8}{}
+
+	An electronic device has a time to failure modeled by the lognormal distribution with parameters \( \mu = 5.8 \) and \( \sigma = 1.2 \).
+	\begin{enumerate}
+		\item Find the MTTF
+		\item If this device is used in an application which requires it to be replaced when its reliability falls below \( 0.9 \), when should the device be replaced?
+		\item Find the hazard function for the device at the time calculated in the previous part.
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+	\begin{align*}
+		\text{MTTF} &= \E[T]
+		=e^{\left(\mu+\frac{\sigma^2}{2}\right)}
+		=e^{\left(5.8+\frac{1.44}{2}\right)}
+		=e^{\left(5.8+0.72\right)}
+		=e^{\left(6.52\right)}=678.6. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		R(t)=&1-\Phi\left(\frac{\ln t-\mu}{\sigma}\right) \\
+		     &1-\Phi\left(\frac{\ln t-5.8}{1.2}\right)=0.9 \quad \Longrightarrow \quad \Phi\left(\frac{\ln t-5.8}{1.2}\right)=0.1 \\
+		z_{0.1}&\approx -1.2816 \\
+		\frac{\ln t-5.8}{1.2}&=-1.2816\\[1mm]
+		\ln t&= 5.8-1.2816(1.2)
+		\approx 5.8-1.5379=4.2621,\\[1mm]
+		t&\approx \exp(4.2621)\approx 71.0\ \text{(hours)}. \quad \qed
+	\end{align*}
+
+	\hwkPart
+	\begin{align*}
+		h(t)=\frac{f(t)}{R(t)}, \\
+		f(t)= \frac{1}{t\,\sigma\sqrt{2\pi}}
+		\exp\Bigl(-\frac{(\ln t-\mu)^2}{2\sigma^2}\Bigr) \\
+		t\approx 71.0, R(71.0)\approx 0.9 \\
+		h(71.0)\approx \frac{f(71.0)}{0.9}\approx 0.00229. \quad \qed
+	\end{align*}
+\end{hwkProblem}
+
+\end{document}
