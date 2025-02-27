@@ -1,0 +1,227 @@
+\input{/home/vai/files/uni/msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Subtitle
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{HW 04}
+\newcommand{\hmwkSubTitle}{Assignment 4}
+\newcommand{\hmwkDueDate}{February 27th, 2025}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{PHYS 313}
+\newcommand{\hmwkClassTime}{0101}
+\newcommand{\hmwkClassInstructor}{Dr. Ji}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{2.22}{}
+
+	Find the potential a distance \( s \) from an infinitely long straight wire that carries a uniform line charge \( \lambda \). Compute the gradient of your potential, and check that it yields the correct field.
+
+	\hwkSol
+
+	\begin{align*}
+		V(s)-V(s_0) &= -\int_{s_0}^{s} \frac{2k\lambda}{s'}\,ds' \\
+			    &= -2k\lambda \ln\frac{s}{s_0} \\
+		V(s) &= 2k\lambda \ln\frac{s_0}{s} \quad \text{(choosing } V(s_0)=0\text{)} \\
+		\frac{dV}{ds} &= -\frac{2k\lambda}{s} \quad\Longrightarrow\quad \nabla V = -\frac{2k\lambda}{s}\,\hat{s} \\
+		-\nabla V &= \frac{2k\lambda}{s}\,\hat{s} = \mathbf{E}(s)
+	\end{align*}
+
+	\[
+		\boxed{
+			V(\rcurs(s)) = 2k\lambda \ln\frac{s_0}{\rcurs(s)} \quad,\quad
+			\mathbf{E}(\rcurs(s)) = \frac{2k\lambda}{\rcurs(s)}\,\brcurs(s)
+		}
+	\]
+
+\end{hwkProblem}
+\begin{hwkProblem}{2.26}{}
+
+	A conical surface (an empty ice-cream cone) carries a uniform surface charge \( \sigma \). The height of the cone is \( h \), as is the radius of the top. Find the potential difference between points \( \bm{a} \) (the vertex) and \( \bm{b} \) (the center of the top).
+
+	\hwkSol
+
+	\begin{align*}
+		\text{For point } \bm{a}\text{ (vertex):}\quad
+		V(\bm{a}) &= k\sigma \int_0^{2\pi} d\theta \int_0^{L} \frac{dA}{r_a}
+		\quad,\quad r_a = s,\; dA = s\sin\alpha\, ds\, d\theta\\[1mm]
+			  &= k\sigma \int_0^{2\pi} d\theta \int_0^{L} \frac{s\sin\alpha\, ds}{s}
+			  = 2\pi k\sigma \sin\alpha \,L\\[1mm]
+			  \intertext{For a cone with height \(h\) and top radius \(h\):}
+		\tan\alpha &= \frac{h}{h}=1 \quad\Longrightarrow\quad \alpha=45^\circ,\quad \sin\alpha=\frac{1}{\sqrt{2}},\quad L = \sqrt{h^2+h^2}=h\sqrt{2}\\[1mm]
+		\therefore\quad V(\bm{a}) &= 2\pi k\sigma \frac{1}{\sqrt{2}}\, (h\sqrt{2})
+		= 2\pi k\sigma h\\[3mm]
+		\text{For point } \bm{b}\text{ (center of top):}\quad
+		V(\bm{b}) &= k\sigma \int_0^{2\pi} d\theta \int_0^{L} \frac{dA}{r_b(s)}\\[1mm]
+		\text{where } r_b(s) &= \sqrt{s^2 - \sqrt{2}\,h\, s + h^2}
+		=\sqrt{\Bigl(s-\frac{h}{\sqrt{2}}\Bigr)^2+\frac{h^2}{2}}\\[1mm]
+		\text{Let } u &= s-\frac{h}{\sqrt{2}},\quad ds=du,\quad s = u+\frac{h}{\sqrt{2}},\\[1mm]
+		\text{with } u: -\frac{h}{\sqrt{2}} \to \frac{h}{\sqrt{2}},\quad dA = \frac{s}{\sqrt{2}}\,du\,d\theta\\[1mm]
+		\implies\; V(\bm{b}) &= \frac{2\pi k\sigma}{\sqrt{2}}
+		\int_{-h/\sqrt{2}}^{h/\sqrt{2}} \frac{u+\frac{h}{\sqrt{2}}}{\sqrt{u^2+\frac{h^2}{2}}}\,du\\[1mm]
+				     &=\frac{2\pi k\sigma}{\sqrt{2}}\left[
+					     \underbrace{\int_{-h/\sqrt{2}}^{h/\sqrt{2}} \frac{u\,du}{\sqrt{u^2+\frac{h^2}{2}}}}_{=0}
+					     +\frac{h}{\sqrt{2}} \int_{-h/\sqrt{2}}^{h/\sqrt{2}} \frac{du}{\sqrt{u^2+\frac{h^2}{2}}}
+				     \right]\\[1mm]
+				     &=\frac{2\pi k\sigma h}{2}
+				     \cdot 2\int_{0}^{h/\sqrt{2}} \frac{du}{\sqrt{u^2+\frac{h^2}{2}}}\\[1mm]
+				     &=\pi k\sigma h \cdot 2\ln\left(\frac{h/\sqrt{2}+\sqrt{(h/\sqrt{2})^2+\frac{h^2}{2}}}{h/\sqrt{2}}\right)\\[1mm]
+				     &=\; 2\pi k\sigma h \ln\left(\frac{h/\sqrt{2}+h}{h/\sqrt{2}}\right)
+				     = 2\pi k\sigma h \ln\left(\sqrt{2}+1\right)
+	\end{align*}
+
+	\[
+		\boxed{V(\brcurs{b})-V(\brcurs{a}) = 2\pi k\sigma h \Bigl[\ln\left(\sqrt{2}+1\right)-1\Bigr]}
+	\]
+
+\end{hwkProblem}
+\begin{hwkProblem}{2.28}{}
+
+	Use the following equation to calculate the potential inside a uniformly charged solid sphere of radius \( R \) and total charge \( q \):
+	\[
+		\func{V}[r] = \frac{1}{4\pi\epsilon_{0}}\int\frac{\func{\rho}[\bm{r'}]}{\rcurs}\text{d}\tau'
+	\]
+
+	\hwkSol
+
+	\begin{align*}
+		\rho &= \frac{q}{\frac{4}{3}\pi R^3} = \frac{3q}{4\pi R^3} \\[2mm]
+		V(r) &= \frac{1}{4\pi\epsilon_0}\left[
+			\frac{1}{r}\int_{0}^{r}\rho\,(4\pi r'^2\,dr')
+			+\int_{r}^{R}\frac{\rho\,(4\pi r'^2\,dr')}{r'}
+		\right] \\[2mm]
+		     &= \frac{1}{4\pi\epsilon_0}\left[
+			     \frac{4\pi\rho}{r}\left(\frac{r^3}{3}\right)
+			     +4\pi\rho\int_{r}^{R}r'\,dr'
+		     \right] \\[2mm]
+		     &= \frac{1}{4\pi\epsilon_0}\left[
+			     \frac{4\pi\rho\,r^2}{3}
+			     +4\pi\rho\left(\frac{R^2-r^2}{2}\right)
+		     \right] \\[2mm]
+		     &= \frac{\rho}{\epsilon_0}\left(\frac{r^2}{3}+\frac{R^2-r^2}{2}\right) \\[2mm]
+		     &= \frac{3q}{4\pi R^3\epsilon_0}\left(\frac{r^2}{3}+\frac{R^2-r^2}{2}\right) \\[2mm]
+		     &= \frac{q}{4\pi\epsilon_0R}\left(\frac{3}{2}-\frac{r^2}{2R^2}\right)
+	\end{align*}
+
+	\[
+		\boxed{V(\rcurs(r)) = \frac{q}{4\pi\epsilon_0R}\left(\frac{3}{2}-\frac{r^2}{2R^2}\right)}
+	\]
+
+\end{hwkProblem}
+\begin{hwkProblem}{2.33}{}
+
+	Consider an infinite chain of point charges, \( \pm q \) (with alternating signs), strung out along the \( x \) axis, each a distance \( a \) from its nearest neighbors. Find the work per particle required to assemble this system.
+
+	\hwkSol
+
+	\begin{align*}
+		\text{For a charge at } x=0:\quad V(0) &= \frac{1}{4\pi\epsilon_0}\sum_{n\neq0}\frac{q_n}{|na|} \\
+						       &= \frac{1}{4\pi\epsilon_0}\Biggl[\frac{-q}{a}+\frac{-q}{a}+\frac{q}{2a}+\frac{q}{2a}+\frac{-q}{3a}+\frac{-q}{3a}+\cdots\Biggr] \\
+						       &= \frac{q}{4\pi\epsilon_0a}\,2\sum_{n=1}^{\infty}\frac{(-1)^n}{n}
+						       = \frac{q}{4\pi\epsilon_0a}\,2\bigl(-\ln2\bigr) \\
+						       &= -\frac{q\ln2}{2\pi\epsilon_0a} \\[2mm]
+		\text{Work per particle:}\quad U &= \frac{1}{2}\,q\,V(0)
+		= -\frac{q^2\ln2}{4\pi\epsilon_0a}
+	\end{align*}
+
+	\[
+		\boxed{U = -\frac{q^2\ln2}{4\pi\epsilon_0a}}
+	\]
+
+\end{hwkProblem}
+\begin{hwkProblem}{2.35}{}
+
+	Here is a fourth way of computing the energy of a uniformly charged solid sphereL Asseble it like a snowball, layer by layer, each time bringing in an infinitesimal charge \( \text{d}q \) from far away and smearing it uniformly over the surface, thereby increasing the radius. How much work \( \text{d}W \) does it take to build up the radius by an amount \( \text{d}r \)? Integrate this to find the work necessary to create the entire sphere of radius \( R \) and total charge \( q \).
+
+	\hwkSol
+
+	\begin{align*}
+		q(r) &= \frac{q}{R^3}r^3 \\
+		\text{d}q &= \frac{d}{dr}\left(\frac{q}{R^3}r^3\right)dr = 3q\,\frac{r^2}{R^3}\,dr \\
+		V(r) &= \frac{1}{4\pi\epsilon_0}\frac{q(r)}{r} = \frac{1}{4\pi\epsilon_0}\frac{q\,r^2}{R^3} \\
+		\text{d}W &= V(r)\,\text{d}q = \frac{1}{4\pi\epsilon_0}\frac{q\,r^2}{R^3}\cdot 3q\,\frac{r^2}{R^3}\,dr = \frac{3q^2}{4\pi\epsilon_0 R^6}r^4\,dr \\
+		W &= \int_0^R \text{d}W = \frac{3q^2}{4\pi\epsilon_0 R^6}\int_0^R r^4\,dr = \frac{3q^2}{4\pi\epsilon_0 R^6}\cdot\frac{R^5}{5} \\
+		  &= \frac{3q^2}{20\pi\epsilon_0 R}
+	\end{align*}
+
+	\[
+		\boxed{U = \frac{3q^2}{20\pi\epsilon_0 R}}
+	\]
+
+\end{hwkProblem}
+\begin{hwkProblem}{2.38}{}
+
+	A metal sphere of radius \( R \), carrying charge \( q \), is surrounded by a thick concentric metal shell (inner radius \( a \), outer radius \( b \)). The shell carries no net charge.
+	\begin{enumerate}
+		\item Find the surface charge density \( \sigma \) at \( R \), at \( a \), and at \( b \).
+		\item Find the potential at the center, using infinity as a reference point.
+		\item Now the outer surface is touched to a grounding wire, which drains off charge and lowers its potential to zero (same as at infinity). How do your answers to the previous two parts change?
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+
+	\begin{align*}
+		\sigma_R &= \frac{q}{4\pi R^2},\\[1mm]
+		\sigma_a &= -\frac{q}{4\pi a^2},\\[1mm]
+		\sigma_b &= \frac{q}{4\pi b^2} \quad \text{(since the shell is neutral: } \, -q + q = 0\text{)}.
+	\end{align*}
+
+	\[
+		\boxed{
+			\sigma_R=\dfrac{q}{4\pi R^2},\quad \sigma_a=-\dfrac{q}{4\pi a^2},\quad \sigma_b=\dfrac{q}{4\pi b^2}
+		}
+	\]
+
+	\hwkPart
+
+	\begin{align*}
+		V(0) &= \frac{1}{4\pi\epsilon_0}\Biggl[
+			\frac{q}{R} + \frac{(-q)}{a} + \frac{q}{b}
+		\Biggr] \\
+		     &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{R} - \frac{1}{a} + \frac{1}{b}\right).
+		\end{align*}
+
+	\[
+		\boxed{
+			V(0)=\dfrac{q}{4\pi\epsilon_0}\left(\dfrac{1}{R}-\dfrac{1}{a}+\dfrac{1}{b}\right)
+		}
+	\]
+
+	\hwkPart
+
+	\begin{align*}
+		\text{Grounding the outer surface forces } V(b)=0 &\Longrightarrow \text{ its net charge is } Q_b=0.\\[1mm]
+		\text{Then, by Gauss' law, the inner surface still has } &-q \quad \text{and the sphere } +q.\\[1mm]
+		\text{Thus, the revised surface charge densities are:}\\[1mm]
+		\sigma_R &= \frac{q}{4\pi R^2},\\[1mm]
+		\sigma_a &= -\frac{q}{4\pi a^2},\\[1mm]
+		\sigma_b &= 0.\\[2mm]
+		\text{And the potential at the center becomes:}\\[1mm]
+		V(0) &= \frac{1}{4\pi\epsilon_0}\left(\frac{q}{R} - \frac{q}{a}\right).
+	\end{align*}
+
+	\[
+		\boxed{
+			\sigma_R=\dfrac{q}{4\pi R^2},\quad \sigma_a=-\dfrac{q}{4\pi a^2},\quad \sigma_b=0,\quad V(0)=\dfrac{q}{4\pi\epsilon_0}\left(\dfrac{1}{R}-\dfrac{1}{a}\right)
+		}
+	\]
+
+\end{hwkProblem}
+\end{document}
