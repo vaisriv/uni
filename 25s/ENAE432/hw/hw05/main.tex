@@ -1,4 +1,5 @@
-\input{/home/vai/files/uni/msc/tex/HWSetup}
+\input{../../../../msc/tex/HWSetup}
+% chktex-file 8
 
 %
 % Homework Details
@@ -13,12 +14,12 @@
 %
 
 \newcommand{\hmwkTitle}{Homework 05}
-\newcommand{\hmwkSubTitle}{MATLAB & Transfer Functions}
+\newcommand{\hmwkSubTitle}{MATLAB \& Transfer Functions}
 \newcommand{\hmwkDueDate}{March 7th, 2025}
 \newcommand{\hmwkDueTime}{05:00 PM}
-\newcommand{\hmwkClass}{ENAE 432 - 0101}
+\newcommand{\hmwkClass}{ENAE 432  0101}
 \newcommand{\hmwkClassTime}{09:00}
-\newcommand{\hmwkClassInstructor}{Dr. Sanner}
+\newcommand{\hmwkClassInstructor}{Dr.\ Sanner}
 \newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
 \newcommand{\hmwkCompletionDate}{\today}
 
@@ -30,16 +31,34 @@
 
 \begin{hwkProblem}{1}{}
 
-	For this problem, consider the family of transfer functions \[
-		\func{G}[s] = \frac{6 \left(\tau s + 1\right)}{s^{2} + 2s + 4}
-	\]
+	Consider the family of transfer functions: \[ \func{G}[s] = \frac{6 \left(\tau s + 1\right)}{s^{2} + 2s + 4}. \]
 	\begin{enumerate}
-		\item Use MATLAB to generate the step response fo rthis system in the three cases \( \tau = \left\{0, 1, -1\right\} \). Overlay all three responses on a single graph
+		\item Use MATLAB to generate the step response fo rthis system in the three cases \( \tau = \left\{0, 1, -1\right\} \). Overlay all three responses on a single graph, label the peak values and times, and add boxes with numerical details about each point.
+		\item How do the responses in (a) agree with the class discussion regarding step responses for transfer functions containing zeroes? How do the numerical values for peak response and peak time agree with the class discussion in the specific case that \( \tau = 0 \)?
 	\end{enumerate}
 
-	\hwkSol
+	\hwkSol{}
 
-	
+	\begin{lstlisting}[language={matlab}, label={lst:s01a}, caption={MATLAB code for HW05 P01a}]
+		s = tf('s');
+		tau = [0, 1, -1];
+		colors = ['r', 'b', 'g'];
+		denom = s^2 + 2*s + 4;
+
+		figure; 
+		hold on;
+		for j = 1:length(tau)
+			G = 6 * (tau(j) * s + 1) / denom;
+			step(G,colors(j));
+		end
+
+		grid on;
+		legend('\tau = 0', '\tau = 1', '\tau = -1', Location="southeast");
+		title('Step Response of \tau');
+		xlabel('Time');
+		ylabel('Response');
+		hold off;
+	\end{lstlisting}
 
 \end{hwkProblem}
 
