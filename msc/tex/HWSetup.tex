@@ -110,6 +110,13 @@
 	\stepcounter{partCounter}
 }
 
+% Alias for Code subsections in Solutions
+\newcommand{\hwkCode}{
+	\vspace{\baselineskip / 2}
+	\textbf{\large Code}
+	\vspace{\baselineskip / 2}
+}
+
 %
 % Various Helper Commands
 %
@@ -119,20 +126,20 @@
 
 % Useful for algorithms
 \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
-\NewDocumentCommand{\func}{m o}{\mathrm{#1}\IfValueT{#2}{\left(#2\right)}}
+\NewDocumentCommand{\func}{m o}{\text{#1}\IfValueT{#2}{(#2)}}
 
 % For derivatives
-\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1}\left(#2\right)}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1}(#2)}
 
 % For partial derivatives
-\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1}\left(#2\right)}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1}(#2)}
 
 % Probability commands: Expectation, Variance, Covariance, Bias
-\NewDocumentCommand{\E}{o}{\mathrm{E}\IfValueT{#1}{\left(#1\right)}}
-\NewDocumentCommand{\Var}{o}{\mathrm{Var}\IfValueT{#1}{\left(#1\right)}}
-\NewDocumentCommand{\Cov}{o}{\mathrm{Cov}\IfValueT{#1}{\left(#1\right)}}
-\NewDocumentCommand{\Bias}{o}{\mathrm{Bias}\IfValueT{#1}{\left(#1\right)}}
-\NewDocumentCommand{\Prob}{o}{\mathrm{Pr}\IfValueT{#1}{\left(#1\right)}}
+\NewDocumentCommand{\E}{o}{\mathrm{E}\IfValueT{#1}{(#1)}}
+\NewDocumentCommand{\Var}{o}{\mathrm{Var}\IfValueT{#1}{(#1)}}
+\NewDocumentCommand{\Cov}{o}{\mathrm{Cov}\IfValueT{#1}{(#1)}}
+\NewDocumentCommand{\Bias}{o}{\mathrm{Bias}\IfValueT{#1}{(#1)}}
+\NewDocumentCommand{\Prob}{o}{\mathrm{Pr}\IfValueT{#1}{(#1)}}
 
 % Col and Row Vectors
 \newcommand{\crvector}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
@@ -153,8 +160,8 @@
 \DeclareSIUnit\c{\degreeCelsius}
 
 % Griffiths script char LOL
-\def\rcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{/home/vai/files/uni/msc/tex/ScriptR}}$}}}
-\def\brcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{/home/vai/files/uni/msc/tex/BoldR}}$}}}
+\def\rcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{./ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{./BoldR}}$}}}
 
 % Code Listing config
 \usepackage{xcolor}
