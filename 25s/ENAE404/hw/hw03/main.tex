@@ -39,6 +39,23 @@
 
 	\hwkSol
 
+	\hwkPart
+
+	For an orbit whose ground track is a fixed point, the spacecraft must be in a geostationary orbit. This requires:
+	\begin{align*}
+		a &\approx \qty{42164}{\km} \quad (\text{from Earth’s center}), \\
+		e &= 0 \quad (\text{circular orbit}), \\
+		i &= \qty{0}{\degree} \quad (\text{orbit in the equatorial plane}).
+	\end{align*}
+
+	\hwkPart
+
+	The argument of periapsis, \( \omega \), defines the orientation of the ellipse within the orbital plane relative to the line of nodes. When \( \omega \) is \qty{0}{\degree} or \qty{180}{\degree}, the line of apsides is aligned with the line of nodes. This alignment causes the orbit to be symmetric about the equatorial plane.
+
+	\hwkPart
+
+	A standard Molniya orbit is designed with an argument of periapsis \( \omega \approx \qty{270}{\degree} \) so that the apogee is in the Northern Hemisphere. To flip the ground track so that the apogee is over the Southern Hemisphere, one would change the argument of periapsis to \( \omega = \qty{90}{\degree} \).
+
 \end{hwkProblem}
 \begin{hwkProblem}{2}{}
 
@@ -116,12 +133,36 @@
 
 	\lstinputlisting[language=python, caption={P02e Python Code}, label={lst:s02e}]{./code/s02e.py}
 
+	\hwkPart
+
+	The ground tracks for orbits A and E have the same lemniscate shape, though their rotation and scale are vastly different. The similarity is due to A and E sharing many orbital elements, though the differences are due to the varied inclination angle between the two orbits.
+
 \end{hwkProblem}
 \begin{hwkProblem}{3}{}
 
 	Calculate the \( \Delta \mathrm{V} \) required to execute a Hohmann transfer from a circular orbit with radius \qty{14e3}{\km} to a circular orbit with radius \qty{8e3}{\km}. Assume the central body is the Earth. State whether the maneuvers increase or decrease the spacecraft's velocity.
 
 	\hwkSol
+
+	\begin{align*}
+		a_t &= \frac{r_1 + r_2}{2} = \frac{\SI{14000}{\km} + \SI{8000}{\km}}{2} \\
+		      &= \qty{11000}{\km} \\
+		v_{c_{1}} &= \sqrt{\frac{\mu}{r_1}} = \sqrt{\frac{398600}{14000}} \\
+                                       &\approx \qty{5.34}{\km\per\s} \\
+		v_{t_{1}} &= \sqrt{\mu\left(\frac{2}{r_1} - \frac{1}{a_t}\right)} = \sqrt{398600\left(\frac{2}{14000} - \frac{1}{11000}\right)} \\
+			 &\approx \SI{4.55}{\km/s} \\
+              	\Delta v_1 &= v_{c_{1}} - v_{t_{1}} \approx \qty{5.34}{\km\per\s} - \qty{4.55}{\km\per\s} \\
+                                       &= \qty{0.79}{\km\per\s} \\
+		v_{c_{2}} &= \sqrt{\frac{\mu}{r_2}} = \sqrt{\frac{398600}{8000}} \\
+                                 &\approx \qty{7.06}{\km\per\s} \\
+		v_{t_{2}} &= \sqrt{\mu\left(\frac{2}{r_2} - \frac{1}{a_t}\right)} = \sqrt{398600\left(\frac{2}{8000} - \frac{1}{11000}\right)} \\
+			 &\approx \qty{7.97}{\km\per\s} \\
+		\Delta v_2 &= v_{t_{2}} - v_{c_{2}} \approx \qty{7.97}{\km\per\s} - \qty{7.06}{\km\per\s} \\
+                                       &= \qty{0.91}{\km\per\s} \\
+		\Delta v_{\text{total}} &= \Delta v_1 + \Delta v_2 \approx \qty{0.79}{\km\per\s} + \qty{0.91}{\km\per\s} \\ 
+		\Delta v_{\text{total}} &= \qty{1.70}{\km\per\s} \quad \qed
+	\end{align*}
+	The Hohmann transfer requires a total \( \Delta \mathrm{V} \approx \qty{1.70}{\km\per\s} \). Both maneuvers decrease the spacecraft's velocity.
 
 \end{hwkProblem}
 \end{document}
