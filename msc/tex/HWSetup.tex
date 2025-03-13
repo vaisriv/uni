@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{xparse}
+\usepackage{xcolor}
 \usepackage{bm}
 \usepackage{tikz}
 \usepackage{graphicx}
@@ -20,6 +21,7 @@
 \usepackage{calc}
 \usepackage{cancel}
 \usepackage{cases}
+\usepackage{calligra}
 
 \usetikzlibrary{automata,positioning}
 
@@ -204,11 +206,12 @@
 \DeclareSIUnit\c{\degreeCelsius}
 
 % Griffiths script char LOL
-\def\rcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{./ScriptR}}$}}}
-\def\brcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{./BoldR}}$}}}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\rcurs}{\mathcalligra{r}\,}
+\newcommand{\brcurs}{\pmb{\mathcalligra{r}}\,}
 
 % Code Listing config
-\usepackage{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
