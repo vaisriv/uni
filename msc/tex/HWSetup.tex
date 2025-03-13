@@ -55,7 +55,7 @@
 \renewcommand\footrulewidth{0.4pt}
 
 \setlength\parindent{0pt}
-\allowdisplaybreaks
+\allowdisplaybreaks{}
 %
 % Title Page
 %
@@ -99,22 +99,22 @@
 }
 
 % Alias for the Solution section header
-\newcommand{\hwkSol}{\vspace{\baselineskip / 2}\textbf{\Large Solution}\vspace{\baselineskip / 2}}
+\newcommand{\hwkSol}{\vspace{\baselineskip{} / 2}\textbf{\Large Solution}\vspace{\baselineskip{} / 2}}
 
 % Alias for the Solution Part subsection header
 \newcounter{partCounter}
 \newcommand{\hwkPart}{
-	\vspace{\baselineskip / 2}
+	\vspace{\baselineskip{} / 2}
 	\textbf{\large Part \Alph{partCounter}}
-	\vspace{\baselineskip / 2}
+	\vspace{\baselineskip{} / 2}
 	\stepcounter{partCounter}
 }
 
 % Alias for Code subsections in Solutions
 \newcommand{\hwkCode}{
-	\vspace{\baselineskip / 2}
+	\vspace{\baselineskip{} / 2}
 	\textbf{\large Code}
-	\vspace{\baselineskip / 2}
+	\vspace{\baselineskip{} / 2}
 }
 
 %
@@ -129,10 +129,10 @@
 \NewDocumentCommand{\func}{m o}{\text{#1}\IfValueT{#2}{(#2)}}
 
 % For derivatives
-\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1}(#2)}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1} (#2)}
 
 % For partial derivatives
-\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1}(#2)}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1} (#2)}
 
 % Probability commands: Expectation, Variance, Covariance, Bias
 \NewDocumentCommand{\E}{o}{\mathrm{E}\IfValueT{#1}{(#1)}}
