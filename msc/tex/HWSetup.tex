@@ -19,6 +19,7 @@
 \usepackage[per-mode = fraction]{siunitx}
 \usepackage{calc}
 \usepackage{cancel}
+\usepackage{cases}
 
 \usetikzlibrary{automata,positioning}
 
@@ -130,9 +131,11 @@
 
 % For derivatives
 \newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1} (#2)}
+\newcommand{\derivsec}[2]{\frac{\mathrm{d}^{2}}{\mathrm{d}{#1}^{2}} (#2)}
 
 % For partial derivatives
 \newcommand{\pderiv}[2]{\frac{\partial}{\partial#1} (#2)}
+\newcommand{\pderivsec}[2]{\frac{\partial^{2}}{\partial{}{#1}^2} (#2)}
 
 % Probability commands: Expectation, Variance, Covariance, Bias
 \NewDocumentCommand{\E}{o}{\mathrm{E}\IfValueT{#1}{(#1)}}
@@ -143,6 +146,47 @@
 
 % Col and Row Vectors
 \newcommand{\crvector}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+
+% For writing vectors
+\let\oldhat\hat{}
+\let\oldvec\vec{}
+\renewcommand{\vec}[1]{\oldvec{\mathbf{#1}}}
+\newcommand{\vecb}[1]{\mathbf{#1}}
+\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
+
+\newcommand{\cvect}[2]{ \begin{pmatrix} #1 \\ #2 \end{pmatrix} }
+\newcommand{\ctvect}[3]{ \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix} }
+\newcommand{\vect}[2]{ \langle{} #1, #2 \rangle{} }
+\newcommand{\tvect}[3]{ \langle{} #1, #2, #3 \rangle{} }
+\newcommand{\qvect}[4]{ \langle{} #1, #2, #3 \rangle{} }
+
+% For sin and cos and tangent, etc
+\let\oldsin\sin{}
+\renewcommand{\sin}[1]{\oldsin(#1)}
+\let\oldcos\cos{}
+\renewcommand{\cos}[1]{\oldcos(#1)}
+\let\oldtan\tan{}
+\renewcommand{\tan}[1]{\oldtan(#1)}
+\let\oldcsc\csc{}
+\renewcommand{\csc}[1]{\oldcsc(#1)}
+\let\oldsec\sec{}
+\renewcommand{\sec}[1]{\oldsec(#1)}
+\let\oldcot\cot{}
+\renewcommand{\cot}[1]{\oldcot(#1)}
+\let\oldsinh\sinh{}
+\renewcommand{\sinh}[1]{\oldsinh(#1)}
+\let\oldcosh\cosh{}
+\renewcommand{\cosh}[1]{\oldcosh(#1)}
+\let\oldtanh\tanh{}
+\renewcommand{\tanh}[1]{\oldtanh(#1)}
+\let\oldcoth\coth{}
+\renewcommand{\coth}[1]{\oldcoth(#1)}
+\let\oldarcsin\arcsin{}
+\renewcommand{\arcsin}[1]{\oldarcsin(#1)}
+\let\oldarccos\arccos{}
+\renewcommand{\arccos}[1]{\oldarccos(#1)}
+\let\oldarctan\arctan{}
+\renewcommand{\arctan}[1]{\oldarctan(#1)}
 
 % Defining Units that are not in the SI base
 \DeclareSIUnit\bar{bar}

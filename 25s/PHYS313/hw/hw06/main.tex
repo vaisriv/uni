@@ -57,10 +57,67 @@
 	Find the force on the charge \( +q \) in the below image, noting that the \( xy \) plane is a grounded conductor.
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=0.85\textwidth]{./images/p3_7.png}
+			\includegraphics[width=0.35\textwidth]{./images/p3_7.png}
 		\end{center}
 		\caption{Diagram for Problem 3.7}\label{fig:p3_7}
 	\end{figure}
+
+	\hwkSol{}
+
+\end{hwkProblem}
+\begin{hwkProblem}{3.8}{}
+
+	\begin{enumerate}
+		\item Using the law of consines, show that the following equations are equivalent:
+			\begin{align}
+				\func{V}[\vecb{r}] &= \frac{1}{4 \pi \epsilon_{0}} \left( \frac{q}{rcurs} + \frac{q'}{rcurs '} \right) \\
+				\func{V}[r, \theta] &= \frac{1}{4 \pi \epsilon_{0}} \left[ \frac{q}{\sqrt{r^{2}+a^{2}-2ra\cos\left(\theta\right)}} - \frac{q}{\sqrt{R^{2}+{\left(\frac{ra}{R}\right)}^{2}-2ra\cos\left(\theta\right)}} \right]
+			\end{align}
+			Where \( r \) and \( \theta \) are the usual spherical polar coordinates, with the \( z \) axis along the line through \( q \). In this form, it is obvious that \( V = 0 \) on the sphere \( r = R \).
+		\item Find the induced surface charge on the sphere, as a function of \( \theta \). Integrate this to get the total induced charge. (What \textit{should} it be?)
+		\item Calculate the energy of this configuration.
+	\end{enumerate}
+
+	\hwkSol{}
+
+\end{hwkProblem}
+\begin{hwkProblem}{3.13}{}
+	
+	Find the potential in the infinite slot of Ex3.3 if the boundary at \( x = 0 \) consists of two metal strips: one, from \( y = 0 \) to \( y = \frac{a}{2} \), is held at a constant potential \( V_{0} \), and the other, from \( y = \frac{a}{2} \) to \( y = a \), is at potential \( -V_{0} \).
+
+	\hwkSol{}
+
+	Similar to the answer in Ex3.3, the configuration retains its independence from \( z \). We again have to solve Laplace's equation but subjected to different boundary conditions:
+	\[
+		\pderivsec{x}{V} + \pderivsec{y}{V} = 0,
+		\begin{cases}
+			V = 0 & y = 0 \\
+			V = 0 & y = a \\
+			V = V_{0} & 0 < y < \frac{a}{2}, x = 0 \\
+			V = -V_{0} & \frac{a}{2} < y < a, x = 0 \\
+			V \to 0 & x \to \infty
+		\end{cases}
+	.\]
+	This can be accomplished using a similar technique as Griffiths, as follows:
+	\begin{align*}
+		Y \derivsec{x}{X} + X \derivsec{y}{Y} &= 0 \\
+		\frac{1}{X} \derivsec{x}{X} + \frac{1}{Y} \derivsec{y}{Y} &= 0 \\
+		\derivsec{x}{X} = k^{2}X ,& \quad \derivsec{y}{Y} = -k^{2}Y \\
+		\func{X}[x] = Ae^{kx}+Be^{-kx} ,& \quad \func{Y}[y] = C \sin{ky} + D \cos{ky} \\
+		\func{V}[x, y] &= \left(Ae^{kx}+Be^{-kx}\right) \left(C \sin{ky} + D \cos{ky}\right) \\
+		\text{condition (v)} &\implies A = 0 \\
+		\therefore \func{V}[x, y] &= e^{-ky} \left(C \sin{ky} + D \cos{ky}\right) \\
+		\text{condition (i)} &\implies D = 0 \\
+		\therefore \func{V}[x, y] &= C e^{-ky} \sin{ky} \\
+		\text{condition (ii)} &\implies \sin{ka} = 0 \\
+		\therefore k &= \frac{n\pi}{a}, \quad n = \left\{1, 2, 3, \dots\right\} \\
+		\func{V}[x, y] &= \sum_{n=1}^{\infty}C_{n}e^{-n \pi \frac{x}{a}} \sin{n \pi \frac{y}{a}}
+	\end{align*}
+	Here is where we diverge from Griffiths' Ex3.3. We want to fulfill our conditions (iii) and (iv) as follows:
+	\begin{align*}
+		\func{V}[0, 0<y<\frac{a}{2}] &= \sum_{n=1}^{\infty}C_{n}e^{-n \pi \frac{x}{a}} \sin{n \pi \frac{y}{a}} = V_{0}, \\
+		\func{V}[0, \frac{a}{2}<y<a] &= \sum_{n=1}^{\infty}C_{n}e^{-n \pi \frac{x}{a}} \sin{n \pi \frac{y}{a}} = -V_{0}.
+	\end{align*}
 
 \end{hwkProblem}
 \end{document}
