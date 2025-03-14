@@ -1,7 +1,7 @@
 \section*{Dirac Delta Function}
 \subsection*{Transfer Function}
 \[
-    \laplace{\delta(t)} = 1
+    \laplace{\func{\delta}[t]} = 1, \quad \laplace{\func{\delta'}[t]} = s
 \]
 
 \subsection*{Impulse Response}
@@ -11,10 +11,10 @@
 
 \subsection*{Matrix-Vector Form}
 \[
-    \underline{\delta}[t] =
+    \func{\underline{\delta}}[t] =
     \crvector{
-        \delta(t) \\
+        \func{\delta}[t] \\
         \vdots \\
-        \delta(t)
+        \func{\delta}[t]
     }
 \]

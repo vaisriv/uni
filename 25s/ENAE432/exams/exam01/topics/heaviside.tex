@@ -1,17 +1,17 @@
 \section*{Heaviside Step Function}
 \subsection*{Transfer Function}
 \[
-    \laplace{u(t)} = \frac{1}{s}
+    \laplace{\func{u}[t]} = \frac{1}{s}
 \]
 
 \subsection*{Impulse Response}
 \[
-    \deriv{t}{u(t)} = \delta(t)
+    \deriv{t}{\func{u}[t]} = \func{\delta}[t]
 \]
 
 \subsection*{Matrix-Vector Form}
 \[
-    \underline{u}[t] =
+    \func{\underline{u}}[t] =
     \begin{cases}
         \underline{0} & t < 0 \\
         \underline{1} & t \geq 0
