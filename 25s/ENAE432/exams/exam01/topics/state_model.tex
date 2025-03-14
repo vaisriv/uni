@@ -1,4 +1,29 @@
 \section*{State Model}
+\begin{align*}
+    \func{\dot{\underline{x}}}[t] &= A \func{\underline{x}}[t] + B \func{u}[t] \\
+    \func{y}[t] &= C \func{\underline{x}}[t] + D \func{u}[t] \\
+    \func{\underline{x}}[t] &= \crvector{\func{x_1}[t] \\ \vdots \\ \func{x_n}[t]},\quad B = \crvector{b_1 \\ \vdots \\ b_n} \\
+    A &= \crvector{a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots\\ a_{n1} & \cdots & a_{nn} }
+\end{align*}
+
 \subsection*{Transfer Function}
+\begin{align*}
+    \func{Q}[s] &= \func{Adj}[S \mathbb{I} - A] \\
+    \func{r}[s] &= \func{Det}[S \mathbb{I} - A] \\
+    \func{G}[s] &= \left[ C {(S \mathbb{I} - A)}^{-1} B + D \right] \\
+                &= \frac{C \func{Q}[s] B}{\func{r}[s]} + D \\
+                &= \frac{C \func{Q}[s] B + D \func{r}[s]}{\func{r}[s]} \\
+    \text{Zeroes} &: C \func{Q}[s] B + D \func{r}[s] = 0 \\
+    \text{Poles} &: \func{r}[s] = 0 \quad (\text{Eigenvalues of } A)
+\end{align*}
+
 \subsection*{Impulse Response}
+\begin{align*}
+    \func{h}[t] &= C e^{At} B + D\,\delta(t)
+\end{align*}
+
 \subsection*{Matrix-Vector Form}
+\begin{align*}
+    \func{\underline{x}}[t] &= e^{At}\func{\underline{x}}[0] + \intdef{0}{t}{e^{A(t-\tau)}B\func{u}[\tau]}{\tau} \\
+    \func{y}[t] &= C\func{\underline{x}}[t] + D\func{u}[t]
+\end{align*}

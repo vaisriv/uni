@@ -1,5 +1,73 @@
 \section*{Modes}
+\begin{enumerate}
+    \item Solutions which are possible without any input
+    \item Terms in solution for \( \func{y}[t] \) of form \( e^{pt} \), where \( r(p) = 0 \)
+    \item First Order when \( p \in \mathbb{R} \)
+    \item Second Order when \( p \in \mathbb{C} \)
+\end{enumerate}
+
 \subsection*{Stability}
+\begin{enumerate}
+    \item Mode is stable if: \( |e^{pt}| \to 0 \text{ as } t \to \infty \implies \sigma < 0 \) (root \( p \) lies in left half of complex plane)
+    \item System is stable if: all modes are stable \( \implies \Re{p_k} < 0 \forall k \in \{1, \dots, n\} \)
+    \item If the system is stable, \( \func{y_h}[t] = 0 \) for all initial conditions
+    \item Repeated modes retain the stability of their roots
+    \item For constant input, \( \func{y_{\text{tr}}}[t] = \func{y_h}[t] \) and \( \func{y_{\text{ss}}}[t] = \func{y_f}[t] \)
+\end{enumerate}
+
 \subsection*{Instability}
+\begin{enumerate}
+    \item Mode is unstable if: \( \sigma > 0 \) (root \( p \) lies in left half of complex plane)
+    \item System is unstable if: any mode is unstable \( \implies \Re{p_k} > 0 \text{ for any } k \in \{1, \dots, n\} \)
+\end{enumerate}
+
+\subsection*{Marginal Stability}
+\begin{enumerate}
+    \item Mode is marginally stable if: \( \sigma = 0 \) (root \( p \) lies on complex axis)
+    \item Repeated marginally stable modes will increase polynomially with t
+\end{enumerate}
+
 \subsection*{Transience}
+\begin{enumerate}
+    \item Transient Response: \( \func{y_{\text{tr}}}[t] \)
+    \item Terms in \( \func{y}[t] \) for which: \( \lim_{t \to \infty} | \func{y_{\text{tr}}}[t] | \to 0 \)
+    \item If the system is stable, \( \func{y_{\text{tr}}}[t] \) contains all of \( \func{y_h}[t] \) and any decaying terms of \( \func{y_f}[t] \)
+\end{enumerate}
+
 \subsection*{Steady-State}
+\begin{enumerate}
+    \item Steady State Response: \( \func{y_{\text{ss}}}[t] \)
+    \item All other terms in \( \func{y}[t] \)
+    \item Contains all marginally stable terms of \( \func{y_h}[t] \)
+\end{enumerate}
+
+\subsection*{Convergence}
+\begin{enumerate}
+    \item Quantifies how quickly stable modes decay to 0
+    \item \qty{2}{\percent} Criterion defines the settling time:
+        \[
+            t_s \st |e^{pt}|\leq 0.02 \forall t \geq t_s
+        \]
+    \item For first order modes, \( t_s = \frac{\ln{0.02}}{\sigma} \approx \frac{4}{|\sigma|} \)
+    \item Above approximation is a good tool for second order modes, but is less accurate due to oscillations
+    \item Doubling time applies to unstable modes:
+        \[
+            |e^{\sigma t_d}| = 2 \implies t_d \approx \frac{0.7}{\sigma}
+        \]
+    \item Smaller doubling time \( \iff \) ``more unstable'' system \( \implies \) faster rate of increase in amplitude
+    \item Settling times decrease the further left of the imaginary axis \( p \) is
+    \item Doubling times decrease the further right of the imaginary axis \( p \) is
+\end{enumerate}
+
+\subsection*{Damping Ratio}
+\begin{enumerate}
+    \item Only applies to second order modes
+    \item \( \zeta = \left|\frac{\sigma}{p}\right| = \frac{|\sigma|}{\sqrt{\sigma^2+\omega^2}} \)
+\end{enumerate}
+\[
+    \begin{cases}
+        0 \leq \zeta \leq 1 & \text{for stable modes} \\
+        \zeta \approx 0 & \text{many oscillations before settled} \\
+        \zeta \approx 1 & \text{less that one complete oscillation} \\
+    \end{cases}
+\]

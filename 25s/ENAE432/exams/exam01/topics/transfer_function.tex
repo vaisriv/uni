@@ -1,4 +1,20 @@
 \section*{Transfer Function}
-\subsection*{Zeroes}
-\subsection*{Poles}
-\subsection*{Gain}
+\begin{align*}
+    \func{G}[s] &= \frac{\func{q}[s]}{\func{r}[s]} \\
+    \func{q}[s] &= \laplace{\func{y}[t]} = \beta_m \prod_{i=1}^{m}(s-z_i) \\
+    \func{r}[s] &= \laplace{\func{u}[t]} = \alpha_n \prod_{k=1}^{n}(s-p_k)
+\end{align*}
+\begin{enumerate}
+    \item Get information on modes from homogenous response
+    \item Get information on forced response from evaluating \( \func{G}[s] \) at specific values of \( s \)
+\end{enumerate}
+
+\subsection*{ZPK Form}
+\[
+    \func{G}[s] = K \left[\frac{\prod_{i=1}^{m}(s-z_i)}{\prod_{k=1}^{n}(s-p_k)}\right]
+\]
+\begin{enumerate}
+    \item Zeroes: \( z_i \) satisfy \( \func{q}[z_i] = 0 \)
+    \item Poles: \( p_k \) satisfy \( \func{r}[p_k] = 0 \)
+    \item Gain: \( K = \frac{\beta_m}{\alpha_n} \) is always real
+\end{enumerate}

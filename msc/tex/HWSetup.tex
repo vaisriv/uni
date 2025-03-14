@@ -125,7 +125,7 @@
 %
 
 % Such That
-\newcommand{\st}{\text{s.t.}}
+\newcommand{\st}{\text{ s.t. }}
 
 % Useful for algorithms
 \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
@@ -195,6 +195,21 @@
 \renewcommand{\log}[1]{\oldlog(#1)}
 \let\oldln\ln{}
 \renewcommand{\ln}[1]{\oldln(#1)}
+
+% For Re, Im, etc
+\let\oldRe\Re{}
+\renewcommand{\Re}[1]{\oldRe\{#1\}}
+\let\oldIm\Im{}
+\renewcommand{\Im}[1]{\oldIm\{#1\}}
+
+% For Laplace, ILaplace, etc
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+
+% For integrals
+\let\oldint\int{}
+\NewDocumentCommand{\intidef}{m o}{\oldint{} #1 \IfValueT{#2}{\mathrm{d}#2}}
+\newcommand{\intdef}[4]{\oldint_{#1}^{#2} #3 \mathrm{d}#4}
 
 % Defining Units that are not in the SI base
 \DeclareSIUnit\bar{bar}

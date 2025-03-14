@@ -1,12 +1,77 @@
 \section*{Step Response}
 \subsection*{First Order}
+\begin{align*}
+    \func{y}[t] &= K \left(1 - e^{-t/\tau}\right) \\
+    \tau &: \text{time constant} \\
+    t_s &\approx 4\tau \quad (\text{for 2\% criterion})
+\end{align*}
+
 \subsection*{Second Order}
-\subsubsection*{Damped}
-\subsubsection*{Under-Damped}
-\subsubsection*{Natural}
+\subsubsection*{Poles}
+\begin{align*}
+    \alpha_1^2 < 4 \alpha_0 &\implies \text{complex conjugates} \\
+    \alpha_1^2 = 4 \alpha_0 &\implies \text{repeated real} \\
+    \alpha_1^2 > 4 \alpha_0 &\implies \text{real, non-repeated}
+\end{align*}
+Complex Conjugates:
+\begin{align*}
+    \alpha_1 &= -2 \sigma \\
+    \alpha_0 &= \sigma^2 + \omega_d^2 = |p_1|^2
+\end{align*}
+Repeated Real:
+\begin{align*}
+    t_s &= \frac{6}{|p_1|}
+\end{align*}
+Real, Non-Repeated:
+\begin{align*}
+    |p_2| \gg |p_1| &\implies t_s \approx \frac{4}{|p_1|} \\
+    (\text{threshold for above is: } & |p_2|>5|p_1|)\\
+    |p_2| \approx |p_1| &\implies t_s \approx \frac{6}{|p_1|} \\
+    (\text{threshold for above is: } & 1 \leqslant \frac{|p_2|}{|p_1|} \leqslant 1.1)\\
+\end{align*}
+
+\subsubsection*{Damped (Critically Damped, \(\zeta = 1\))}
+\begin{align*}
+    \func{y}[t] &= 1 - (1+\omega_n t)e^{-\omega_n t}
+\end{align*}
+
+\subsubsection*{Under-Damped (\(0 < \zeta < 1\))}
+\begin{align*}
+    \nu &= \arccos{\zeta} \\
+    \func{y}[t] &= \func{G}[0]\left[ 1 - \left( \frac{\omega_n}{\omega_d} e^{\sigma t} \sin{\omega_d t + \nu} \right) \right] \\
+\end{align*}
+
+\subsubsection*{Natural (Undamped, \(\zeta = 0\))}
+\begin{align*}
+    \func{y}[t] &= 1 - \cos{\omega_n t}
+\end{align*}
+
 \subsubsection*{LHP Zero}
+\begin{enumerate}
+    \item A zero in the Left Half Plane does not induce an inverse response.
+    \item The step response remains monotonic though modified by the zero dynamics.
+\end{enumerate}
+
 \subsubsection*{RHP Zero}
+\begin{enumerate}
+    \item A Right Half Plane Zero causes an initial inverse (non-minimum phase) response.
+    \item The response exhibits an undershoot before eventually rising to steady state.
+\end{enumerate}
+
 \subsection*{Performance Metrics}
+\begin{align*}
+    M_p &: \text{Maximum Overshoot } = \frac{\func{y}_{\max}-\func{y}_{ss}}{\func{y}_{ss}} \times \qty{100}{\percent} \\
+    t_r &: \text{Rise Time (\qty{10}{\percent} to \qty{90}{\percent} of final value)} \\
+    t_c &: \text{Time steady-state is first crossed} \\
+    t_p &: \text{Peak Time (time to first peak)} \\
+    t_s &: \text{Settling Time (\qty{2}{\percent} criterion)}
+\end{align*}
+
 \subsection*{Overshoot}
-\subsection*{Settling Time}
-\subsection*{Damping Ratio}
+\begin{align*}
+    M_p &= e^{-\frac{\sigma}{\omega_d} \pi} \times \qty{100}{\percent} \\
+        &= e^{\frac{-\zeta \pi}{\sqrt{1 - \zeta^2}}} \times \qty{100}{\percent} \\
+    t_c &= \frac{\pi - \nu}{\omega_d} \\
+    t_p &= \frac{\pi}{\omega_d} \\
+    \func{y_p} &= \func{y_{ss}} \left[1+M_p\right]
+\end{align*}

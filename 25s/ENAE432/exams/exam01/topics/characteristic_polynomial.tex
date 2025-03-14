@@ -1,3 +1,13 @@
 \section*{Characteristic Polynomial}
-\subsection*{Solution}
-\subsection*{Roots}
+\begin{align*}
+    y &: \text{polynomial response} \\
+    y_h &: \text{homogenous response} \\
+    y_f &: \text{forced response} \\
+    r &: \text{characteristic polynomial} \\
+    p_i &: \text{roots of polynomial} \\
+    n &: \text{\# of roots} \\
+    l &: \text{\# of times roots are repeated} \\
+    \func{r}[s] &= {\left(s-p_1\right)}^l\left(s-p_{l+1}\right)\cdots\left(s-p_n\right) \\
+    \func{y_h}[t] &= (C_1 + C_2 t + \cdots + C_l t^{l-1}) e^{p_1 t} + \sum_{k = l+1}^{n} C_k e^{p_k t} \\
+    \func{y}[t] &= \func{y_h}[t] + \func{y_f}[t]
+\end{align*}

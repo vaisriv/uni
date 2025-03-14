@@ -1,8 +1,26 @@
 \section*{Bode Diagrams}
 \subsection*{Decibel Units}
+\[
+    \text{Magnitude (\unit{\decibel})} = 20\oldlog_{10}\left(\left|\func{G}[j\omega]\right|\right)
+\]
+
 \subsection*{Shape}
 \subsubsection*{Transfer Function}
+\[
+    \func{G}[s] = \frac{N(s)}{D(s)}
+\]
+
 \subsubsection*{Zeroes}
+\begin{enumerate}
+    \item Each zero contributes a +20 dB/decade slope beyond its break frequency.
+\end{enumerate}
+
 \subsubsection*{Poles}
+\begin{enumerate}
+    \item Each pole contributes a -20 dB/decade slope beyond its break frequency.
+\end{enumerate}
+
 \subsubsection*{Gain}
-\subsection*{Example}
+\begin{enumerate}
+    \item A constant gain \( K \) shifts the magnitude plot by \(20\oldlog_{10}(K)\) \unit{\decibel}.
+\end{enumerate}

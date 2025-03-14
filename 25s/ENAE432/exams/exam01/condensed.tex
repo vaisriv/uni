@@ -1,0 +1,458 @@
+\documentclass[8pt]{extarticle}
+
+\input{../../../../msc/tex/FormulaSheetSetup}
+
+\newcommand{\fsheetCourse}{ENAE432 - 0101} % chktex 8
+\newcommand{\fsheetExam}{Exam01}
+\newcommand{\fsheetAuthor}{Vai Srivastava}
+
+\begin{document}
+\begin{multicols*}{3}
+
+\section*{Input-Output}
+\begin{align*}
+    \func{\ddot{y}}[t] &= K \func{u}[t], K = \frac{K_{f}K_{m}}{m} \\
+    \func{y}[t] &= \intdef{0}{t}{\func{g}[t-\tau]\func{u}[\tau]}{\tau} \\
+    \func{y}[t] &= \alpha_{1}\func{y_{1}}[t]+\alpha_{2}\func{y_{2}}[t]+\cdots+\alpha_{n}\func{y_{n}}[t]
+\end{align*}
+
+\section*{Complex Exponents}
+\subsection*{General Form}
+\begin{align*}
+    \func{z}[t] &= \func{a}[t]+\func{b}[t]j \\
+                &= \func{r}[t]e^{j\func{\theta}[t]} \\
+    \sigma &: \text{amplitude envelope} \\
+    \omega &: \text{oscillation frequency} \\
+    s &: \text{complex frequency} \\
+    r = |A| &: \text{initial amplitude} \\
+    \phi = \angle A &: \text{phase shift} \\
+    \phi > 0 &: \text{phase lead} \\
+    \phi < 0 &: \text{phase lag}
+\end{align*}
+
+\subsection*{Basic Example}
+\begin{align*}
+    \func{z}[t] &= e^{st}, \quad s \in \mathbb{C} \\
+    s &= \sigma + \omega j, \quad \sigma, \theta \in \mathbb{R} \\
+    \Re{s} &= \sigma \\
+    \Im{s} &= \omega \\
+    \Re{e^{st}} &= e^{\sigma t} \cos{\omega t} \\
+    \Im{e^{st}} &= e^{\sigma t} \sin{\omega t} \\
+    e^{st} &= \begin{cases}
+        e^{\sigma t} & \omega = 0 \\
+        e^{j \omega t} = \cos{\omega t} + j \sin{\omega t} & \sigma = 0 \\
+        e^{\sigma t} \left[\cos{\omega t}+j\sin{\omega t}\right] & \text{otherwise}
+    \end{cases}
+\end{align*}
+
+\subsection*{Specific Example}
+\begin{align*}
+    \func{z}[t] &= Ae^{st}, \quad A, s \in \mathbb{C} \\
+    s &= \sigma + \omega j, \quad \sigma, \theta \in \mathbb{R} \\
+    A &= r e^{j \phi} \\
+    Ae^{st} &= r e^{\sigma t} \left[\cos{\omega t + \phi}+j\sin{\omega t} + \phi\right] \\
+    \Re{Ae^{st}} &= r e^{\sigma t} \cos{\omega t + \phi} \\
+    \Im{Ae^{st}} &= r e^{\sigma t} \sin{\omega t + \phi}
+\end{align*}
+
+\section*{Transfer Function}
+\begin{align*}
+    \func{G}[s] &= \frac{\func{q}[s]}{\func{r}[s]} \\
+    \func{q}[s] &= \laplace{\func{y}[t]} = \beta_m \prod_{i=1}^{m}(s-z_i) \\
+    \func{r}[s] &= \laplace{\func{u}[t]} = \alpha_n \prod_{k=1}^{n}(s-p_k)
+\end{align*}
+\begin{enumerate}
+    \item Get information on modes from homogenous response
+    \item Get information on forced response from evaluating \( \func{G}[s] \) at specific values of \( s \)
+\end{enumerate}
+
+\subsection*{ZPK Form}
+\[
+    \func{G}[s] = K \left[\frac{\prod_{i=1}^{m}(s-z_i)}{\prod_{k=1}^{n}(s-p_k)}\right]
+\]
+\begin{enumerate}
+    \item Zeroes: \( z_i \) satisfy \( \func{q}[z_i] = 0 \)
+    \item Poles: \( p_k \) satisfy \( \func{r}[p_k] = 0 \)
+    \item Gain: \( K = \frac{\beta_m}{\alpha_n} \) is always real
+\end{enumerate}
+
+\section*{Characteristic Polynomial}
+\begin{align*}
+    y &: \text{polynomial response} \\
+    y_h &: \text{homogenous response} \\
+    y_f &: \text{forced response} \\
+    r &: \text{characteristic polynomial} \\
+    p_i &: \text{roots of polynomial} \\
+    n &: \text{\# of roots} \\
+    l &: \text{\# of times roots are repeated} \\
+    \func{r}[s] &= {\left(s-p_1\right)}^l\left(s-p_{l+1}\right)\cdots\left(s-p_n\right) \\
+    \func{y_h}[t] &= (C_1 + C_2 t + \cdots + C_l t^{l-1}) e^{p_1 t} + \sum_{k = l+1}^{n} C_k e^{p_k t} \\
+    \func{y}[t] &= \func{y_h}[t] + \func{y_f}[t]
+\end{align*}
+
+\section*{Modes}
+\begin{enumerate}
+    \item Solutions which are possible without any input
+    \item Terms in solution for \( \func{y}[t] \) of form \( e^{pt} \), where \( r(p) = 0 \)
+    \item First Order when \( p \in \mathbb{R} \)
+    \item Second Order when \( p \in \mathbb{C} \)
+\end{enumerate}
+
+\subsection*{Stability}
+\begin{enumerate}
+    \item Mode is stable if: \( |e^{pt}| \to 0 \text{ as } t \to \infty \implies \sigma < 0 \) (root \( p \) lies in left half of complex plane)
+    \item System is stable if: all modes are stable \( \implies \Re{p_k} < 0 \forall k \in \{1, \dots, n\} \)
+    \item If the system is stable, \( \func{y_h}[t] = 0 \) for all initial conditions
+    \item Repeated modes retain the stability of their roots
+    \item For constant input, \( \func{y_{\text{tr}}}[t] = \func{y_h}[t] \) and \( \func{y_{\text{ss}}}[t] = \func{y_f}[t] \)
+\end{enumerate}
+
+\subsection*{Instability}
+\begin{enumerate}
+    \item Mode is unstable if: \( \sigma > 0 \) (root \( p \) lies in left half of complex plane)
+    \item System is unstable if: any mode is unstable \( \implies \Re{p_k} > 0 \text{ for any } k \in \{1, \dots, n\} \)
+\end{enumerate}
+
+\subsection*{Marginal Stability}
+\begin{enumerate}
+    \item Mode is marginally stable if: \( \sigma = 0 \) (root \( p \) lies on complex axis)
+    \item Repeated marginally stable modes will increase polynomially with t
+\end{enumerate}
+
+\subsection*{Transience}
+\begin{enumerate}
+    \item Transient Response: \( \func{y_{\text{tr}}}[t] \)
+    \item Terms in \( \func{y}[t] \) for which: \( \lim_{t \to \infty} | \func{y_{\text{tr}}}[t] | \to 0 \)
+    \item If the system is stable, \( \func{y_{\text{tr}}}[t] \) contains all of \( \func{y_h}[t] \) and any decaying terms of \( \func{y_f}[t] \)
+\end{enumerate}
+
+\subsection*{Steady-State}
+\begin{enumerate}
+    \item Steady State Response: \( \func{y_{\text{ss}}}[t] \)
+    \item All other terms in \( \func{y}[t] \)
+    \item Contains all marginally stable terms of \( \func{y_h}[t] \)
+\end{enumerate}
+
+\subsection*{Convergence}
+\begin{enumerate}
+    \item Quantifies how quickly stable modes decay to 0
+    \item \qty{2}{\percent} Criterion defines the settling time:
+        \[
+            t_s \st |e^{pt}|\leq 0.02 \forall t \geq t_s
+        \]
+    \item For first order modes, \( t_s = \frac{\ln{0.02}}{\sigma} \approx \frac{4}{|\sigma|} \)
+    \item Above approximation is a good tool for second order modes, but is less accurate due to oscillations
+    \item Doubling time applies to unstable modes:
+        \[
+            |e^{\sigma t_d}| = 2 \implies t_d \approx \frac{0.7}{\sigma}
+        \]
+    \item Smaller doubling time \( \iff \) ``more unstable'' system \( \implies \) faster rate of increase in amplitude
+    \item Settling times decrease the further left of the imaginary axis \( p \) is
+    \item Doubling times decrease the further right of the imaginary axis \( p \) is
+\end{enumerate}
+
+\subsection*{Damping Ratio}
+\begin{align*}
+    \omega_n &= \sqrt{\sigma^2 + \omega_d^2} = |p_1| \\
+    \zeta &= \frac{|\sigma|}{\omega_n} \\
+    \zeta &= \begin{cases}
+        0 \leq \zeta \leq 1 & \text{for stable modes} \\
+        \zeta \approx 0 & \text{many oscillations before settled} \\
+        \zeta \approx 1 & \text{less that one complete oscillation} \\
+    \end{cases}
+\end{align*}
+
+\section*{Laplace Transform}
+\subsection*{Definition}
+\begin{align*}
+    \func{f}[t] &= \frac{1}{2 \pi j} \intidef{\func{F}[s] e^{st}}[s] \\
+    \func{F}[s] &= \intdef{0}{\infty}{\func{f}[t] e^{-st}}{t}
+\end{align*}
+
+\subsection*{Special Cases}
+\begin{align*}
+    \laplace{e^{pt}} &= \frac{1}{s-p} \forall p \in \mathbb{C} \\
+    \laplace{Ae^{at}\cos{bt+\psi}} &= \frac{C}{s-p}+\frac{\overline{C}}{s-\overline{p}}, C = \frac{A}{2}e^{j\psi} \\
+    \laplace{c} &= \frac{c}{s} \forall c \in \mathbb{C}
+\end{align*}
+
+\subsection*{Properties}
+\begin{align*}
+    \laplace{\func{f_1}[t] + \func{f_2}[t]} &= \func{F_1}[s]+\func{F_2}[s] \\
+    \laplace{\func{f_1}[t]\func{f_2}[t]} &\neq \func{F_1}[s]\func{F_2}[s] \\
+    \laplace{\func{\dot{f}}[t]} &= s \func{F}[s] - \func{f}[0] \\
+    \laplace{\func{f^{(k)}}[t]} &= s^{k} \func{F}[s] - \sum_{i=1}^{k} s^{i-1}\func{f^{(k-i)}}[0] \\
+    \laplace{t \func{f}[t]} &= -\deriv{s}{\func{F}[s]} \\
+    \laplace{t e^{pt}} &= -\deriv{s}{\frac{1}{s-p}} \\
+    \laplace{t^{k} e^{pt}} &= \frac{k!}{{(s-p)}^{k+1}}
+\end{align*}
+
+\subsection*{Usage}
+\begin{align*}
+    \func{r}[s]\func{Y}[s]-\func{c}[s] &= \func{q}[s]\func{U}[s]-\func{b}[s] \\
+    \func{r}[s] &= \alpha_n s^n + \cdots + \alpha_1 s + \alpha_0 \\
+    \func{q}[s] &= \beta_m s^m + \cdots + \beta_1 s + \beta_0 \\
+    \func{c}[s] &= n-1 \text{ order poly from IC on } \func{y}[t] \\
+    \func{b}[s] &= m-1 \text{ order poly from IC on } \func{u}[t] \\
+    \func{Y}[s] &= \func{G}[s]\func{U}[s]+\left[\frac{\func{c}[s]-\func{b}[s]}{\func{r}[s]}\right]
+\end{align*}
+
+\section*{Inverse Laplace}
+\subsection*{Partial Fraction Expansion}
+\begin{align*}
+    \func{Y}[s] &= \func{G}[s]\func{U}[s]+\left[\frac{\func{c}[s]-\func{b}[s]}{\func{r}[s]}\right] \\
+                &= \left[\frac{\func{q}[s]}{\func{r}[s]}\right]\left[\frac{\func{a}[s]}{\func{h}[s]}\right]+\left[\frac{\func{c}[s]-\func{b}[s]}{\func{r}[s]}\right] \\
+                &= \frac{\func{q}[s]\func{a}[s]+\func{h}[s]\left[\func{c}[s]-\func{b}[s]\right]}{\func{r}[s]\func{h}[s]} \\
+                &= \sum_{l=1}^{L}\frac{A_l}{s-d_l} \\
+    \func{y}[t] &= \sum_{l=1}^{L}A_l e^{d_l t}
+\end{align*}
+
+\subsection*{Residue Formula}
+\begin{align*}
+    A_l &= {\left[(s-d_l)\func{Y}[s]\right]}_{s=d_l} \\
+    \overline{A_l} &= {\left[(s-\overline{d_l})\func{Y}[s]\right]}_{s=\overline{d_l}} \\
+    A_l e^{d_l t} + \overline{A_l} e^{\overline{d_l} t} &= 2 \left|A_l\right| e^{\sigma t} \cos{\omega t + \angle A_l}
+\end{align*}
+
+\subsection*{Repeated Roots}
+\begin{align*}
+    L &: \text{\# of roots} \\
+    K &: \text{\# times a root is repeated} \\
+    \func{Y}[s] &= \sum_{l=1}^{K} \frac{A_l}{{(s-d_l)}^l}+\sum_{l=K+1}^{L}\frac{A_l}{(s-d_l)} \\
+    \func{y}[t] &= \sum_{l=1}^{K}\left(\frac{A_l t^{l-1}}{(l-1)!}\right)e^{d_1 t} + \sum_{l=K+1}^{L}A_l e^{d_l t}
+\end{align*}
+
+\section*{State Model}
+\begin{align*}
+    \func{\dot{\underline{x}}}[t] &= A \func{\underline{x}}[t] + B \func{u}[t] \\
+    \func{y}[t] &= C \func{\underline{x}}[t] + D \func{u}[t] \\
+    \func{\underline{x}}[t] &= \crvector{\func{x_1}[t] \\ \vdots \\ \func{x_n}[t]},\quad B = \crvector{b_1 \\ \vdots \\ b_n} \\
+    A &= \crvector{a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots\\ a_{n1} & \cdots & a_{nn} }
+\end{align*}
+
+\subsection*{Transfer Function}
+\begin{align*}
+    \func{Q}[s] &= \func{Adj}[S \mathbb{I} - A] \\
+    \func{r}[s] &= \func{Det}[S \mathbb{I} - A] \\
+    \func{G}[s] &= \left[ C {(S \mathbb{I} - A)}^{-1} B + D \right] \\
+                &= \frac{C \func{Q}[s] B}{\func{r}[s]} + D \\
+                &= \frac{C \func{Q}[s] B + D \func{r}[s]}{\func{r}[s]} \\
+    \text{Zeroes} &: C \func{Q}[s] B + D \func{r}[s] = 0 \\
+    \text{Poles} &: \func{r}[s] = 0 \quad (\text{Eigenvalues of } A)
+\end{align*}
+
+\subsection*{Impulse Response}
+\begin{align*}
+    \func{h}[t] &= C e^{At} B + D\,\delta(t)
+\end{align*}
+
+\subsection*{Matrix-Vector Form}
+\begin{align*}
+    \func{\underline{x}}[t] &= e^{At}\func{\underline{x}}[0] + \intdef{0}{t}{e^{A(t-\tau)}B\func{u}[\tau]}{\tau} \\
+    \func{y}[t] &= C\func{\underline{x}}[t] + D\func{u}[t]
+\end{align*}
+
+\section*{Heaviside Step Function}
+\subsection*{Transfer Function}
+\[
+    \laplace{u(t)} = \frac{1}{s}
+\]
+
+\subsection*{Impulse Response}
+\[
+    \deriv{t}{u(t)} = \delta(t)
+\]
+
+\subsection*{Matrix-Vector Form}
+\[
+    \underline{u}[t] =
+    \begin{cases}
+        \underline{0} & t < 0 \\
+        \underline{1} & t \geq 0
+    \end{cases}
+\]
+
+\section*{Dirac Delta Function}
+\subsection*{Transfer Function}
+\[
+    \laplace{\delta(t)} = 1
+\]
+
+\subsection*{Impulse Response}
+\[
+    \delta(t) \text{ satisfies } \intdef{-\epsilon}{\epsilon}{\delta(t)}{t} = 1, \quad \forall \epsilon > 0
+\]
+
+\subsection*{Matrix-Vector Form}
+\[
+    \underline{\delta}[t] =
+    \crvector{
+        \delta(t) \\
+        \vdots \\
+        \delta(t)
+    }
+\]
+
+\section*{Step Response}
+\subsection*{First Order}
+\begin{align*}
+    \func{y}[t] &= K \left(1 - e^{-t/\tau}\right) \\
+    \tau &: \text{time constant} \\
+    t_s &\approx 4\tau \quad (\text{for 2\% criterion})
+\end{align*}
+
+\subsection*{Second Order}
+\subsubsection*{Poles}
+\begin{align*}
+    \alpha_1^2 < 4 \alpha_0 &\implies \text{complex conjugates} \\
+    \alpha_1^2 = 4 \alpha_0 &\implies \text{repeated real} \\
+    \alpha_1^2 > 4 \alpha_0 &\implies \text{real, non-repeated}
+\end{align*}
+Complex Conjugates:
+\begin{align*}
+    \alpha_1 &= -2 \sigma \\
+    \alpha_0 &= \sigma^2 + \omega_d^2 = |p_1|^2
+\end{align*}
+Repeated Real:
+\begin{align*}
+    t_s &= \frac{6}{|p_1|}
+\end{align*}
+Real, Non-Repeated:
+\begin{align*}
+    |p_2| \gg |p_1| &\implies t_s \approx \frac{4}{|p_1|} \\
+    (\text{threshold for above is: } & |p_2|>5|p_1|)\\
+    |p_2| \approx |p_1| &\implies t_s \approx \frac{6}{|p_1|} \\
+    (\text{threshold for above is: } & 1 \leqslant \frac{|p_2|}{|p_1|} \leqslant 1.1)\\
+\end{align*}
+
+\subsubsection*{Damped (Critically Damped, \(\zeta = 1\))}
+\begin{align*}
+    \func{y}[t] &= 1 - (1+\omega_n t)e^{-\omega_n t}
+\end{align*}
+
+\subsubsection*{Under-Damped (\(0 < \zeta < 1\))}
+\begin{align*}
+    \nu &= \arccos{\zeta} \\
+    \func{y}[t] &= \func{G}[0]\left[ 1 - \left( \frac{\omega_n}{\omega_d} e^{\sigma t} \sin{\omega_d t + \nu} \right) \right] \\
+\end{align*}
+
+\subsubsection*{Natural (Undamped, \(\zeta = 0\))}
+\begin{align*}
+    \func{y}[t] &= 1 - \cos{\omega_n t}
+\end{align*}
+
+\subsubsection*{LHP Zero}
+\begin{enumerate}
+    \item A zero in the Left Half Plane does not induce an inverse response.
+    \item The step response remains monotonic though modified by the zero dynamics.
+\end{enumerate}
+
+\subsubsection*{RHP Zero}
+\begin{enumerate}
+    \item A Right Half Plane Zero causes an initial inverse (non-minimum phase) response.
+    \item The response exhibits an undershoot before eventually rising to steady state.
+\end{enumerate}
+
+\subsection*{Performance Metrics}
+\begin{align*}
+    M_p &: \text{Maximum Overshoot } = \frac{\func{y}_{\max}-\func{y}_{ss}}{\func{y}_{ss}} \times \qty{100}{\percent} \\
+    t_r &: \text{Rise Time (\qty{10}{\percent} to \qty{90}{\percent} of final value)} \\
+    t_c &: \text{Time steady-state is first crossed} \\
+    t_p &: \text{Peak Time (time to first peak)} \\
+    t_s &: \text{Settling Time (\qty{2}{\percent} criterion)}
+\end{align*}
+
+\subsection*{Overshoot}
+\begin{align*}
+    M_p &= e^{-\frac{\sigma}{\omega_d} \pi} \times \qty{100}{\percent} \\
+        &= e^{\frac{-\zeta \pi}{\sqrt{1 - \zeta^2}}} \times \qty{100}{\percent} \\
+    t_c &= \frac{\pi - \nu}{\omega_d} \\
+    t_p &= \frac{\pi}{\omega_d} \\
+    \func{y_p} &= \func{y_{ss}} \left[1+M_p\right]
+\end{align*}
+
+\section*{System Zeroes}
+\subsection*{Input Absorption}
+\begin{enumerate}
+    \item System zeroes can absorb certain input dynamics.
+    \item A zero at \( s = z \) may cancel an input pole at \( s = z \).
+\end{enumerate}
+
+\subsection*{Transient Suppression}
+\begin{enumerate}
+    \item Appropriately placed zeroes can mitigate transient peaks.
+    \item They are used in controller design to improve system performance.
+\end{enumerate}
+
+\subsection*{Pole Cancellation}
+\begin{enumerate}
+    \item Occurs when a system zero cancels a pole in the transfer function.
+    \item Ideal cancellation is sensitive to model uncertainties.
+\end{enumerate}
+
+\section*{Frequency Response}
+\subsection*{Definition}
+\begin{align*}
+    \func{G}[j\omega] &= \func{G}[s]\Big|_{s=j\omega}, \quad \omega \in \mathbb{R} \\
+    \text{Magnitude} &: | \func{G}[j\omega] | \\
+    \text{Phase} &: \angle \func{G}[j\omega]
+\end{align*}
+
+\subsection*{Quantification}
+\begin{enumerate}
+    \item \textbf{Gain Margin}: Factor by which gain can be increased before instability.
+    \item \textbf{Phase Margin}: Additional phase lag required to reach instability.
+    \item These margins and the overall frequency response are visualized using Bode plots.
+\end{enumerate}
+
+\section*{Bode Diagrams}
+\subsection*{Decibel Units}
+\[
+    \text{Magnitude (\unit{\decibel})} = 20\oldlog_{10}\left(\left|\func{G}[j\omega]\right|\right)
+\]
+
+\subsection*{Shape}
+\subsubsection*{Transfer Function}
+\[
+    \func{G}[s] = \frac{N(s)}{D(s)}
+\]
+
+\subsubsection*{Zeroes}
+\begin{enumerate}
+    \item Each zero contributes a +20 dB/decade slope beyond its break frequency.
+\end{enumerate}
+
+\subsubsection*{Poles}
+\begin{enumerate}
+    \item Each pole contributes a -20 dB/decade slope beyond its break frequency.
+\end{enumerate}
+
+\subsubsection*{Gain}
+\begin{enumerate}
+    \item A constant gain \( K \) shifts the magnitude plot by \(20\oldlog_{10}(K)\) \unit{\decibel}.
+\end{enumerate}
+
+\section*{Bode Magnitude Diagrams}
+\subsection*{Shape}
+\subsubsection*{Transfer Function}
+\[
+    \left| \func{G}[j\omega] \right|
+\]
+
+\subsubsection*{Zeroes}
+\begin{enumerate}
+    \item Zeroes add positive slopes to the magnitude plot.
+\end{enumerate}
+
+\subsubsection*{Poles}
+\begin{enumerate}
+    \item Poles add negative slopes to the magnitude plot.
+\end{enumerate}
+
+\subsubsection*{Gain}
+\begin{enumerate}
+    \item The overall gain sets the baseline level of the magnitude plot.
+\end{enumerate}
+
+\end{multicols*}
+\end{document}

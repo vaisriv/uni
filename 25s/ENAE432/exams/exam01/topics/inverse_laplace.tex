@@ -1,4 +1,24 @@
 \section*{Inverse Laplace}
 \subsection*{Partial Fraction Expansion}
+\begin{align*}
+    \func{Y}[s] &= \func{G}[s]\func{U}[s]+\left[\frac{\func{c}[s]-\func{b}[s]}{\func{r}[s]}\right] \\
+                &= \left[\frac{\func{q}[s]}{\func{r}[s]}\right]\left[\frac{\func{a}[s]}{\func{h}[s]}\right]+\left[\frac{\func{c}[s]-\func{b}[s]}{\func{r}[s]}\right] \\
+                &= \frac{\func{q}[s]\func{a}[s]+\func{h}[s]\left[\func{c}[s]-\func{b}[s]\right]}{\func{r}[s]\func{h}[s]} \\
+                &= \sum_{l=1}^{L}\frac{A_l}{s-d_l} \\
+    \func{y}[t] &= \sum_{l=1}^{L}A_l e^{d_l t}
+\end{align*}
+
 \subsection*{Residue Formula}
+\begin{align*}
+    A_l &= {\left[(s-d_l)\func{Y}[s]\right]}_{s=d_l} \\
+    \overline{A_l} &= {\left[(s-\overline{d_l})\func{Y}[s]\right]}_{s=\overline{d_l}} \\
+    A_l e^{d_l t} + \overline{A_l} e^{\overline{d_l} t} &= 2 \left|A_l\right| e^{\sigma t} \cos{\omega t + \angle A_l}
+\end{align*}
+
 \subsection*{Repeated Roots}
+\begin{align*}
+    L &: \text{\# of roots} \\
+    K &: \text{\# times a root is repeated} \\
+    \func{Y}[s] &= \sum_{l=1}^{K} \frac{A_l}{{(s-d_l)}^l}+\sum_{l=K+1}^{L}\frac{A_l}{(s-d_l)} \\
+    \func{y}[t] &= \sum_{l=1}^{K}\left(\frac{A_l t^{l-1}}{(l-1)!}\right)e^{d_1 t} + \sum_{l=K+1}^{L}A_l e^{d_l t}
+\end{align*}

@@ -1,4 +1,20 @@
 \section*{Dirac Delta Function}
 \subsection*{Transfer Function}
+\[
+    \laplace{\delta(t)} = 1
+\]
+
 \subsection*{Impulse Response}
+\[
+    \delta(t) \text{ satisfies } \intdef{-\epsilon}{\epsilon}{\delta(t)}{t} = 1, \quad \forall \epsilon > 0
+\]
+
 \subsection*{Matrix-Vector Form}
+\[
+    \underline{\delta}[t] =
+    \crvector{
+        \delta(t) \\
+        \vdots \\
+        \delta(t)
+    }
+\]

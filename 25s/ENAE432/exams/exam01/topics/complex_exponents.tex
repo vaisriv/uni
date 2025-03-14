@@ -1,1 +1,38 @@
 \section*{Complex Exponents}
+\subsection*{General Form}
+\begin{align*}
+    \func{z}[t] &= \func{a}[t]+\func{b}[t]j \\
+                &= \func{r}[t]e^{j\func{\theta}[t]} \\
+    \sigma &: \text{amplitude envelope} \\
+    \omega &: \text{oscillation frequency} \\
+    s &: \text{complex frequency} \\
+    r = |A| &: \text{initial amplitude} \\
+    \phi = \angle A &: \text{phase shift} \\
+    \phi > 0 &: \text{phase lead} \\
+    \phi < 0 &: \text{phase lag}
+\end{align*}
+
+\subsection*{Basic Example}
+\begin{align*}
+    \func{z}[t] &= e^{st}, \quad s \in \mathbb{C} \\
+    s &= \sigma + \omega j, \quad \sigma, \theta \in \mathbb{R} \\
+    \Re{s} &= \sigma \\
+    \Im{s} &= \omega \\
+    \Re{e^{st}} &= e^{\sigma t} \cos{\omega t} \\
+    \Im{e^{st}} &= e^{\sigma t} \sin{\omega t} \\
+    e^{st} &= \begin{cases}
+        e^{\sigma t} & \omega = 0 \\
+        e^{j \omega t} = \cos{\omega t} + j \sin{\omega t} & \sigma = 0 \\
+        e^{\sigma t} \left[\cos{\omega t}+j\sin{\omega t}\right] & \text{otherwise}
+    \end{cases}
+\end{align*}
+
+\subsection*{Specific Example}
+\begin{align*}
+    \func{z}[t] &= Ae^{st}, \quad A, s \in \mathbb{C} \\
+    s &= \sigma + \omega j, \quad \sigma, \theta \in \mathbb{R} \\
+    A &= r e^{j \phi} \\
+    Ae^{st} &= r e^{\sigma t} \left[\cos{\omega t + \phi}+j\sin{\omega t} + \phi\right] \\
+    \Re{Ae^{st}} &= r e^{\sigma t} \cos{\omega t + \phi} \\
+    \Im{Ae^{st}} &= r e^{\sigma t} \sin{\omega t + \phi}
+\end{align*}
