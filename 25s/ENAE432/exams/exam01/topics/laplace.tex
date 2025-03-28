@@ -17,7 +17,7 @@
     \laplace{\func{f_1}[t] + \func{f_2}[t]} &= \func{F_1}[s]+\func{F_2}[s] \\
     \laplace{\func{f_1}[t]\func{f_2}[t]} &\neq \func{F_1}[s]\func{F_2}[s] \\
     \laplace{\func{f'}[t]} &= s \func{F}[s] - \func{f}[0] \\
-    \laplace{\func{f^{(k)}}[t]} &= s^{k} \func{F}[s] - \sum_{i=1}^{k-1} s^{k-1-i}\func{f^{(i)}}[0] \\
+    \laplace{\func{f^{(k)}}[t]} &= s^{k} \func{F}[s] - \sum_{i=1}^{k} s^{k-i}\func{f^{(i-1)}}[0] \\
     \laplace{t \func{f}[t]} &= -\deriv{s}{\func{F}[s]} \\
     \laplace{t e^{pt}} &= -\deriv{s}{\frac{1}{s-p}} \\
     \laplace{t^{k} e^{pt}} &= \frac{k!}{{(s-p)}^{k+1}}
