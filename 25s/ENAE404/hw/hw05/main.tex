@@ -1,0 +1,60 @@
+\input{../../../../msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Subtitle
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 05}
+\newcommand{\hmwkSubTitle}{Prediction Problem and More Maneuvers}
+\newcommand{\hmwkDueDate}{April 10, 2025}
+\newcommand{\hmwkDueTime}{09:30 AM}
+\newcommand{\hmwkClass}{ENAE 404 - 0101}
+\newcommand{\hmwkClassTime}{09:30}
+\newcommand{\hmwkClassInstructor}{Dr. Barbee}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{}
+
+	Conceptual questions:
+	\begin{enumerate}
+		\item Give the semi-major axis, eccentricity and inclination of an orbit whose ground track is a point.
+		\item Explain why argment of periapsis equal to \qty{0}{\degree} or \qty{180}{\degree} produces equatorial symmetry.
+		\item Consider the Molniya orbit. Which one orbital element would you change so that the spacecraft would spend a long time veiewing the Southern hemisphere (rather than the Northern hemisphere)? Identify the orbital element and the value of this orbital element that would preserve the same structure of the ground track (just flipped to observe the Southern hemisphere).
+	\end{enumerate}
+
+	\hwkSol
+
+	\hwkPart
+
+	For an orbit whose ground track is a fixed point, the spacecraft must be in a geostationary orbit. This requires:
+	\begin{align*}
+		a &\approx \qty{42164}{\km} \quad (\text{from Earth’s center}), \\
+		e &= 0 \quad (\text{circular orbit}), \\
+		i &= \qty{0}{\degree} \quad (\text{orbit in the equatorial plane}).
+	\end{align*}
+
+	\hwkPart
+
+	The argument of periapsis, \( \omega \), defines the orientation of the ellipse within the orbital plane relative to the line of nodes. When \( \omega \) is \qty{0}{\degree} or \qty{180}{\degree}, the line of apsides is aligned with the line of nodes. This alignment causes the orbit to be symmetric about the equatorial plane.
+
+	\hwkPart
+
+	A standard Molniya orbit is designed with an argument of periapsis \( \omega \approx \qty{270}{\degree} \) so that the apogee is in the Northern Hemisphere. To flip the ground track so that the apogee is over the Southern Hemisphere, one would change the argument of periapsis to \( \omega = \qty{90}{\degree} \).
+
+\end{hwkProblem}
+\end{document}
