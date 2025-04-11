@@ -47,9 +47,7 @@ end
 switch $argv[1]
 	case switch
 		set current_dir $(pwd)
-		if test (count $argv[2..]) -eq 0
-			set_course_env
-		else
+		if not test (count $argv[2..]) -eq 0
 			switch $argv[2]
 				case sem semester
 					set_sem_env
@@ -66,20 +64,22 @@ switch $argv[1]
 					end
 					set_hw_env
 
-				case both
+				case all
 					set_sem_env
 					set_course_env
+					set_hw_env
 
 				case '*'
 					echo "Unrecognized input."
+					exit 1
 			end
+		else
+			set_course_env
 		end
 		cd $current_dir
 	
 	case cd
-		if test (count $argv[2..]) -eq 0
-			cd $UNI_DIR
-		else
+		if not test (count $argv[2..]) -eq 0
 			switch $argv[2]
 				case course class
 					cd $UNI_COURSE_DIR
@@ -103,6 +103,7 @@ switch $argv[1]
 
 							case '*'
 								echo "Unrecognized input."
+								exit 1
 						end
 					end
 
@@ -111,7 +112,10 @@ switch $argv[1]
 
 				case '*'
 					echo "Unrecognized input."
+					exit 1
 			end
+		else
+			cd $UNI_DIR
 		end
 
 	case notes
@@ -121,13 +125,11 @@ switch $argv[1]
 
 			case '*'
 				echo "Unrecognized input."
+				exit 1
 		end
 
-
 	case lg git
-		if test (count $argv[2..]) -eq 0
-			lazygit -p $UNI_DIR
-		else
+		if not test (count $argv[2..]) -eq 0
 			switch $argv[2]
 				case uni
 					lazygit -p $UNI_DIR
@@ -137,15 +139,29 @@ switch $argv[1]
 
 				case '*'
 					echo "Unrecognized input."
+					exit 1
 			end
+		else
+			lazygit -p $UNI_DIR
 		end
 
-	case self-edit
-		$EDITOR $script_location
+	case edit
+		if not test (count $argv[2..]) -eq 0
+			switch $argv[2]
+				case flake
+					$EDITOR $UNI_DIR/flake.nix
 
-	case flake
-		$EDITOR $UNI_DIR/flake.nix
+				case self
+					$EDITOR $script_location
+
+				case '*'
+					$EDITOR $UNI_DIR/$argv[2..]
+			end
+		else
+			$EDITOR $UNI_DIR/.
+		end
 
 	case '*'
 		echo "Unrecognized input."
+		exit 1
 end
