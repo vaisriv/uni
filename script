@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-set script_location $UNI_DIR/msc/script
-
 function set_sem_env
 	cd $UNI_DIR
 	set -U UNI_SEM (ls --only-dirs | fzf -f "!champs !msc !notes" | fzf)
@@ -151,8 +149,8 @@ switch $argv[1]
 				case flake
 					$EDITOR $UNI_DIR/flake.nix
 
-				case self
-					$EDITOR $script_location
+				case self setup script
+					$EDITOR $UNI_DIR/script
 
 				case '*'
 					$EDITOR $UNI_DIR/$argv[2..]
