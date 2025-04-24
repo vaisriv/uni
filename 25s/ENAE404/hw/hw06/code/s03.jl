@@ -7,10 +7,6 @@ r2 = [7000.0, 7000.0, 0.0]
 TOF = 3600.0
 
 v1, v2, e, rp = solve_lambert(r1, r2, TOF; long_way=false)
-sv2 = solve_2BP(StateVectors(r1, v1), (0.0, TOF), μ=μ_Earth)
-
-r2_diff = r2 - sv2[end].r
-v2_diff = v2 - sv2[end].v
 
 r1_norm = norm(r1)
 v_circ1 = [ 0.0,
