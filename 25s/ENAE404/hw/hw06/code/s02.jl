@@ -42,7 +42,7 @@ y_s = [R_Earth*sin(ϕ)*sin(θi) for ϕ in φ, θi in θ]
 z_s = [R_Earth*cos(ϕ)          for ϕ in φ, θi in θ]
 
 plt = plot(
-    surface(x_s, y_s, z_s; opacity=0.3, legend=false),
+    surface(x_s, y_s, z_s; opacity=1.0, legend=false),
     xlabel="x (km)", ylabel="y (km)", zlabel="z (km)",
     title="Case 2 Lambert Transfer (long way)",
 )
