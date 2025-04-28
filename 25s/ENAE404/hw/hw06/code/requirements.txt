@@ -1,6 +1,0 @@
-matplotlib
-numpy
-sympy
-scipy
-astropy
-poliastro
