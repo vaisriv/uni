@@ -1,0 +1,38 @@
+\input{../../../../msc/tex/HWSetup}
+
+%
+% Homework Details
+%   - Title
+%   - Subtitle
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 07}
+\newcommand{\hmwkSubTitle}{FMEA}
+\newcommand{\hmwkDueDate}{April 28, 2025}
+\newcommand{\hmwkDueTime}{03:30 PM}
+\newcommand{\hmwkClass}{ENRE 447 - 0101}
+\newcommand{\hmwkClassTime}{03:30 PM}
+\newcommand{\hmwkClassInstructor}{Dr. Groth}
+\newcommand{\hmwkAuthorName}{\textbf{Vai Srivastava}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\begin{hwkProblem}{5}{}
+
+The paper by LaFleur et al. presents a structured risk assessment of a dual-fuel LNG/diesel hybrid locomotive, conducted for the Federal Railroad Administration (FRA). In the operational phase, a Product Design FMEA (per SAE ARP 5580) was applied to the LNG tender system to identify failure modes that could lead to uncontrolled releases of LNG or gaseous natural gas (GNG). Eighty-seven failure modes were cataloged, of which three involving the cryogenic storage tank (pressure relief device failure, fitting penetration failures, and outer-tank embrittlement) were ranked as High risk priority, and twenty-one others as Medium. A modified HAZOP examined maintenance activities for both the LNG tender and locomotive, uncovering eight credible hazard scenarios for the tender (three Medium risk, e.g., PRD failure during venting, sabotage of outer tank, crane-lift incidents) and twenty-seven for the CNG locomotive (nine Medium risk, largely related to over-pressurization and valve failures). Finally, a human factors review of a sample refueling procedure highlighted opportunities for clearer warnings, procedural specificity, and review processes. The authors recommend evolving the functional FMEA into a detailed FMEA as design matures and extending formal risk analyses to refueling operations.
+
+The systematic, risk-based prioritization in this study contrasts sharply with the top-down, size-based FMEA approach my classmates and I employed in the FMEA in-class activity. In our class exercise, we began with the largest of our assigned components such as the LNG tank walls and the controller, only at the end considering small parts like gaskets, fittings, and tubes, without weighting components by likelihood or consequence. LaFleur et al. instead first identified components whose failure would be most catastrophic (e.g., tank rupture) or most probable (e.g., seal leaks) and then drilled down into those areas. This risk-focused methodology aligns with the core principles of reliability engineering: concentrating limited resources on mitigating the highest Severity × Probability combinations rather than dispersing effort uniformly across all parts.
+
+When I find myself doing FMEA in the future, I will advocated for adopting a similar risk ranking matrix early on. By assigning severity and probability classes, we can generated risk priority numbers and quickly highlighted any such components warranting immediate design review. This will sharpen our scope and ensure that high-stakes failures received appropriate attention before lower-impact items. Moreover, reading the article raised questions about how dynamic loading conditions and real-world usage patterns feed back into probability estimates, and my future work will definitely integrate field data as LaFleur et al. did with the RIAC database to refine our model.
+
+I was particularly surprised by the degree to which human factors influenced risk ranking, underscoring that even the most robust hardware controls can be undermined by procedural ambiguity. This resonates with our discussion of detection and prevention controls in class. Overall, the paper reinforces the value of iterating FMEAs as designs mature and of coupling functional analyses with quantitative data and human factors insights—lessons I will carry forward into future reliability assessments.
+
+\end{hwkProblem}
+\end{document}
