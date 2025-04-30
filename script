@@ -45,75 +45,73 @@ end
 switch $argv[1]
 	case switch
 		set current_dir $(pwd)
-		if not test (count $argv[2..]) -eq 0
-			switch $argv[2]
-				case sem semester
+		switch $argv[2]
+			case sem semester
+				set_sem_env
+			
+			case course class
+				if test -z "$UNI_SEM"; and test -z "$UNI_SEM_DIR"
 					set_sem_env
-				
-				case course class
-					if test -z "$UNI_SEM"; and test -z "$UNI_SEM_DIR"
-						set_sem_env
-					end
+				end
+				set_course_env
+
+			case hw homework
+				if test -z "$UNI_COURSE"; and test -z "$UNI_COURSE_DIR"
 					set_course_env
+				end
+				set_hw_env
 
-				case hw homework
-					if test -z "$UNI_COURSE"; and test -z "$UNI_COURSE_DIR"
-						set_course_env
-					end
-					set_hw_env
+			case all
+				set_sem_env
+				set_course_env
+				set_hw_env
 
-				case all
-					set_sem_env
-					set_course_env
-					set_hw_env
+			case ''
+				set_course_env
 
-				case '*'
-					echo "Unrecognized input."
-					exit 1
-			end
-		else
-			set_course_env
+			case '*'
+				echo "Unrecognized input."
+				exit 1
 		end
 		cd $current_dir
 	
 	case cd
-		if not test (count $argv[2..]) -eq 0
-			switch $argv[2]
-				case course class
-					cd $UNI_COURSE_DIR
+		switch $argv[2]
+			case course class
+				cd $UNI_COURSE_DIR
 
-				case sem semester
-					cd $UNI_SEM_DIR
+			case sem semester
+				cd $UNI_SEM_DIR
 
-				case hw homework
-					cd $UNI_HW_DIR
+			case hw homework
+				cd $UNI_HW_DIR
 
-				case notes
-					if test (count $argv[3..]) -eq 0
-						cd $UNI_NOTES_DIR
-					else
-						switch $argv[3]
-							case course class
-								cd $UNI_COURSE_NOTES_DIR
+			case notes
+				if test (count $argv[3..]) -eq 0
+					cd $UNI_NOTES_DIR
+				else
+					switch $argv[3]
+						case course class
+							cd $UNI_COURSE_NOTES_DIR
 
-							case sem semester
-								cd $UNI_SEM_NOTES_DIR
+						case sem semester
+							cd $UNI_SEM_NOTES_DIR
 
-							case '*'
-								echo "Unrecognized input."
-								exit 1
-						end
+						case '*'
+							echo "Unrecognized input."
+							exit 1
 					end
+				end
 
-				case uni
-					cd $UNI_DIR
+			case uni
+				cd $UNI_DIR
 
-				case '*'
-					echo "Unrecognized input."
-					exit 1
-			end
-		else
-			cd $UNI_DIR
+			case ''
+				cd $UNI_DIR
+
+			case '*'
+				echo "Unrecognized input."
+				exit 1
 		end
 
 	case notes
@@ -127,36 +125,34 @@ switch $argv[1]
 		end
 
 	case lg git
-		if not test (count $argv[2..]) -eq 0
-			switch $argv[2]
-				case uni
-					lazygit -p $UNI_DIR
-				
-				case notes
-					lazygit -p $UNI_NOTES_DIR
+		switch $argv[2]
+			case uni
+				lazygit -p $UNI_DIR
+			
+			case notes
+				lazygit -p $UNI_NOTES_DIR
 
-				case '*'
-					echo "Unrecognized input."
-					exit 1
-			end
-		else
-			lazygit -p $UNI_DIR
+			case ''
+				lazygit -p $UNI_DIR
+
+			case '*'
+				echo "Unrecognized input."
+				exit 1
 		end
 
 	case edit
-		if not test (count $argv[2..]) -eq 0
-			switch $argv[2]
-				case flake
-					$EDITOR $UNI_DIR/flake.nix
+		switch $argv[2]
+			case flake
+				$EDITOR $UNI_DIR/flake.nix
 
-				case self setup script
-					$EDITOR $UNI_DIR/script
+			case self setup script
+				$EDITOR $UNI_DIR/script
 
-				case '*'
-					$EDITOR $UNI_DIR/$argv[2..]
-			end
-		else
-			$EDITOR $UNI_DIR/.
+			case ''
+				$EDITOR $UNI_DIR/.
+
+			case '*'
+				$EDITOR $UNI_DIR/$argv[2..]
 		end
 
 	case '*'
