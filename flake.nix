@@ -40,13 +40,15 @@
 							texlab
 
 							# python
-							(python3Full.withPackages (ps:
+							(python3.withPackages (ps:
 										with ps; [
 											# python packages here
+										tkinter
 											matplotlib
 											numpy
 											sympy
 											scipy
+											astropy
 										]))
 							basedpyright
 							ruff
