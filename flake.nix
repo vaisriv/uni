@@ -43,7 +43,7 @@
 							(python3.withPackages (ps:
 										with ps; [
 											# python packages here
-										tkinter
+											tkinter
 											matplotlib
 											numpy
 											sympy
