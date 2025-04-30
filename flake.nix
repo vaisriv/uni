@@ -11,33 +11,28 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		# Flake Utils
+		flake-utils = {
+			url = "github:numtide/flake-utils";
+		};
+
 		# Nix Formatter - Alejandra
 		alejandra = {
 			url = "github:kamadorueda/alejandra";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
-		# Generic Systems for Flakes
-		systems = {
-			url = "github:nix-systems/default";
-		};
-
-		# Flake Utils
-		flake-utils = {
-			url = "github:numtide/flake-utils";
-			inputs.systems.follows = "systems";
-		};
 	};
 
-	outputs = {
+	outputs = inputs @ {
 		nixpkgs,
-		flake-utils,
+		lix-module,
 		...
 	}:
-		flake-utils.lib.eachDefaultSystem (
+		inputs.flake-utils.lib.eachDefaultSystem (
 			system: let
 				pkgs = nixpkgs.legacyPackages.${system};
 			in {
+				formatter = inputs.alejandra.defaultPackage.${system};
 				devShells.default =
 					pkgs.mkShell {
 						packages = with pkgs; [
@@ -45,7 +40,7 @@
 							texlab
 
 							# python
-							(python3.withPackages (ps:
+							(python3Full.withPackages (ps:
 										with ps; [
 											# python packages here
 											matplotlib
@@ -55,6 +50,7 @@
 										]))
 							basedpyright
 							ruff
+							uv
 						];
 					};
 			}
