@@ -5,8 +5,6 @@
 # *.[oa]
 # *~
 
-msc/zotero
-
 # ignore python venvs
 **/.venv
 

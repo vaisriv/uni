@@ -11,8 +11,8 @@ oe_sc2 = OrbitalElements(21000.0, 0.6, 90.0, 0.0, 0.0, 35.0)
 dt = 3600.0
 
 # new state vectors and oe for each spacecraft
-sv_sc1_new, oe_sc1_new = kepler_predict(oe_sc1, dt)
-sv_sc2_new, oe_sc2_new = kepler_predict(oe_sc2, dt)
+sv_sc1_new, oe_sc1_new = predict_kepler(oe_sc1, dt)
+sv_sc2_new, oe_sc2_new = predict_kepler(oe_sc2, dt)
 
 println("Predicted State Vectors after $(dt) seconds:")
 println("\nSpacecraft 1:")
