@@ -1,6 +1,7 @@
 module SpaceFlightDynamics
 	using LinearAlgebra
 	using DifferentialEquations
+	using OrdinaryDiffEq
 
 	μ_Earth = 398600.4418 # km^3/s_2
 	μ_Sun = 1.32712e11 # km^3/s_2
