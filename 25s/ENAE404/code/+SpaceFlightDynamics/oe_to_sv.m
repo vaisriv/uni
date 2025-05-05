@@ -1,7 +1,7 @@
 %% +SpaceFlightDynamics/oe_to_sv.m
 function sv = oe_to_sv(oe, mu)
 	if nargin < 2
-		mu = muEarth();
+		mu = SpaceFlightDynamics.muEarth();
 	end
 	a = oe.a;
 	e = oe.e;
@@ -18,5 +18,5 @@ function sv = oe_to_sv(oe, mu)
 	sin(omega)*sin(i),                          cos(omega)*sin(i),                          cos(i)];
 	r = Rmat * r_pf;
 	v = Rmat * v_pf;
-	sv = StateVectors(r, v);
+	sv = SpaceFlightDynamics.StateVectors(r, v);
 end

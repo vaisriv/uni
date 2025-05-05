@@ -1,7 +1,7 @@
 %% +SpaceFlightDynamics/solve_lambert.m
 function [v1, v2, e, rp] = solve_lambert(r1, r2, TOF, mu, long_way)
 	if nargin < 4
-		mu = muEarth();
+		mu = SpaceFlightDynamics.muEarth();
 	end
 	if nargin < 5
 		long_way = false;
@@ -23,7 +23,7 @@ function [v1, v2, e, rp] = solve_lambert(r1, r2, TOF, mu, long_way)
 	if A == 0
 		error('Cannot compute Lambert solution: A = 0');
 	end
-	F = @(z) (( (r1_norm + r2_norm + A*(z.*stumpff_C3(z) - 1)./sqrt(stumpff_C2(z)))./stumpff_C2(z) ).^(3/2).*stumpff_C3(z) + A*sqrt(r1_norm + r2_norm + A*(z.*stumpff_C3(z) - 1)./sqrt(stumpff_C2(z))) ) / sqrt(mu) - TOF;
+	F = @(z) (( (r1_norm + r2_norm + A*(z.*SpaceFlightDynamics.stumpff_C3(z) - 1)./sqrt(SpaceFlightDynamics.stumpff_C2(z)))./SpaceFlightDynamics.stumpff_C2(z) ).^(3/2).*SpaceFlightDynamics.stumpff_C3(z) + A*sqrt(r1_norm + r2_norm + A*(z.*SpaceFlightDynamics.stumpff_C3(z) - 1)./sqrt(SpaceFlightDynamics.stumpff_C2(z))) ) / sqrt(mu) - TOF;
 	z = 0;
 	for iter = 1:200
 		Fz = F(z);
@@ -34,7 +34,7 @@ function [v1, v2, e, rp] = solve_lambert(r1, r2, TOF, mu, long_way)
 		dF = (F(z + delta) - F(z - delta))/(2*delta);
 		z = z - Fz/dF;
 	end
-	y = r1_norm + r2_norm + A*(z*stumpff_C3(z) - 1)/sqrt(stumpff_C2(z));
+	y = r1_norm + r2_norm + A*(z*SpaceFlightDynamics.stumpff_C3(z) - 1)/sqrt(SpaceFlightDynamics.stumpff_C2(z));
 	f = 1 - y/r1_norm;
 	g = A*sqrt(y/mu);
 	gdot = 1 - y/r2_norm;

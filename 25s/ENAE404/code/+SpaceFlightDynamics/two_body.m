@@ -1,7 +1,7 @@
 %% +SpaceFlightDynamics/two_body.m
 function du = two_body(t, u, mu)
 	if nargin < 3
-		mu = muEarth();
+		mu = SpaceFlightDynamics.muEarth();
 	end
 	du = zeros(6,1);
 	du(1:3) = u(4:6);
