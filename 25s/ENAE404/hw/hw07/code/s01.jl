@@ -1,5 +1,5 @@
 # enae404 hw07
-include("../../../code/sfd.jl")
+include("../../../code/SFD.jl/SFD.jl")
 using .SpaceFlightDynamics
 using LinearAlgebra
 using Plots

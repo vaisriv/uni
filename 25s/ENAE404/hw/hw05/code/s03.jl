@@ -1,4 +1,4 @@
-include("../../../code/sfd.jl")
+include("../../../code/SFD.jl/SFD.jl")
 using .SpaceFlightDynamics
 
 # sc: a (km) | e | i (deg) | Ω (deg) | ω (deg) | ν (deg)
