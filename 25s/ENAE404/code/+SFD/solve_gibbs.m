@@ -1,7 +1,8 @@
-%% +SpaceFlightDynamics/solve_gibbs.m
 function v2 = solve_gibbs(r1, r2, r3, mu)
+%SOLVE_GIBBS Solve Gibbs's problem 
+% Solver for Gibbs's problem
 	if nargin < 4
-		mu = SpaceFlightDynamics.muEarth();
+		mu = SFD.mu_Earth();
 	end
 	c12 = cross(r1, r2);
 	c23 = cross(r2, r3);

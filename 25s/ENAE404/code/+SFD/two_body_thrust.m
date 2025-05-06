@@ -1,5 +1,5 @@
-%% +SpaceFlightDynamics/two_body_thrust.m
 function du = two_body_thrust(t, u, params)
+%TWO_BODY_THRUST ODE for the Thrust case of the 2BP
 	mu = params(1);
 	T_spec = params(2);
 	du = zeros(6,1);

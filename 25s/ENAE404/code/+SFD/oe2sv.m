@@ -1,7 +1,7 @@
-%% +SpaceFlightDynamics/oe_to_sv.m
-function sv = oe_to_sv(oe, mu)
+function sv = oe2sv(oe, mu)
+%OE2SV OrbitalElement to StateVector converter
 	if nargin < 2
-		mu = SpaceFlightDynamics.muEarth();
+		mu = SFD.mu_Earth();
 	end
 	a = oe.a;
 	e = oe.e;
@@ -18,5 +18,5 @@ function sv = oe_to_sv(oe, mu)
 	sin(omega)*sin(i),                          cos(omega)*sin(i),                          cos(i)];
 	r = Rmat * r_pf;
 	v = Rmat * v_pf;
-	sv = SpaceFlightDynamics.StateVectors(r, v);
+	sv = SFD.StateVectors(r, v);
 end

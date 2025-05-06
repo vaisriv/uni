@@ -1,5 +1,6 @@
-%% +SpaceFlightDynamics/kepler.m
 function E = kepler(M, e, tol, max_iter)
+%KEPLER Function encoding of Kepler's problem for use with the
+%Newton-Raphson solving method
 	if nargin < 4
 		max_iter = 1000;
 	end

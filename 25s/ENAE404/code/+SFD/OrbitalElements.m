@@ -1,5 +1,5 @@
-%% +SpaceFlightDynamics/OrbitalElements.m
 classdef OrbitalElements
+%ORBITALELEMENTS Named Tuple of Orbital Elements
 	properties
 		a
 		e
