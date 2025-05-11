@@ -1,28 +1,47 @@
 #!/usr/bin/env fish
 
-function set_sem_env
-	cd $UNI_DIR
-	set -U UNI_SEM (ls --only-dirs | fzf -f "!champs !msc !notes" | fzf)
+function set_sem_env -a SEM
+	if test -n "$SEM"
+		set -U UNI_SEM $SEM
+	else
+		cd $UNI_DIR
+		set -U UNI_SEM (ls --only-dirs | fzf -f "!champs !msc !notes" | fzf)
+	end
 
 	set -U UNI_SEM_DIR $UNI_DIR/$UNI_SEM
 	set -U UNI_SEM_NOTES_DIR $UNI_NOTES_DIR/$UNI_SEM
 end
 
-function set_course_env
-	cd $UNI_SEM_DIR
-	set -U UNI_COURSE (ls --only-dirs | fzf )
+function set_course_env -a COURSE
+	if test -n "$COURSE"
+		set -U UNI_COURSE $COURSE
+	else
+		cd $UNI_SEM_DIR
+		set -U UNI_COURSE (ls --only-dirs | fzf )
+	end
 
 	set -U UNI_COURSE_DIR $UNI_SEM_DIR/$UNI_COURSE
 	set -U UNI_COURSE_NOTES_DIR $UNI_SEM_NOTES_DIR/$UNI_COURSE
 end
 
-function set_hw_env
-	cd $UNI_COURSE_DIR/hw/
-	set -U UNI_HW (ls --only-dirs | fzf)
+function set_hw_env -a HW
+	if test -n "$HW"
+		set -U UNI_HW $HW
+	else
+		cd $UNI_COURSE_DIR/hw
+		set -U UNI_HW (ls --only-dirs | fzf)
+	end
 
-	set -U UNI_HW_DIR $UNI_SEM_DIR/$UNI_COURSE/hw/$UNI_HW
+	set -U UNI_HW_DIR $UNI_COURSE_DIR/hw/$UNI_HW
 end
 
+function init_hw
+	cp -r $UNI_DIR/msc/hw/* .
+
+	set hwtitle (string lower $UNI_COURSE-$UNI_HW)
+	mv ./HWTemplate.tex ./$hwtitle.tex
+	mv ./HWTemplate.pdf ./$hwtitle.pdf
+end
 
 if test -z "$EDITOR"
 	echo "please make sure \$EDITOR is set"
@@ -87,20 +106,19 @@ switch $argv[1]
 				cd $UNI_HW_DIR
 
 			case notes
-				if test (count $argv[3..]) -eq 0
-					cd $UNI_NOTES_DIR
-				else
-					switch $argv[3]
-						case course class
-							cd $UNI_COURSE_NOTES_DIR
+				switch $argv[3]
+					case course class
+						cd $UNI_COURSE_NOTES_DIR
 
-						case sem semester
-							cd $UNI_SEM_NOTES_DIR
+					case sem semester
+						cd $UNI_SEM_NOTES_DIR
 
-						case '*'
-							echo "Unrecognized input."
-							exit 1
-					end
+					case ''
+						cd $UNI_NOTES_DIR
+
+					case '*'
+						echo "Unrecognized input."
+						exit 1
 				end
 
 			case uni
@@ -112,6 +130,27 @@ switch $argv[1]
 			case '*'
 				echo "Unrecognized input."
 				exit 1
+		end
+
+	case hw
+		switch $argv[2]
+			case next
+				set current_dir $(pwd)
+				cd $UNI_COURSE_DIR/hw
+
+				set hwnum (string pad -w 2 -c 0 (math max (command ls | string match 'hw*' | string sub -s -2 | string join ',') + 1))
+
+				set_hw_env hw$hwnum
+				echo creating $UNI_HW in $UNI_COURSE
+				mkdir $UNI_HW_DIR
+				cd $UNI_HW_DIR
+				init_hw
+
+				cd $current_dir
+
+			case init
+				set_hw_env (basename (pwd))
+				init_hw
 		end
 
 	case notes

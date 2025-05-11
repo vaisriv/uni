@@ -1,0 +1,136 @@
+\input{$UNI_DIR/msc/tex/HWSetup}
+\input{$UNI_DIR/msc/tex/EngBindings}
+
+%
+% Homework Details
+%   - Title
+%   - Subtitle
+%   - Due date
+%   - Due time
+%   - Course
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Title}
+\newcommand{\hmwkSubTitle}{Subtitle}
+\newcommand{\hmwkDueDate}{Due Date}
+\newcommand{\hmwkDueTime}{11:59 PM}
+\newcommand{\hmwkClass}{Course - Section}
+\newcommand{\hmwkClassTime}{Time}
+\newcommand{\hmwkClassInstructor}{Instuctor}
+\newcommand{\hmwkAuthorName}{\textbf{Author}}
+\newcommand{\hmwkCompletionDate}{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{hwkProblem}{1}{Introducing Problems}
+
+	Homework problems are placed on individual pages.
+
+	\hwkSol{}
+
+	Solutions are placed below the problem statement, and can be split
+
+	\hwkPart{}
+
+	into
+
+	\hwkPart{}
+
+	different parts.
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{2}{Defining Features}
+		
+	Problems can include \( \textbf{inline math: } F_{P} = - b \dot{x}^{2} \) and \textbf{display math:}
+
+	\[
+		\Delta E_{12} = Q_{12} + W_{12} \therefore W_{12} = Q_{12}
+	.\]
+	
+	\hwkSol{}
+
+	And so can solutions. Personally, I like to use \mintinline{latex}{align*} environments (though you can use \mintinline{latex}{gather*} environments) for multi-line math.
+
+	\begin{align*}
+		m_{P} \frac{d\dot{x}}{dt}                             = F_{P}                                     \\
+		m_{P} \frac{d\dot{x}}{dt}                             = -b\dot{x}^{2}                             \\
+		\frac{d\dot{x}}{\dot{x}^2}                            = - \frac{b}{m_{P}} dt                      \\
+		{\left[ - \frac{1}{\dot{x}} \right]}^{\dot{x}}_{v_{0}}  = - \frac{b}{m_{P}} \left( t - t_{0} \right) \\
+		\dot{x}                                               = \left[ v_{0}^{-1} + \frac{b}{m_{P}} \left( t - t_{0} \right) \right] \qed
+	.\end{align*}
+
+	We can also display code blocks using \mintinline{latex}{minted} environments.
+
+	\begin{minted}{python}
+		minutes_to_convert = 122
+
+		hours = int(minutes_to_convert / 60)
+		minutes = minutes_to_convert % 60
+
+		convert_label = " Minutes "
+		if minutes_to_convert == 1:
+		    convert_label = " Minute "
+
+		hour_label = " Hours, "
+		if hours == 1:
+		    hour_label = " Hour, "
+
+		minute_label = " Minutes"
+		if minutes == 1:
+		    minute_label = " Minute"
+
+		print(
+		    str(minutes_to_convert)
+		    + convert_label
+		    + "is the same as:\n"
+		    + str(hours)
+		    + hour_label
+		    + str(minutes)
+		    + minute_label
+		)
+	\end{minted}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{3}{File insertion}
+
+	We can also insert files at will. As we can see here, the problem statement provides code for us.
+	\inputminted{julia}{./code/p03.jl}
+
+	\hwkSol
+
+	I like to use the filepath convention \mintinline{bash}{./code/pXX.jl} for code used in problem statements, \mintinline{bash}{./code/sXX.jl} for code used in solutions, and solution program output in \mintinline{bash}{./code/sXX.txt}. (This convention can be extended to problems with multiple parts by appending the part number to the filename: \mintinline{bash}{./code/{s03a.jl, s03b.jl, etc}}.)
+
+	\inputminted{julia}{./code/s03.jl}
+	\inputminted{julia}{./code/s03.txt}
+
+	As you can see, our code outputs an image. I like to save them in \mintinline{bash}{./images/sXX.jl} (following the filepath naming convention we used for our code files). Let's display it here to finish off our solution. To display images, we use a combination of a \mintinline{latex}{figure} environment and a \mintinline{latex}{center} environment.
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.45\textwidth]{./images/s03.png}
+		\end{center}
+		\caption{Data Plot}\label{fig:s03}
+	\end{figure}
+
+\end{hwkProblem}
+
+\begin{hwkProblem}{Write number here}{Write name of problem here}
+
+	Write problem statement here.
+
+	\hwkSol{}
+
+	Write solution here.
+
+\end{hwkProblem}
+
+\end{document}

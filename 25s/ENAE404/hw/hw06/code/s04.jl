@@ -1,4 +1,4 @@
-include("../../../code/sfd.jl")
+include("../../../code/SFD.jl/SFD.jl")
 using .SpaceFlightDynamics
 
 r1 = [-6_979.49190,   208.846535,  -573.801140]
