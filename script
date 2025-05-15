@@ -17,7 +17,7 @@ function set_course_env -a COURSE
 		set -U UNI_COURSE $COURSE
 	else
 		cd $UNI_SEM_DIR
-		set -U UNI_COURSE (eza --only-dirs | fzf )
+		set -U UNI_COURSE (eza --only-dirs --icons never --color never | fzf )
 	end
 
 	set -U UNI_COURSE_DIR $UNI_SEM_DIR/$UNI_COURSE
@@ -29,7 +29,7 @@ function set_hw_env -a HW
 		set -U UNI_HW $HW
 	else
 		cd $UNI_COURSE_DIR/hw
-		set -U UNI_HW (eza --only-dirs | fzf)
+		set -U UNI_HW (eza --only-dirs --icons never --color never | fzf)
 	end
 
 	set -U UNI_HW_DIR $UNI_COURSE_DIR/hw/$UNI_HW
