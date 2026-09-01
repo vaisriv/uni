@@ -1,0 +1,9 @@
+[submodule "grad"]
+	path = grad
+	url = git@github.com:vaisriv/uni-grad
+[submodule "undergrad"]
+	path = undergrad
+	url = git@github.com:vaisriv/uni-undergrad
+[submodule "notes"]
+	path = notes
+	url = git@github.com:vaisriv/uni-notes
