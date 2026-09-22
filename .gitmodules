@@ -7,12 +7,12 @@
 [submodule "notes"]
 	path = notes
 	url = git@github.com:vaisriv/uni-notes
-[submodule ".nix/templates/hw-template"]
-	path = .nix/templates/hw-template
+[submodule "hw-template"]
+	path = msc/templates/hw-template
 	url = git@github.com:vaisriv/hw-template
-[submodule ".nix/templates/hw-setup"]
-	path = .nix/templates/hw-setup
+[submodule "hw-setup"]
+	path = msc/templates/hw-setup
 	url = git@github.com:vaisriv/hw-setup
-[submodule ".nix/templates/enae441-hw-template"]
-	path = .nix/templates/enae441-hw-template
+[submodule "enae441-hw-template"]
+	path = msc/templates/enae441-hw-template
 	url = git@github.com:vaisriv/enae441-hw-template
