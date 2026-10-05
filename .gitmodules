@@ -10,3 +10,6 @@
 [submodule "hw-template"]
 	path = msc/hw-template
 	url = git@github.com:vaisriv/hw-template
+[submodule "hw-template-typst"]
+	path = msc/hw-template-typst
+	url = git@github.com:vaisriv/hw-template-typst.git
